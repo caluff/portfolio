@@ -4,8 +4,8 @@ import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur-sm">
-      <div className="mx-auto flex h-12 max-w-3xl items-center justify-between border-x px-4">
+    <header className="sticky top-0 z-50 border-b border-dashed bg-background/95 backdrop-blur-sm">
+      <div className="mx-auto flex h-12 max-w-[52rem] items-center justify-between border-x border-dashed px-4">
         <a className="font-heading text-2xl tracking-tighter" href="#inicio">
           {siteName}
         </a>

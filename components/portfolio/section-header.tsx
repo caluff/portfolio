@@ -9,7 +9,7 @@ export function SectionHeader({ action, title }: SectionHeaderProps) {
   return (
     <header>
       <div
-        className="relative isolate h-5 border-y border-dashed border-border bg-muted/30 before:absolute before:inset-y-[-1px] before:left-1/2 before:-z-10 before:w-screen before:-translate-x-1/2 before:border-y before:border-dashed before:border-border before:bg-muted/30"
+        className="relative h-5 before:absolute before:inset-y-0 before:left-1/2 before:w-screen before:-translate-x-1/2 before:border-y before:border-dashed before:border-border before:bg-muted/30"
         aria-hidden="true"
       />
       <div className="relative flex min-h-14 items-center justify-between px-5 sm:px-6">

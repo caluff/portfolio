@@ -11,7 +11,7 @@ export function CoverSection() {
         className="object-cover"
         fill
         preload
-        sizes="(max-width: 768px) 100vw, 768px"
+        sizes="(max-width: 832px) 100vw, 832px"
         src="/svg/herogif.gif"
         unoptimized
       />

@@ -6,7 +6,7 @@ export function SectionSeparator() {
       aria-orientation="horizontal"
     >
       <span
-        className="absolute top-0 left-1/2 h-px w-screen -translate-x-1/2 bg-border"
+        className="absolute top-0 left-1/2 w-screen -translate-x-1/2 border-t border-dashed border-border"
         aria-hidden="true"
       />
     </div>
