@@ -106,7 +106,11 @@ export function TechStackSection() {
         />
 
         {technologyTabs.map(({ value }) => (
-          <TabsContent className="m-0" value={value} key={value}>
+          <TabsContent
+            className="m-0 h-80 overflow-y-auto bg-background [background-image:radial-gradient(circle,var(--tech-grid-dot)_1px,transparent_1px)] [background-position:8px_8px] [background-size:18px_18px] sm:h-52 md:h-44"
+            value={value}
+            key={value}
+          >
             <TechnologyList items={getTechnologiesByTab(value)} />
           </TabsContent>
         ))}
