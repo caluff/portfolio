@@ -1,18 +1,19 @@
 'use client';
 
 import * as React from 'react';
-import { useTheme } from 'next-themes';
-import { Monitor, Moon, Sun } from 'lucide-react';
+import {useTheme} from 'next-themes';
+import {Monitor, Moon, Sun} from 'lucide-react';
 
 import {
+  type Resolved,
+  type ThemeSelection,
   ThemeToggler as ThemeTogglerPrimitive,
   type ThemeTogglerProps as ThemeTogglerPrimitiveProps,
-  type ThemeSelection,
-  type Resolved,
 } from '@/components/animate-ui/primitives/effects/theme-toggler';
-import { Button } from '@/components/ui/button';
+import {Button} from '@/components/ui/button';
 
-const subscribeToHydration = () => () => {};
+const subscribeToHydration = () => () => {
+};
 const getClientSnapshot = () => true;
 const getServerSnapshot = () => false;
 
@@ -23,11 +24,11 @@ const getIcon = (
 ) => {
   const theme = modes.includes('system') ? effective : resolved;
   return theme === 'system' ? (
-    <Monitor />
+    <Monitor/>
   ) : theme === 'dark' ? (
-    <Moon />
+    <Moon/>
   ) : (
-    <Sun />
+    <Sun/>
   );
 };
 
@@ -44,22 +45,22 @@ type ThemeTogglerButtonProps = Omit<
   React.ComponentProps<typeof Button>,
   'children'
 > & {
-    modes?: ThemeSelection[];
-    onImmediateChange?: ThemeTogglerPrimitiveProps['onImmediateChange'];
-    direction?: ThemeTogglerPrimitiveProps['direction'];
+  modes?: ThemeSelection[];
+  onImmediateChange?: ThemeTogglerPrimitiveProps['onImmediateChange'];
+  direction?: ThemeTogglerPrimitiveProps['direction'];
 };
 
 function ThemeTogglerButton({
-  variant = 'ghost',
-  size = 'icon-sm',
-  modes = ['light', 'dark', 'system'],
-  direction = 'ltr',
-  onImmediateChange,
-  onClick,
-  className,
-  ...props
-}: ThemeTogglerButtonProps) {
-  const { theme, resolvedTheme, setTheme } = useTheme();
+                              variant = 'ghost',
+                              size = 'icon-sm',
+                              modes = ['light', 'dark'],
+                              direction = 'ltr',
+                              onImmediateChange,
+                              onClick,
+                              className,
+                              ...props
+                            }: ThemeTogglerButtonProps) {
+  const {theme, resolvedTheme, setTheme} = useTheme();
   const isHydrated = React.useSyncExternalStore(
     subscribeToHydration,
     getClientSnapshot,
@@ -74,7 +75,7 @@ function ThemeTogglerButton({
       direction={direction}
       onImmediateChange={onImmediateChange}
     >
-      {({ effective, resolved, toggleTheme }) => (
+      {({effective, resolved, toggleTheme}) => (
         <Button
           {...props}
           data-slot="theme-toggler-button"
@@ -86,11 +87,11 @@ function ThemeTogglerButton({
             toggleTheme(getNextTheme(effective, modes));
           }}
         >
-          {isHydrated ? getIcon(effective, resolved, modes) : <Sun />}
+          {isHydrated ? getIcon(effective, resolved, modes) : <Sun/>}
         </Button>
       )}
     </ThemeTogglerPrimitive>
   );
 }
 
-export { ThemeTogglerButton, type ThemeTogglerButtonProps };
+export {ThemeTogglerButton, type ThemeTogglerButtonProps};

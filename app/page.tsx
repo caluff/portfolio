@@ -14,11 +14,8 @@ export default function Home() {
         <CoverSection />
         <SectionSeparator />
         <ProfileSection />
-        <SectionSeparator />
         <AboutSection />
-        <SectionSeparator />
         <ContactSection />
-        <SectionSeparator />
         <ProjectsSection />
         <SectionSeparator />
       </div>
