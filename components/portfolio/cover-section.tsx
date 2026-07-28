@@ -11,11 +11,12 @@ export function CoverSection() {
         className="object-cover"
         fill
         preload
-        sizes="(max-width: 832px) 100vw, 832px"
+        sizes="(max-width: 800px) 100vw, 800px"
         src="/svg/herogif.gif"
         unoptimized
       />
-      <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-background/30 via-transparent to-transparent" />
+      <div
+        className="pointer-events-none absolute inset-0 bg-linear-to-t from-background/30 via-transparent to-transparent"/>
       <span className="absolute bottom-3 left-3 font-mono text-[0.55rem] tracking-[0.18em] text-cover-label">
         CALUFF / DIGITAL GARDEN
       </span>

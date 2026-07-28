@@ -9,12 +9,12 @@ export function ContactSection() {
     <section id="contact">
       <SectionHeader title="Contact" />
 
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.25rem_1fr_1.25rem_1fr_1.25rem_1fr]">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.75rem_1fr_0.75rem_1fr_0.75rem_1fr]">
         {contactLinks.map(({ href, icon: Icon, label }, index) => (
           <Fragment key={label}>
             {index > 0 && (
               <div
-                className="h-5 border-y border-dashed bg-muted/30 lg:h-auto lg:w-5 lg:border-x lg:border-y-0"
+                className="h-3 border-y border-dashed bg-subtle-band lg:relative lg:z-10 lg:-my-px lg:h-auto lg:w-3 lg:border-x lg:border-y-0"
                 aria-hidden="true"
               />
             )}
