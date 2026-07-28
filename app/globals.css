@@ -19,6 +19,8 @@
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.45 0 0);
+  --about-highlight: oklch(0.91 0.08 92 / 70%);
+  --about-underline: oklch(0.56 0.13 255);
   --subtle-band: color-mix(in srgb, var(--muted) 30%, var(--background));
   --tech-grid-dot: color-mix(
     in srgb,
@@ -77,6 +79,8 @@
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
   --muted-foreground: oklch(0.72 0 0);
+  --about-highlight: oklch(0.58 0.1 92 / 55%);
+  --about-underline: oklch(0.72 0.11 255);
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);

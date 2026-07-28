@@ -1,30 +1,33 @@
-import { AtSign, BriefcaseBusiness, Code2, Mail, type LucideIcon } from "lucide-react";
-
 type ContactLink = {
   label: string;
   href: string;
-  icon: LucideIcon;
+  iconSrc: string;
+  iconMode: "color" | "monochrome";
 };
 
 export const contactLinks = [
   {
     label: "GitHub",
     href: "#",
-    icon: Code2,
+    iconSrc: "/contact/github-circle.svg",
+    iconMode: "monochrome",
   },
   {
     label: "LinkedIn",
     href: "#",
-    icon: BriefcaseBusiness,
+    iconSrc: "/contact/linkedin.svg",
+    iconMode: "color",
   },
   {
     label: "X / Twitter",
     href: "#",
-    icon: AtSign,
+    iconSrc: "/contact/X.svg",
+    iconMode: "monochrome",
   },
   {
     label: "Mail",
     href: "mailto:hola@caluff.studio",
-    icon: Mail,
+    iconSrc: "/contact/gmail.svg",
+    iconMode: "color",
   },
-] satisfies readonly ContactLink[];
+] as const satisfies readonly ContactLink[];
