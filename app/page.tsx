@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <main className="min-h-svh overflow-x-clip bg-background text-foreground" id="inicio">
       <SiteHeader />
-      <div className="relative mx-auto min-h-svh max-w-[52rem] border-x border-dashed bg-background">
+      <div className="relative mx-auto min-h-svh max-w-3xl border-x border-dashed bg-background">
         <CoverSection />
         <SectionSeparator />
         <ProfileSection />
