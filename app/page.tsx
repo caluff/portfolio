@@ -5,6 +5,7 @@ import { ProfileSection } from "@/components/portfolio/profile-section";
 import { ProjectsSection } from "@/components/portfolio/projects-section";
 import { SectionSeparator } from "@/components/portfolio/section-separator";
 import { SiteHeader } from "@/components/portfolio/site-header";
+import { TechStackSection } from "@/components/portfolio/tech-stack-section";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
         <SectionSeparator />
         <ProfileSection />
         <AboutSection />
+        <TechStackSection />
         <ContactSection />
         <ProjectsSection />
         <SectionSeparator />

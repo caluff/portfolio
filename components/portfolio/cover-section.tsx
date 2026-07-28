@@ -12,7 +12,7 @@ export function CoverSection() {
         fill
         preload
         sizes="(max-width: 768px) 100vw, 768px"
-        src="/svg/herogif.gif"
+        src="/gif/herogif.gif"
         unoptimized
       />
       <div
