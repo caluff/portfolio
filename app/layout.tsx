@@ -16,8 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Caluff — Diseñador & desarrollador digital",
-  description: "Portfolio de Caluff. Diseño, estrategia y desarrollo frontend.",
+  title: "Daniel Caluff — Senior Frontend Engineer",
+  description:
+    "Portfolio of Daniel Caluff, a Senior Frontend Engineer and Computer Science graduate.",
 };
 
 export default function RootLayout({

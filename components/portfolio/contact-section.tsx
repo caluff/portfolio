@@ -1,42 +1,9 @@
-import Image from "next/image";
 import { Fragment } from "react";
-import type { CSSProperties } from "react";
 import { ArrowUpRight } from "lucide-react";
 
+import { ContactIcon } from "@/components/portfolio/contact-icon";
 import { SectionHeader } from "@/components/portfolio/section-header";
 import { contactLinks } from "@/data/links";
-
-type ContactIconProps = {
-  iconMode: (typeof contactLinks)[number]["iconMode"];
-  iconSrc: string;
-};
-
-function ContactIcon({ iconMode, iconSrc }: ContactIconProps) {
-  if (iconMode === "monochrome") {
-    const maskStyle = {
-      WebkitMaskImage: `url("${iconSrc}")`,
-      maskImage: `url("${iconSrc}")`,
-    } satisfies CSSProperties;
-
-    return (
-      <span
-        className="size-5 bg-foreground mask-contain mask-center mask-no-repeat"
-        style={maskStyle}
-        aria-hidden="true"
-      />
-    );
-  }
-
-  return (
-    <Image
-      className="size-5"
-      src={iconSrc}
-      alt=""
-      width={20}
-      height={20}
-    />
-  );
-}
 
 export function ContactSection() {
   return (

@@ -1,7 +1,10 @@
 export const profile = {
-  name: "Caluff",
+  name: "Daniel Caluff",
   initials: "CA",
-  role: "Diseñador & desarrollador",
+  headlines: [
+    "Senior Frontend Engineer with 4+ years of experience",
+    "B.Sc. in Computer Science",
+  ],
   location: "Montevideo, Uruguay",
   views: "0000",
 } as const;

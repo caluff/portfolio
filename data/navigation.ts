@@ -1,4 +1,4 @@
-export const siteName = "Caluff";
+export const siteName = "Daniel Caluff";
 
 export const navigationLinks = [
   { label: "Home", href: "#inicio" },
