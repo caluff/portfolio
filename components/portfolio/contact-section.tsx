@@ -21,13 +21,13 @@ export function ContactSection() {
               />
             )}
             <Button
-              className="h-auto hover:underline min-h-12 w-full justify-start gap-3 rounded-none border-0 py-2 transition-[transform,box-shadow] hover:shadow-md focus-visible:-translate-y-0.5"
+              className="h-auto hover:underline min-h-12 w-full justify-start gap-3 border-0 py-2 transition-[transform,box-shadow] hover:shadow-md focus-visible:-translate-y-0.5"
               variant="outline"
               nativeButton={false}
               render={<a href={href}/>}
             >
               <span
-                className="flex size-11 shrink-0 items-center justify-center rounded-none border bg-background shadow-sm transition-transform group-hover/button:scale-105 group-focus-visible/button:scale-105">
+                className="flex size-11 shrink-0 items-center justify-center border bg-background shadow-sm transition-transform group-hover/button:scale-105 group-focus-visible/button:scale-105">
                 <ContactIcon iconMode={iconMode} iconSrc={iconSrc}/>
               </span>
               <strong>{label}</strong>

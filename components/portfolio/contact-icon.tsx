@@ -11,13 +11,13 @@ type ContactIconProps = {
 export function ContactIcon({ iconMode, iconSrc }: ContactIconProps) {
   if (iconMode === "monochrome") {
     const maskStyle = {
-      WebkitMaskImage: `url("${iconSrc}")`,
-      maskImage: `url("${iconSrc}")`,
+      WebkitMask: `url("${iconSrc}") center / contain no-repeat`,
+      mask: `url("${iconSrc}") center / contain no-repeat`,
     } satisfies CSSProperties;
 
     return (
       <span
-        className="size-5 bg-foreground mask-contain mask-center mask-no-repeat"
+        className="size-5 bg-current"
         style={maskStyle}
         aria-hidden="true"
       />

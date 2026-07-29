@@ -1,60 +1,144 @@
-import { ArrowUpRight } from "lucide-react";
+import {Globe} from "lucide-react";
+import type {CSSProperties} from "react";
 
-import { SectionHeader } from "@/components/portfolio/section-header";
-import { cn } from "@/lib/utils";
-import { projects, type ProjectTone } from "@/data/projects";
+import {ProjectMediaCarousel} from "@/components/portfolio/project-media-carousel";
+import {SectionHeader} from "@/components/portfolio/section-header";
+import {Badge} from "@/components/ui/badge";
+import {HoverEffect, type HoverEffectItem} from "@/components/ui/card-hover-effect";
+import {type Project, projects} from "@/data/projects";
+import {cn} from "@/lib/utils";
 
-const projectToneClasses: Record<ProjectTone, string> = {
-  blue: "from-project-blue-soft via-project-blue to-project-blue-deep text-project-blue-foreground",
-  lime: "from-project-lime-soft via-project-lime to-project-lime-deep text-project-lime-foreground",
-  rose: "from-project-rose-soft via-project-rose to-project-rose-deep text-project-rose-foreground",
-  sand: "from-project-sand-soft via-project-sand to-project-sand-deep text-project-sand-foreground",
+type ProjectCardProps = {
+  featured?: boolean;
+  project: Project;
 };
 
+const githubIconStyle = {
+  WebkitMaskImage: 'url("/tech/github.svg")',
+  maskImage: 'url("/tech/github.svg")',
+} satisfies CSSProperties;
+
+function GitHubIcon() {
+  return (
+    <span
+      className="size-5 bg-current mask-contain mask-center mask-no-repeat"
+      style={githubIconStyle}
+      aria-hidden="true"
+    />
+  );
+}
+
+function ProjectCard({featured = false, project}: ProjectCardProps) {
+  const {
+    description,
+    developing,
+    images,
+    liveUrl,
+    name,
+    sourceCodeLink,
+    tags,
+  } = project;
+
+  return (
+    <article
+      className={cn(
+        "group/project flex h-full flex-col border border-dashed bg-background p-3",
+        featured &&
+        "sm:grid sm:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] sm:gap-4",
+      )}
+    >
+      <ProjectMediaCarousel
+        featured={featured}
+        images={images}
+        liveUrl={liveUrl}
+        projectName={name}
+      />
+
+      <div className={cn("flex grow flex-col pt-3", featured && "sm:pt-1")}>
+        <div className="flex items-center gap-3 sm:justify-between">
+          <h3 className="text-lg leading-tight font-bold tracking-tight">
+            {name}
+          </h3>
+          <span className="flex shrink-0 items-center gap-1.5 text-sm text-muted-foreground">
+            <span
+              className={cn(
+                "size-2 rounded-full",
+                developing
+                  ? "bg-muted-foreground"
+                  : "bg-project-status-live",
+              )}
+              aria-hidden="true"
+            />
+            {developing ? "Building" : "Live"}
+          </span>
+        </div>
+
+        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+          {description}
+        </p>
+
+        <div className="mt-auto flex items-end justify-between gap-4 pt-5">
+          <ul
+            className="flex flex-wrap gap-2"
+            aria-label={`${name} technologies`}
+          >
+            {tags.map((tag) => (
+              <li key={tag.name}>
+                <Badge variant="outline">
+                  {tag.name}
+                </Badge>
+              </li>
+            ))}
+          </ul>
+
+          <div className="flex shrink-0 items-center gap-1">
+            <a
+              className="flex size-8 items-center justify-center text-muted-foreground transition-[color,transform] hover:-translate-y-0.5 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
+              href={liveUrl}
+              target="_blank"
+              rel="noreferrer"
+              title={`Visit ${name}`}
+              aria-label={`Visit ${name} live site`}
+            >
+              <Globe className="size-5" aria-hidden="true"/>
+            </a>
+            <a
+              className="flex size-8 items-center justify-center text-muted-foreground transition-[color,transform] hover:-translate-y-0.5 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
+              href={sourceCodeLink}
+              target="_blank"
+              rel="noreferrer"
+              title={`View ${name} source code`}
+              aria-label={`View ${name} source code on GitHub`}
+            >
+              <GitHubIcon/>
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}
+
 export function ProjectsSection() {
+  const hoverItems = projects.map((project, index) => ({
+    id: project.name,
+    className: cn("project-reveal", index === 0 && "sm:col-span-2"),
+    content: <ProjectCard featured={index === 0} project={project}/>,
+  })) satisfies readonly HoverEffectItem[];
+
   return (
     <section id="projects">
       <SectionHeader
         title="Projects"
         action={
-        <a className="text-xs text-muted-foreground transition-colors hover:text-foreground" href="#projects">
-          View all <span aria-hidden="true">↗</span>
-        </a>
+          <span className="text-xs text-muted-foreground">
+            {projects.length} selected works
+          </span>
         }
       />
 
       <div className="px-5 py-6 sm:px-6">
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10">
-          {projects.map(({ description, href, icon: Icon, kind, title, tone, year }) => (
-            <article className="min-w-0" key={title}>
-              <div
-                className={cn(
-                  "relative flex h-40 flex-col justify-between overflow-hidden rounded-xl bg-linear-to-br p-5",
-                  projectToneClasses[tone],
-                )}
-              >
-                <Icon className="size-7" aria-hidden="true" />
-                <strong className="relative text-xl">{title}</strong>
-                <span className="absolute -right-1 -bottom-4 text-6xl font-black opacity-20" aria-hidden="true">
-                  {year}
-                </span>
-              </div>
-
-              <div className="relative flex flex-col gap-1 pt-3 pr-10">
-                <h3 className="text-sm font-semibold">{title}</h3>
-                <p className="text-xs leading-relaxed text-muted-foreground">{description}</p>
-                <small className="text-[0.65rem] text-muted-foreground">{kind}</small>
-                <a
-                  className="absolute top-3 right-0 flex size-7 items-center justify-center rounded-full border transition-colors hover:bg-accent hover:text-accent-foreground"
-                  href={href}
-                  aria-label={`Ver ${title}`}
-                >
-                  <ArrowUpRight className="size-4" aria-hidden="true" />
-                </a>
-              </div>
-            </article>
-          ))}
-        </div>
+        <HoverEffect className="gap-3" items={hoverItems}/>
       </div>
     </section>
   );

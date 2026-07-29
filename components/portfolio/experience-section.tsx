@@ -16,7 +16,7 @@ function ExperienceCard({experience}: { experience: Experience }) {
     experience;
 
   return (
-    <Card className="[--card-spacing:--spacing(6)] transition-shadow duration-300 hover:shadow-lg rounded-none">
+    <Card className="[--card-spacing:--spacing(6)] transition-shadow duration-300 hover:shadow-lg">
       <CardHeader>
         <CardTitle>{role}</CardTitle>
         <CardDescription>{company}</CardDescription>

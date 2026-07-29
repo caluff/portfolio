@@ -25,6 +25,7 @@
     "@canvas-ui": "https://canvasui.dev/r/{name}.json",
     "@animate-ui": "https://animate-ui.com/r/{name}.json",
     "@magicui": "https://magicui.design/r/{name}",
-    "@heatmap": "https://shadcn-heatmap.pages.dev/r/{name}.json"
+    "@heatmap": "https://shadcn-heatmap.pages.dev/r/{name}.json",
+    "@aceternity": "https://ui.aceternity.com/registry/{name}.json"
   }
 }

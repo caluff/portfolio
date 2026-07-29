@@ -1,52 +1,72 @@
-import { ArrowUpRight, Briefcase, MoonStar, Square, type LucideIcon } from "lucide-react";
-
-export type ProjectTone = "blue" | "lime" | "rose" | "sand";
-
-type Project = {
-  title: string;
+export type Project = {
+  name: string;
   description: string;
-  kind: string;
-  year: number;
-  href: string;
-  icon: LucideIcon;
-  tone: ProjectTone;
+  tags: readonly {
+    name: string;
+  }[];
+  images: readonly `/projects/${string}`[];
+  sourceCodeLink: `https://${string}`;
+  liveUrl: `https://${string}`;
+  developing: boolean;
 };
 
 export const projects = [
   {
-    title: "Orbit",
-    description: "Un dashboard financiero para decisiones claras.",
-    kind: "Fintech / Producto digital",
-    year: 2026,
-    href: "#contact",
-    icon: MoonStar,
-    tone: "lime",
+    name: "NEED THIS",
+    description:
+      "Full-stack ecommerce platform with a responsive storefront, guest checkout, secure payments, real-time inventory, customer accounts, and a private operations dashboard.",
+    tags: [
+      {name: "nextjs16"},
+      {name: "react19"},
+      {name: "typescript"},
+      {name: "convex"},
+      {name: "stripe"},
+      {name: "better-auth"},
+      {name: "tailwindCSS4"},
+    ],
+    images: [
+      "/projects/need-this/need-this.png",
+      "/projects/need-this/need-this-2.png",
+      "/projects/need-this/need-this-3.png",
+    ],
+    sourceCodeLink: "https://github.com/caluff/NEED-THISS",
+    liveUrl: "https://need-this.vercel.app/",
+    developing: false,
   },
   {
-    title: "Mono Studio",
-    description: "Una identidad web para un estudio independiente.",
-    kind: "Branding / Desarrollo web",
-    year: 2026,
-    href: "#contact",
-    icon: Briefcase,
-    tone: "rose",
+    name: "Gallo Express",
+    description:
+      "Production-ready ecommerce app with catalogs, multi-location inventory, admin area, auth, file uploads, and persistent cart.",
+    tags: [
+      {name: "nextjs15"},
+      {name: "react19"},
+      {name: "typescript"},
+      {name: "tailwindCSS4"},
+      {name: "postgresql"},
+      {name: "drizzle"},
+      {name: "better-auth"},
+      {name: "zustand"},
+      {name: "uploadthing"},
+    ],
+    images: ["/projects/gallo-express.png"],
+    sourceCodeLink: "https://github.com/caluff/gallo-express",
+    liveUrl: "https://galloexpress.com/",
+    developing: false,
   },
   {
-    title: "Archivo",
-    description: "Una biblioteca digital para historias locales.",
-    kind: "Editorial / UX UI",
-    year: 2026,
-    href: "#contact",
-    icon: Square,
-    tone: "blue",
+    name: "Travel Advisor",
+    description:
+      "Location-based travel discovery app that integrates maps and external APIs to surface restaurants, hotels, and attractions.",
+    tags: [
+      {name: "react"},
+      {name: "vite"},
+      {name: "rapidAPI"},
+      {name: "MaterialUI"},
+      {name: "GoogleCloud"},
+    ],
+    images: ["/projects/travel-advisor.webp"],
+    sourceCodeLink: "https://github.com/caluff/travel_advisor",
+    liveUrl: "https://traveladvisor-caluff.vercel.app",
+    developing: false,
   },
-  {
-    title: "Borde",
-    description: "Comercio de objetos hechos para durar.",
-    kind: "E-commerce / Frontend",
-    year: 2026,
-    href: "#contact",
-    icon: ArrowUpRight,
-    tone: "sand",
-  },
-] satisfies readonly Project[];
+] as const satisfies readonly Project[];

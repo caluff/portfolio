@@ -7,6 +7,7 @@ import {GitHubActivitySection} from "@/components/portfolio/github-activity-sect
 import {ProfileSection} from "@/components/portfolio/profile-section";
 import {ProjectsSection} from "@/components/portfolio/projects-section";
 import {SectionSeparator} from "@/components/portfolio/section-separator";
+import {SiteFooter} from "@/components/portfolio/site-footer";
 import {SiteHeader} from "@/components/portfolio/site-header";
 import {TechStackSection} from "@/components/portfolio/tech-stack-section";
 
@@ -26,6 +27,7 @@ export default function Home() {
         <GitHubActivitySection/>
         <ProjectsSection/>
         <SectionSeparator/>
+        <SiteFooter/>
       </div>
     </main>
   );

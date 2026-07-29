@@ -67,7 +67,7 @@ function TechnologyList({
     <div className="flex flex-wrap gap-2 px-5 py-6 sm:px-6">
       {items.map(({iconMode, iconSrc, name}) => (
         <Button
-          className="group h-8 gap-2 rounded-none border-0 px-3"
+          className="group h-8 gap-2 border-0 px-3"
           variant="ghost"
           type="button"
           key={name}

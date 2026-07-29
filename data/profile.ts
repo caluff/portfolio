@@ -9,6 +9,14 @@ export const profile = {
   views: "0000",
 } as const;
 
+export const footerCredit = {
+  label: "Designed & developed by",
+  author: "Caluff.",
+  backToTopLabel: "Back to top",
+  contactLabel: "Find me online",
+  contactAriaLabel: "Redes sociales y contacto",
+} as const;
+
 type AboutSegment = {
   text: string;
   emphasis?: "highlight" | "underline";

@@ -1,3 +1,5 @@
+import {githubProfile} from "@/data/github";
+
 type ContactLink = {
   label: string;
   href: string;
@@ -8,7 +10,7 @@ type ContactLink = {
 export const contactLinks = [
   {
     label: "GitHub",
-    href: "#",
+    href: githubProfile.url,
     iconSrc: "/contact/github-circle.svg",
     iconMode: "monochrome",
   },
