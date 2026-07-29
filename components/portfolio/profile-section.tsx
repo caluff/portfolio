@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Eye } from "lucide-react";
 
 import { HyperText } from "@/components/ui/hyper-text";
@@ -7,11 +8,16 @@ import { profile } from "@/data/profile";
 export function ProfileSection() {
   return (
     <section className="grid min-h-44 grid-cols-[5rem_1fr] items-center gap-4 p-5 sm:grid-cols-[7.5rem_1fr_auto] sm:gap-7 sm:p-6">
-      <div
-        className="relative flex size-20 items-center justify-center overflow-hidden rounded-xl border-4 border-muted-foreground/40 bg-muted font-heading text-3xl after:absolute after:top-10 after:left-4 after:h-28 after:w-12 after:rounded-full after:border after:border-foreground/70 sm:size-28 sm:text-4xl sm:after:top-12 sm:after:left-6 sm:after:h-40 sm:after:w-16"
-        aria-label={`Avatar de ${profile.name}`}
-      >
-        <span className="relative">{profile.initials}</span>
+      <div className="size-20 border border-dashed bg-subtle-band p-1 sm:size-28">
+        <div className="relative size-full overflow-hidden">
+          <Image
+            alt={`Avatar de ${profile.name}`}
+            className="object-cover object-[center_35%]"
+            fill
+            sizes="(max-width: 640px) 5rem, 7rem"
+            src="/profile/profile.jpg"
+          />
+        </div>
       </div>
 
       <div className="flex flex-col">

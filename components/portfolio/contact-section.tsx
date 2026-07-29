@@ -1,17 +1,18 @@
-import { Fragment } from "react";
-import { ArrowUpRight } from "lucide-react";
+import {Fragment} from "react";
+import {ArrowUpRight} from "lucide-react";
 
-import { ContactIcon } from "@/components/portfolio/contact-icon";
-import { SectionHeader } from "@/components/portfolio/section-header";
-import { contactLinks } from "@/data/links";
+import {ContactIcon} from "@/components/portfolio/contact-icon";
+import {SectionHeader} from "@/components/portfolio/section-header";
+import {Button} from "@/components/ui/button";
+import {contactLinks} from "@/data/links";
 
 export function ContactSection() {
   return (
     <section id="contact">
-      <SectionHeader title="Contact" />
+      <SectionHeader title="Contact"/>
 
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.75rem_1fr_0.75rem_1fr_0.75rem_1fr]">
-        {contactLinks.map(({ href, iconMode, iconSrc, label }, index) => (
+        {contactLinks.map(({href, iconMode, iconSrc, label}, index) => (
           <Fragment key={label}>
             {index > 0 && (
               <div
@@ -19,19 +20,22 @@ export function ContactSection() {
                 aria-hidden="true"
               />
             )}
-            <a
-              className="group flex min-h-16 items-center gap-3 px-3 transition-colors hover:bg-accent hover:text-accent-foreground"
-              href={href}
+            <Button
+              className="h-auto hover:underline min-h-12 w-full justify-start gap-3 rounded-none border-0 py-2 transition-[transform,box-shadow] hover:shadow-md focus-visible:-translate-y-0.5"
+              variant="outline"
+              nativeButton={false}
+              render={<a href={href}/>}
             >
-              <span className="flex size-10 shrink-0 items-center justify-center rounded-lg border bg-background">
-                <ContactIcon iconMode={iconMode} iconSrc={iconSrc} />
+              <span
+                className="flex size-11 shrink-0 items-center justify-center rounded-lg border bg-background shadow-sm transition-transform group-hover/button:scale-105 group-focus-visible/button:scale-105">
+                <ContactIcon iconMode={iconMode} iconSrc={iconSrc}/>
               </span>
-              <strong className="text-xs">{label}</strong>
+              <strong>{label}</strong>
               <ArrowUpRight
-                className="ml-auto size-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                className="ml-auto text-muted-foreground transition-transform group-hover/button:-translate-y-0.5 group-hover/button:translate-x-0.5 group-focus-visible/button:-translate-y-0.5 group-focus-visible/button:translate-x-0.5"
                 aria-hidden="true"
               />
-            </a>
+            </Button>
           </Fragment>
         ))}
       </div>

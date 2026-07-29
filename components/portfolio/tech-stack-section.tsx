@@ -1,5 +1,7 @@
+"use client";
+
 import Image from "next/image";
-import type {CSSProperties} from "react";
+import {useLayoutEffect, useRef, useState, type CSSProperties} from "react";
 
 import {SectionHeader} from "@/components/portfolio/section-header";
 import {Button} from "@/components/ui/button";
@@ -80,9 +82,37 @@ function TechnologyList({
 }
 
 export function TechStackSection() {
+  const allPanelRef = useRef<HTMLDivElement>(null);
+  const [allPanelHeight, setAllPanelHeight] = useState(0);
+
+  useLayoutEffect(() => {
+    const allPanel = allPanelRef.current;
+    if (!allPanel) {
+      return;
+    }
+
+    const updateHeight = () => {
+      const height = Math.ceil(allPanel.getBoundingClientRect().height);
+
+      setAllPanelHeight((currentHeight) => currentHeight === height ? currentHeight : height);
+    };
+    const ResizeObserver = allPanel.ownerDocument.defaultView?.ResizeObserver;
+
+    updateHeight();
+
+    if (!ResizeObserver) {
+      return;
+    }
+
+    const observer = new ResizeObserver(updateHeight);
+    observer.observe(allPanel);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section id="tech-stack">
-      <Tabs defaultValue="all">
+      <Tabs className="gap-0" defaultValue="all">
         <SectionHeader
           title="Tech Stack"
           action={
@@ -102,7 +132,9 @@ export function TechStackSection() {
 
         {technologyTabs.map(({value}) => (
           <TabsContent
-            className="m-0 h-96 min-h-96 max-h-96 flex-none overflow-hidden bg-background [background-image:radial-gradient(circle,var(--tech-grid-dot)_1px,transparent_1px)] [background-position:8px_8px] [background-size:18px_18px] sm:h-64 sm:min-h-64 sm:max-h-64 md:h-56 md:min-h-56 md:max-h-56"
+            className="m-0 bg-background [background-image:radial-gradient(circle,var(--tech-grid-dot)_1px,transparent_1px)] [background-position:8px_8px] [background-size:18px_18px]"
+            ref={value === "all" ? allPanelRef : undefined}
+            style={value === "all" || !allPanelHeight ? undefined : {minHeight: allPanelHeight}}
             value={value}
             key={value}
           >
