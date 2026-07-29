@@ -27,7 +27,7 @@ export function ContactSection() {
               render={<a href={href}/>}
             >
               <span
-                className="flex size-11 shrink-0 items-center justify-center rounded-lg border bg-background shadow-sm transition-transform group-hover/button:scale-105 group-focus-visible/button:scale-105">
+                className="flex size-11 shrink-0 items-center justify-center rounded-none border bg-background shadow-sm transition-transform group-hover/button:scale-105 group-focus-visible/button:scale-105">
                 <ContactIcon iconMode={iconMode} iconSrc={iconSrc}/>
               </span>
               <strong>{label}</strong>
