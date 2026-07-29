@@ -3,6 +3,7 @@ import {ContactSection} from "@/components/portfolio/contact-section";
 import {CoverSection} from "@/components/portfolio/cover-section";
 import {ExperienceSection} from "@/components/portfolio/experience-section";
 import {FloatingContactDock} from "@/components/portfolio/floating-contact-dock";
+import {GitHubActivitySection} from "@/components/portfolio/github-activity-section";
 import {ProfileSection} from "@/components/portfolio/profile-section";
 import {ProjectsSection} from "@/components/portfolio/projects-section";
 import {SectionSeparator} from "@/components/portfolio/section-separator";
@@ -22,6 +23,7 @@ export default function Home() {
         <AboutSection/>
         <ExperienceSection/>
         <TechStackSection/>
+        <GitHubActivitySection/>
         <ProjectsSection/>
         <SectionSeparator/>
       </div>
