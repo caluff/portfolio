@@ -51,8 +51,10 @@ export function ExperienceSection() {
       <SectionHeader
         title="Experience"
         action={
-          <span className="text-xs text-muted-foreground">
-            {experiences.length} roles
+          <span className="flex items-center gap-2 text-xs text-muted-foreground">
+            <span>4+ years</span>
+            <span aria-hidden="true">•</span>
+            <span>{experiences.length} roles</span>
           </span>
         }
       />
