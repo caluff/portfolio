@@ -1,6 +1,7 @@
 import {Globe} from "lucide-react";
 import type {CSSProperties} from "react";
 
+import {ProjectDevelopmentRibbon} from "@/components/portfolio/project-development-ribbon";
 import {ProjectMediaCarousel} from "@/components/portfolio/project-media-carousel";
 import {SectionHeader} from "@/components/portfolio/section-header";
 import {Badge} from "@/components/ui/badge";
@@ -42,11 +43,13 @@ function ProjectCard({featured = false, project}: ProjectCardProps) {
   return (
     <article
       className={cn(
-        "group/project flex h-full flex-col border border-dashed bg-background p-3",
+        "group/project relative flex h-full flex-col overflow-hidden border border-dashed bg-background p-3",
         featured &&
         "sm:grid sm:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] sm:gap-4",
       )}
     >
+      {developing && <ProjectDevelopmentRibbon/>}
+
       <ProjectMediaCarousel
         featured={featured}
         images={images}
@@ -59,18 +62,15 @@ function ProjectCard({featured = false, project}: ProjectCardProps) {
           <h3 className="text-lg leading-tight font-bold tracking-tight">
             {name}
           </h3>
-          <span className="flex shrink-0 items-center gap-1.5 text-sm text-muted-foreground">
-            <span
-              className={cn(
-                "size-2 rounded-full",
-                developing
-                  ? "bg-muted-foreground"
-                  : "bg-project-status-live",
-              )}
-              aria-hidden="true"
-            />
-            {developing ? "Building" : "Live"}
-          </span>
+          {!developing && (
+            <span className="flex shrink-0 items-center gap-1.5 text-sm text-muted-foreground">
+              <span
+                className="size-2 rounded-full bg-project-status-live"
+                aria-hidden="true"
+              />
+              Live
+            </span>
+          )}
         </div>
 
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">

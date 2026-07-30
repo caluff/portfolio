@@ -63,6 +63,8 @@
   --project-sand-deep: oklch(0.62 0.09 65);
   --project-sand-foreground: oklch(0.27 0.04 62);
   --project-hover: oklch(0.52 0 0 / 18%);
+  --project-status-building: oklch(0.9 0.18 95);
+  --project-status-building-foreground: oklch(0.24 0.04 78);
   --project-status-live: oklch(0.64 0.2 145);
   --github-heatmap-active: oklch(0.145 0 0);
 }
@@ -92,6 +94,8 @@
   --input: oklch(1 0 0 / 18%);
   --ring: oklch(0.556 0 0);
   --project-hover: oklch(0.68 0 0 / 24%);
+  --project-status-building: oklch(0.86 0.17 92);
+  --project-status-building-foreground: oklch(0.2 0.035 78);
   --project-status-live: oklch(0.76 0.2 145);
   --github-heatmap-active: oklch(0.985 0 0);
 }
@@ -148,6 +152,10 @@
   --color-project-sand-deep: var(--project-sand-deep);
   --color-project-sand-foreground: var(--project-sand-foreground);
   --color-project-hover: var(--project-hover);
+  --color-project-status-building: var(--project-status-building);
+  --color-project-status-building-foreground: var(
+    --project-status-building-foreground
+  );
   --color-project-status-live: var(--project-status-live);
   --color-github-heatmap-active: var(--github-heatmap-active);
   --radius-xs: var(--radius);

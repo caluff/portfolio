@@ -43,7 +43,7 @@ export function HoverEffect({className, items}: HoverEffectProps) {
       >
         {items.map((item, index) => (
           <li
-            className={cn("relative isolate min-w-0 p-1", item.className)}
+            className={cn("relative min-w-0 p-1", item.className)}
             key={item.id}
             onMouseEnter={() => setHoveredIndex(index)}
             onFocusCapture={() => setHoveredIndex(index)}
@@ -51,7 +51,7 @@ export function HoverEffect({className, items}: HoverEffectProps) {
             <AnimatePresence initial={false}>
               {hoveredIndex === index && (
                 <motion.span
-                  className="pointer-events-none absolute inset-0 bg-project-hover ring-1 ring-foreground/15"
+                  className="pointer-events-none absolute inset-0 z-0 bg-project-hover ring-1 ring-foreground/15"
                   layoutId="project-hover-background"
                   initial={false}
                   animate={{opacity: 1}}

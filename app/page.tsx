@@ -23,9 +23,9 @@ export default function Home() {
         <ContactSection/>
         <AboutSection/>
         <ExperienceSection/>
+        <ProjectsSection/>
         <TechStackSection/>
         <GitHubActivitySection/>
-        <ProjectsSection/>
         <SectionSeparator/>
         <SiteFooter/>
       </div>

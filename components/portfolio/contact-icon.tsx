@@ -17,7 +17,7 @@ export function ContactIcon({ iconMode, iconSrc }: ContactIconProps) {
 
     return (
       <span
-        className="size-5 bg-current"
+        className="block size-4 bg-current"
         style={maskStyle}
         aria-hidden="true"
       />
@@ -26,11 +26,11 @@ export function ContactIcon({ iconMode, iconSrc }: ContactIconProps) {
 
   return (
     <Image
-      className="size-5"
+      className="size-4"
       src={iconSrc}
       alt=""
-      width={20}
-      height={20}
+      width={16}
+      height={16}
     />
   );
 }

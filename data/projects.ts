@@ -31,7 +31,7 @@ export const projects = [
     ],
     sourceCodeLink: "https://github.com/caluff/NEED-THISS",
     liveUrl: "https://need-this.vercel.app/",
-    developing: false,
+    developing: true,
   },
   {
     name: "Gallo Express",
