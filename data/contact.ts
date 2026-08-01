@@ -19,6 +19,7 @@ export const contactCta = {
     },
   },
   submitLabel: "Send message",
+  cvLabel: "View CV",
   sendingLabel: "Sending…",
   successTitle: "Message sent",
   successDescription: "Thank you. I’ll get back to you as soon as possible.",

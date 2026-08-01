@@ -17,7 +17,7 @@ export default function Home() {
     <main className="min-h-svh overflow-x-clip bg-background text-foreground" id="inicio">
       <SiteHeader/>
       <FloatingContactDock/>
-      <div className="relative mx-auto min-h-svh max-w-3xl border-x border-dashed bg-background">
+      <div className="relative isolate mx-auto min-h-svh max-w-3xl bg-background before:pointer-events-none before:absolute before:inset-y-0 before:left-0 before:z-50 before:border-l before:border-dashed before:border-border before:content-[''] after:pointer-events-none after:absolute after:inset-y-0 after:right-0 after:z-50 after:border-r after:border-dashed after:border-border after:content-['']">
         <CoverSection/>
         <SectionSeparator/>
         <ProfileSection/>

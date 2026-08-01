@@ -4,6 +4,7 @@ export const primaryNavigationLinks = [
   { label: "Home", href: "#inicio" },
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
+  { label: "Contact", href: "#lets-talk" },
 ] as const;
 
 export const moreNavigationLinks = [
@@ -22,6 +23,7 @@ export const moreNavigationLinks = [
 export const sectionNavigationLinks = [
   primaryNavigationLinks[0],
   primaryNavigationLinks[1],
-  ...moreNavigationLinks,
   primaryNavigationLinks[2],
+  ...moreNavigationLinks,
+  primaryNavigationLinks[3],
 ] as const;

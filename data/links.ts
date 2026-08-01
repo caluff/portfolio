@@ -36,6 +36,6 @@ export const contactLinks = [
     label: "Mail",
     href: "mailto:dcaluff@gmail.com",
     iconSrc: "/contact/gmail.svg",
-    iconMode: "color",
+    iconMode: "monochrome",
   },
 ] as const satisfies readonly ContactLink[];

@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useState, type ReactNode } from "react";
+import {type ReactNode, useState} from "react";
 
-import { Button } from "@/components/ui/button";
-import { PixelatedCanvas } from "@/components/ui/pixelated-canvas";
-import { cn } from "@/lib/utils";
+import {Button} from "@/components/ui/button";
+import {PixelatedCanvas} from "@/components/ui/pixelated-canvas";
+import {cn} from "@/lib/utils";
 
 type ProfilePhotoToggleProps = {
   children: ReactNode;
@@ -13,9 +13,9 @@ type ProfilePhotoToggleProps = {
 };
 
 export function ProfilePhotoToggle({
-  children,
-  name,
-}: ProfilePhotoToggleProps) {
+                                     children,
+                                     name,
+                                   }: ProfilePhotoToggleProps) {
   const [isPixelated, setIsPixelated] = useState(true);
   const toggleLabel = isPixelated
     ? "Mostrar foto normal"
@@ -23,31 +23,31 @@ export function ProfilePhotoToggle({
 
   return (
     <>
-      <div className="size-20 border border-dashed bg-subtle-band p-1 sm:size-28">
+      <div className="size-24 border border-dashed bg-subtle-band p-1 sm:size-32">
         <div className="relative size-full overflow-hidden">
           {isPixelated ? (
             <PixelatedCanvas
               ariaLabel={`Avatar pixelado de ${name}`}
               backgroundColor=""
               cellSize={3}
-              className="absolute top-1/2 left-1/2 block origin-center -translate-x-1/2 -translate-y-1/2 scale-[0.686] sm:scale-100"
+              className="absolute top-1/2 left-1/2 block origin-center -translate-x-1/2 -translate-y-1/2 scale-[0.733] sm:scale-100"
               distortionMode="repel"
-              distortionRadius={44}
+              distortionRadius={52}
               distortionStrength={5}
               dropoutStrength={0.08}
-              height={102}
+              height={120}
               jitterStrength={2}
-              objectPosition={{ x: 0.5, y: 0.35 }}
+              objectPosition={{x: 0.5, y: 0.35}}
               src="/profile/profile.jpg"
               tintStrength={0}
-              width={102}
+              width={120}
             />
           ) : (
             <Image
               alt={`Avatar de ${name}`}
               className="animate-in fade-in object-cover object-[center_35%] duration-200"
               fill
-              sizes="(max-width: 640px) 5rem, 7rem"
+              sizes="(max-width: 640px) 6rem, 8rem"
               src="/profile/profile.jpg"
             />
           )}

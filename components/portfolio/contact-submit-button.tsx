@@ -21,7 +21,7 @@ export function ContactSubmitButton({
   return (
     <Button
       aria-busy={isSending}
-      className="relative h-11 min-w-40 overflow-hidden rounded-none px-7"
+      className="relative h-11 min-w-40 overflow-hidden rounded-none p-0"
       disabled={isSending || !isConfigured}
       size="lg"
       type="submit"
@@ -39,7 +39,7 @@ export function ContactSubmitButton({
         {isSending ? (
           <motion.span
             animate={{ opacity: 1, y: 0 }}
-            className="relative flex items-center gap-1.5"
+            className="absolute inset-0 flex items-center justify-center gap-1.5"
             exit={{ opacity: 0, y: -8 }}
             initial={{ opacity: 0, y: 8 }}
             key="sending"
@@ -55,7 +55,7 @@ export function ContactSubmitButton({
         ) : (
           <motion.span
             animate={{ opacity: 1, x: 0 }}
-            className="relative flex items-center gap-1.5"
+            className="absolute inset-0 flex items-center justify-center gap-1.5"
             exit={{ opacity: 0, x: 28 }}
             initial={{ opacity: 0, x: -8 }}
             key="idle"
