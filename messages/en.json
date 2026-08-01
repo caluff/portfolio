@@ -53,7 +53,13 @@
     }
   },
   "Cover": {
-    "ariaLabel": "Animated portfolio cover"
+    "ariaLabel": "Animated portfolio cover",
+    "selectorLabel": "Change animated cover",
+    "gifOptions": {
+      "1": "Show animated cover 1",
+      "2": "Show animated cover 2",
+      "3": "Show animated cover 3"
+    }
   },
   "Profile": {
     "headlines": {

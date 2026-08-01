@@ -46,7 +46,13 @@
     }
   },
   "Cover": {
-    "ariaLabel": "Portada animada del portfolio"
+    "ariaLabel": "Portada animada del portfolio",
+    "selectorLabel": "Cambiar portada animada",
+    "gifOptions": {
+      "1": "Mostrar portada animada 1",
+      "2": "Mostrar portada animada 2",
+      "3": "Mostrar portada animada 3"
+    }
   },
   "Profile": {
     "headlines": {
