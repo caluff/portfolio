@@ -32,7 +32,7 @@ export function FloatingContactDock() {
     <AnimatePresence>
       {isVisible && (
         <motion.aside
-          className="fixed top-1/2 right-3 z-40 flex flex-col gap-1 rounded-2xl border bg-background/95 p-1.5 shadow-lg backdrop-blur-sm sm:right-5"
+          className="fixed top-1/2 right-5 z-40 hidden flex-col gap-1 rounded-2xl border bg-background/95 p-1.5 shadow-lg backdrop-blur-sm sm:flex"
           initial={{ opacity: 0, x: 24, y: "-50%", scale: 0.94 }}
           animate={{ opacity: 1, x: 0, y: "-50%", scale: 1 }}
           exit={{ opacity: 0, x: 24, y: "-50%", scale: 0.94 }}

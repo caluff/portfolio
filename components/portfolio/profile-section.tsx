@@ -1,5 +1,4 @@
-import { Eye } from "lucide-react";
-
+import {PageViewCounter} from "@/components/portfolio/page-view-counter";
 import { ProfilePhotoToggle } from "@/components/portfolio/profile-photo-toggle";
 import { HyperText } from "@/components/ui/hyper-text";
 import { MorphingText } from "@/components/ui/morphing-text";
@@ -24,10 +23,7 @@ export function ProfileSection() {
         <p className="mt-1 text-xs font-medium text-muted-foreground">{profile.location}</p>
       </ProfilePhotoToggle>
 
-      <p className="hidden self-start gap-1 pt-2 font-mono text-xs text-muted-foreground sm:flex">
-        <Eye className="size-3" aria-hidden="true" />
-        <span>{profile.views}</span>
-      </p>
+      <PageViewCounter/>
     </section>
   );
 }

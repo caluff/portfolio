@@ -1,5 +1,6 @@
 import {AboutSection} from "@/components/portfolio/about-section";
 import {ContactSection} from "@/components/portfolio/contact-section";
+import {ContactCtaSection} from "@/components/portfolio/contact-cta-section";
 import {CoverSection} from "@/components/portfolio/cover-section";
 import {ExperienceSection} from "@/components/portfolio/experience-section";
 import {FloatingContactDock} from "@/components/portfolio/floating-contact-dock";
@@ -26,6 +27,7 @@ export default function Home() {
         <ProjectsSection/>
         <TechStackSection/>
         <GitHubActivitySection/>
+        <ContactCtaSection/>
         <SectionSeparator/>
         <SiteFooter/>
       </div>

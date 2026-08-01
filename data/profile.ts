@@ -6,7 +6,6 @@ export const profile = {
     "B.Sc. in Computer Science",
   ],
   location: "Montevideo, Uruguay",
-  views: "0000",
 } as const;
 
 export const footerCredit = {
