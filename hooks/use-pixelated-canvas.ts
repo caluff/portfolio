@@ -19,6 +19,8 @@ export type PixelatedCanvasProps = {
   className?: string;
   /** Redraw on window resize using the provided width/height. */
   responsive?: boolean;
+  /** Match the canvas size to its parent element. */
+  fitToContainer?: boolean;
   /** 0..1. Higher value removes more dots in low-contrast regions. */
   dropoutStrength?: number;
   /** Enable interactive mouse distortion animation. */
@@ -63,6 +65,7 @@ export function usePixelatedCanvas({
   backgroundColor = "#000000",
   grayscale = false,
   responsive = false,
+  fitToContainer = false,
   dropoutStrength = 0.4,
   interactive = true,
   distortionStrength = 3,
@@ -115,6 +118,7 @@ export function usePixelatedCanvas({
   React.useEffect(() => {
     let isCancelled = false;
     let cleanupInteraction: (() => void) | undefined;
+    let resizeObserver: ResizeObserver | undefined;
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -127,8 +131,13 @@ export function usePixelatedCanvas({
       const dpr =
         typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1;
 
-      const displayWidth = width ?? img.naturalWidth;
-      const displayHeight = height ?? img.naturalHeight;
+      const parent = canvas.parentElement;
+      const displayWidth = fitToContainer
+        ? parent?.clientWidth || width || img.naturalWidth
+        : width ?? img.naturalWidth;
+      const displayHeight = fitToContainer
+        ? parent?.clientHeight || height || img.naturalHeight
+        : height ?? img.naturalHeight;
 
       canvas.width = Math.max(1, Math.floor(displayWidth * dpr));
       canvas.height = Math.max(1, Math.floor(displayHeight * dpr));
@@ -336,6 +345,16 @@ export function usePixelatedCanvas({
       const canvasEl = canvasRef.current;
       if (!canvasEl) return;
 
+      if (fitToContainer && typeof ResizeObserver !== "undefined") {
+        const parent = canvasEl.parentElement;
+        if (parent) {
+          resizeObserver = new ResizeObserver(() => {
+            if (img.complete && img.naturalWidth) compute();
+          });
+          resizeObserver.observe(parent);
+        }
+      }
+
       if (!interactive) {
         const ctx = canvasEl.getContext("2d");
         const dims = dimsRef.current;
@@ -527,12 +546,14 @@ export function usePixelatedCanvas({
         isCancelled = true;
         window.removeEventListener("resize", onResize);
         cleanupInteraction?.();
+        resizeObserver?.disconnect();
       };
     }
 
     return () => {
       isCancelled = true;
       cleanupInteraction?.();
+      resizeObserver?.disconnect();
     };
   }, [
     src,
@@ -544,6 +565,7 @@ export function usePixelatedCanvas({
     backgroundColor,
     grayscale,
     responsive,
+    fitToContainer,
     dropoutStrength,
     interactive,
     distortionStrength,

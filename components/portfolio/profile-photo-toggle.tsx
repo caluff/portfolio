@@ -35,14 +35,15 @@ export function ProfilePhotoToggle({
                 ariaLabel={t("pixelated", {name})}
                 backgroundColor=""
                 cellSize={3}
-                className="absolute top-1/2 left-1/2 block origin-center -translate-x-1/2 -translate-y-1/2 scale-[0.733] sm:scale-100"
+                className="absolute inset-0 block"
                 distortionMode="repel"
                 distortionRadius={52}
                 distortionStrength={5}
                 dropoutStrength={0.08}
+                fitToContainer
                 height={120}
                 jitterStrength={2}
-                objectPosition={{x: 0.5, y: 0.35}}
+                objectPosition={{x: 0.5, y: 0.25}}
                 src="/profile/profile.jpg"
                 tintStrength={0}
                 width={120}
@@ -50,7 +51,7 @@ export function ProfilePhotoToggle({
             ) : (
               <Image
                 alt={t("regular", {name})}
-                className="animate-in fade-in object-cover object-[center_35%] duration-200"
+                className="animate-in fade-in object-cover object-[center_25%] duration-200"
                 fill
                 sizes="(max-width: 640px) 6rem, 8rem"
                 src="/profile/profile.jpg"
