@@ -7,6 +7,7 @@
 :root {
     color-scheme: light;
     --noise-opacity: 0;
+    --brand-accent: #7c3aed;
     --background: oklch(1 0 0);
     --foreground: oklch(0.145 0 0);
     --card: oklch(1 0 0);
@@ -73,6 +74,7 @@
 .dark {
     color-scheme: dark;
     --noise-opacity: 0.045;
+    --brand-accent: #7c3aed;
     --background: oklch(0.145 0 0);
     --foreground: oklch(0.985 0 0);
     --card: oklch(0.205 0 0);
@@ -198,6 +200,43 @@
 
     a {
         @apply text-inherit no-underline;
+    }
+
+    .brand-logo-ink {
+        stroke: currentColor;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 16;
+    }
+
+    .brand-logo-bracket {
+        stroke: currentColor;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 13;
+        opacity: 0.72;
+    }
+
+    .brand-logo-accent {
+        stroke: var(--brand-accent);
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 16;
+    }
+
+    .neon-action {
+        box-shadow: 0 0 0.45rem color-mix(in srgb, var(--brand-accent) 38%, transparent),
+        0 0 1rem color-mix(in srgb, var(--brand-accent) 18%, transparent);
+    }
+
+    .neon-action:hover,
+    .neon-action:focus-visible {
+        box-shadow: 0 0 0.65rem color-mix(in srgb, var(--brand-accent) 58%, transparent),
+        0 0 1.5rem color-mix(in srgb, var(--brand-accent) 32%, transparent);
+    }
+
+    .neon-action:disabled {
+        box-shadow: none;
     }
 }
 

@@ -4,13 +4,10 @@ import { MenuIcon } from "lucide-react";
 import {useTranslations} from "next-intl";
 import { useState } from "react";
 
-import { ThemeTogglerButton } from "@/components/animate-ui/components/buttons/theme-toggler";
-import {LocaleSwitcher} from "@/components/portfolio/locale-switcher";
 import {
   Sheet,
   SheetContent,
   SheetDescription,
-  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -81,22 +78,6 @@ export function MobileNavigation() {
           </ul>
         </nav>
 
-        <SheetFooter className="border-t border-dashed px-5 py-4">
-          <div className="flex items-center justify-between gap-4">
-            <span className="font-mono text-xs tracking-[0.14em] text-muted-foreground uppercase">
-              {t("theme")}
-            </span>
-            <div className="flex items-center gap-1">
-              <LocaleSwitcher/>
-              <ThemeTogglerButton
-                aria-label={t("changeTheme")}
-                size="icon-lg"
-                title={t("changeTheme")}
-                variant="outline"
-              />
-            </div>
-          </div>
-        </SheetFooter>
       </SheetContent>
     </Sheet>
   );

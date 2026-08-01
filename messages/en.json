@@ -2,7 +2,14 @@
   "Metadata": {
     "title": "Daniel Caluff — Senior Frontend Engineer",
     "description": "Portfolio of Daniel Caluff, a Senior Frontend Engineer and Computer Science graduate based in Montevideo.",
-    "keywords": ["Daniel Caluff", "Frontend Engineer", "React", "Next.js", "TypeScript", "Montevideo"]
+    "keywords": [
+      "Daniel Caluff",
+      "Frontend Engineer",
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Montevideo"
+    ]
   },
   "Common": {
     "close": "Close",
@@ -50,7 +57,7 @@
   },
   "Profile": {
     "headlines": {
-      "primary": "Senior Frontend Engineer with 4+ years of experience",
+      "primary": "Senior Frontend Engineer",
       "secondary": "B.Sc. in Computer Science"
     },
     "location": "Montevideo, Uruguay",
@@ -173,14 +180,29 @@
     "formDescription": "Tell me about the product, team, or idea you’re building.",
     "availability": "Available for freelance & remote",
     "fields": {
-      "name": {"label": "Name", "placeholder": "What should I call you?"},
-      "email": {"label": "Email", "placeholder": "How can I contact you?"},
-      "message": {"label": "Message", "placeholder": "Tell me about your project…"}
+      "name": {
+        "label": "Name",
+        "placeholder": "What should I call you?"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "How can I contact you?"
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Tell me about your project…"
+      }
     },
     "submit": "Send message",
     "sending": "Sending…",
-    "success": {"title": "Message sent", "description": "Thank you. I’ll get back to you as soon as possible."},
-    "error": {"title": "Message not sent", "description": "Something went wrong. Please try again in a moment."},
+    "success": {
+      "title": "Message sent",
+      "description": "Thank you. I’ll get back to you as soon as possible."
+    },
+    "error": {
+      "title": "Message not sent",
+      "description": "Something went wrong. Please try again in a moment."
+    },
     "configurationError": "Email delivery is not configured yet."
   },
   "Footer": {

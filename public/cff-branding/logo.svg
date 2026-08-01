@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" role="img" aria-labelledby="title desc">
+  <title id="title">CFF</title>
+  <desc id="desc">Logotipo CFF con slash púrpura.</desc>
+  <style>
+    :root { --cff-accent: #7C3AED; }
+    .mark { fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; }
+    .bracket { stroke-width: 13; }
+    .letter, .accent { stroke-width: 16; }
+    .accent { stroke: var(--cff-accent); }
+  </style>
+  <!-- Brackets are slightly lighter and smaller so the CFF monogram leads. -->
+  <path class="mark bracket" d="M72 48 38 80 72 112"/>
+  <path class="mark letter" d="M202 49a43 43 0 1 0 0 62"/>
+  <path class="mark letter" d="M253 123V37h62M253 80h51M347 123V37h62M347 80h51"/>
+  <path class="mark accent" d="M456 123 493 37"/>
+  <path class="mark bracket" d="m536 48 34 32-34 32"/>
+</svg>

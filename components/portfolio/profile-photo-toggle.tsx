@@ -27,8 +27,8 @@ export function ProfilePhotoToggle({
 
   return (
     <>
-      <div className="flex flex-col gap-3">
-        <div className="size-24 border border-dashed bg-subtle-band p-1 sm:size-32">
+      <div className="flex flex-col items-start gap-2 sm:h-full sm:gap-0">
+        <div className="size-22 border border-dashed bg-subtle-band p-1 sm:size-28">
           <div className="relative size-full overflow-hidden">
             {isPixelated ? (
               <PixelatedCanvas
@@ -58,14 +58,10 @@ export function ProfilePhotoToggle({
             )}
           </div>
         </div>
-        {mobileAction && <div className="sm:hidden">{mobileAction}</div>}
-      </div>
-
-      <div className="flex flex-col">
         <Button
           aria-label={toggleLabel}
           aria-pressed={isPixelated}
-          className="-mt-1.5 -ml-1.5 mb-0.5"
+          className="self-start sm:mt-auto"
           onClick={() => setIsPixelated((current) => !current)}
           size="icon-xs"
           title={toggleLabel}
@@ -80,6 +76,10 @@ export function ProfilePhotoToggle({
             aria-hidden="true"
           />
         </Button>
+        {mobileAction && <div className="sm:hidden">{mobileAction}</div>}
+      </div>
+
+      <div className="flex flex-col">
         {children}
       </div>
     </>

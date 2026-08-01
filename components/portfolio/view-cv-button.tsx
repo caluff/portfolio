@@ -13,7 +13,7 @@ export async function ViewCvButton({className}: { className?: string }) {
 
   return (
     <Button
-      className={cn("h-8 rounded-none px-4", className)}
+      className={cn("neon-action h-8 rounded-none px-4", className)}
       nativeButton={false}
       render={
         <a

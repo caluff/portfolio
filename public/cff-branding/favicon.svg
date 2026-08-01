@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">CFF</title>
+  <style>
+    :root { --cff-ink: #111111; --cff-accent: #7C3AED; }
+    @media (prefers-color-scheme: dark) { :root { --cff-ink: #ffffff; } }
+    .ink { fill: none; stroke: var(--cff-ink); stroke-width: 12; stroke-linecap: round; stroke-linejoin: round; }
+    .accent { fill: none; stroke: var(--cff-accent); stroke-width: 14; stroke-linecap: round; }
+  </style>
+  <path class="ink" d="M36 40 18 64l18 24M92 40l18 24-18 24"/>
+  <path class="accent" d="m74 30-20 68"/>
+</svg>

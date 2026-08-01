@@ -23,7 +23,7 @@ export function ContactSubmitButton({
   return (
     <Button
       aria-busy={isSending}
-      className="relative h-11 min-w-40 overflow-hidden rounded-none p-0"
+      className="neon-action relative h-11 min-w-40 overflow-hidden rounded-none p-0"
       disabled={isSending || !isConfigured}
       size="lg"
       type="submit"

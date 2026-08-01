@@ -10,7 +10,7 @@ export async function ProfileSection() {
   const headlines = [t("headlines.primary"), t("headlines.secondary")];
 
   return (
-    <section className="grid min-h-44 grid-cols-[6rem_1fr] items-start gap-4 p-5 sm:grid-cols-[8.5rem_1fr_auto] sm:items-center sm:gap-7 sm:p-6">
+    <section className="grid min-h-44 grid-cols-[6rem_1fr] items-start gap-4 p-5 sm:grid-cols-[8.5rem_1fr_auto] sm:items-start sm:gap-7 sm:p-6">
       <ProfilePhotoToggle
         mobileAction={<ViewCvButton className="w-full px-2"/>}
         name={profile.name}

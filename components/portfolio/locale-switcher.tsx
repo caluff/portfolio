@@ -24,7 +24,13 @@ function LocaleOption({locale}: {locale: AppLocale}) {
 
   return (
     <>
-      <Image alt="" height={12} src={flag} width={18}/>
+      <Image
+        alt=""
+        height={12}
+        src={flag}
+        style={{height: "auto", width: "18px"}}
+        width={18}
+      />
       <span>{code}</span>
     </>
   );
