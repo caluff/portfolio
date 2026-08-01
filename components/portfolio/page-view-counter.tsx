@@ -1,14 +1,10 @@
 "use client";
 
 import {Eye} from "lucide-react";
+import {useFormatter, useTranslations} from "next-intl";
 import {useEffect, useRef, useState} from "react";
 
 const VISIT_RECORDED_KEY = "portfolio-visit-recorded";
-const numberFormatter = new Intl.NumberFormat("en-US", {
-  minimumIntegerDigits: 4,
-  useGrouping: false,
-});
-
 type PageViewResponse = {
   count: number;
 };
@@ -29,6 +25,8 @@ function recordVisitInSession() {
 }
 
 export function PageViewCounter() {
+  const format = useFormatter();
+  const t = useTranslations("Profile.pageViews");
   const [count, setCount] = useState<number>();
   const requestedRef = useRef(false);
 
@@ -68,11 +66,14 @@ export function PageViewCounter() {
     void loadCount();
   }, []);
 
-  const formattedCount = numberFormatter.format(count ?? 0);
+  const formattedCount = format.number(count ?? 0, {
+    minimumIntegerDigits: 4,
+    useGrouping: false,
+  });
 
   return (
     <p
-      aria-label={count === undefined ? "Loading page visits" : `${count} page visits`}
+      aria-label={count === undefined ? t("loading") : t("count", {count})}
       aria-live="polite"
       className="hidden self-start gap-1 pt-2 font-mono text-xs tabular-nums text-muted-foreground sm:flex text-center justify-center items-center"
     >

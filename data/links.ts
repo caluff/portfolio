@@ -1,7 +1,7 @@
 import {githubProfile} from "@/data/github";
 
 type ContactLink = {
-  label: string;
+  key: "github" | "linkedin" | "telegram" | "twitter" | "email";
   href: string;
   iconSrc: string;
   iconMode: "color" | "monochrome";
@@ -9,31 +9,31 @@ type ContactLink = {
 
 export const contactLinks = [
   {
-    label: "GitHub",
+    key: "github",
     href: githubProfile.url,
     iconSrc: "/contact/github-circle.svg",
     iconMode: "monochrome",
   },
   {
-    label: "LinkedIn",
+    key: "linkedin",
     href: "https://www.linkedin.com/in/danielcaluff",
     iconSrc: "/contact/linkedin.svg",
     iconMode: "monochrome",
   },
   {
-    label: "Telegram",
+    key: "telegram",
     href: "https://t.me/DanielCaluff",
     iconSrc: "/contact/telegram.svg",
     iconMode: "monochrome",
   },
   {
-    label: "X / Twitter",
+    key: "twitter",
     href: "https://x.com/danielcaluff",
     iconSrc: "/contact/X.svg",
     iconMode: "monochrome",
   },
   {
-    label: "Mail",
+    key: "email",
     href: "mailto:dcaluff@gmail.com",
     iconSrc: "/contact/gmail.svg",
     iconMode: "monochrome",

@@ -5,7 +5,10 @@ import { HyperText } from "@/components/ui/hyper-text";
 import { MorphingText } from "@/components/ui/morphing-text";
 import { profile } from "@/data/profile";
 
-export function ProfileSection() {
+export async function ProfileSection() {
+  const t = await getTranslations("Profile");
+  const headlines = [t("headlines.primary"), t("headlines.secondary")];
+
   return (
     <section className="grid min-h-44 grid-cols-[6rem_1fr] items-start gap-4 p-5 sm:grid-cols-[8.5rem_1fr_auto] sm:items-center sm:gap-7 sm:p-6">
       <ProfilePhotoToggle
@@ -21,13 +24,13 @@ export function ProfileSection() {
           {profile.name}
         </HyperText>
         <p className="mt-2 text-sm leading-5 font-semibold text-muted-foreground sm:hidden">
-          {profile.headlines[0]}
+          {headlines[0]}
         </p>
         <MorphingText
           className="hidden max-w-none text-left sm:mx-0 sm:mt-2 sm:block sm:h-6 sm:text-base sm:leading-6 md:h-6 lg:text-base"
-          texts={[...profile.headlines]}
+          texts={headlines}
         />
-        <p className="mt-1 text-xs font-medium text-muted-foreground">{profile.location}</p>
+        <p className="mt-1 text-xs font-medium text-muted-foreground">{t("location")}</p>
         <div className="mt-4 hidden sm:block">
           <ViewCvButton/>
         </div>
@@ -37,3 +40,4 @@ export function ProfileSection() {
     </section>
   );
 }
+import {getTranslations} from "next-intl/server";

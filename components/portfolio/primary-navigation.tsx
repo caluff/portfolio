@@ -15,6 +15,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
+import {useTranslations} from "next-intl";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 
 const moreTarget = "more";
@@ -29,6 +30,7 @@ function getMenuTarget(href: SectionHref): MenuTarget {
 }
 
 export function PrimaryNavigation() {
+  const t = useTranslations("Navigation");
   const menuRef = useRef<HTMLElement | null>(null);
   const itemRefs = useRef(new Map<MenuTarget, HTMLElement>());
   const [activeHref, setActiveHref] = useState<SectionHref>("#inicio");
@@ -98,13 +100,13 @@ export function PrimaryNavigation() {
   return (
     <NavigationMenu
       align="end"
-      aria-label="Navegación principal"
+      aria-label={t("primaryAriaLabel")}
       className="relative min-w-0"
       onPointerLeave={() => setPreviewTarget(null)}
       ref={menuRef}
     >
       <NavigationMenuList>
-        {primaryNavigationLinks.map(({ href, label }) => (
+        {primaryNavigationLinks.map(({href, key}) => (
           <NavigationMenuItem
             key={href}
             onFocusCapture={() => setPreviewTarget(href)}
@@ -120,7 +122,7 @@ export function PrimaryNavigation() {
               href={href}
               onClick={() => setActiveHref(href)}
             >
-              {label}
+              {t(`primary.${key}`)}
             </NavigationMenuLink>
           </NavigationMenuItem>
         ))}
@@ -131,11 +133,11 @@ export function PrimaryNavigation() {
           ref={registerItem(moreTarget)}
         >
           <NavigationMenuTrigger className="px-0 text-xs sm:px-2.5 sm:text-sm">
-            More
+            {t("more")}
           </NavigationMenuTrigger>
           <NavigationMenuContent>
             <div className="flex w-64 flex-col gap-1">
-              {moreNavigationLinks.map(({ description, href, label }) => (
+              {moreNavigationLinks.map(({href, key}) => (
                 <NavigationMenuLink
                   aria-current={activeHref === href ? "page" : undefined}
                   data-active={activeHref === href || undefined}
@@ -144,9 +146,11 @@ export function PrimaryNavigation() {
                   onClick={() => setActiveHref(href)}
                 >
                   <span className="flex flex-col gap-1">
-                    <span className="font-medium">{label}</span>
+                    <span className="font-medium">
+                      {t(`moreItems.${key}.label`)}
+                    </span>
                     <span className="text-muted-foreground">
-                      {description}
+                      {t(`moreItems.${key}.description`)}
                     </span>
                   </span>
                 </NavigationMenuLink>

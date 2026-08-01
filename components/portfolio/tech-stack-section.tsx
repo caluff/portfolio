@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import {useTranslations} from "next-intl";
 import {useLayoutEffect, useRef, useState, type CSSProperties} from "react";
 
 import {SectionHeader} from "@/components/portfolio/section-header";
@@ -58,11 +59,11 @@ function getTechnologiesByTab(tab: TechnologyTab) {
   );
 }
 
-function TechnologyList({
-                          items,
-                        }: {
+function TechnologyList({items}: {
   items: readonly Technology[];
 }) {
+  const t = useTranslations("TechStack");
+
   return (
     <div className="flex flex-wrap gap-2 px-5 py-6 sm:px-6">
       {items.map(({iconMode, iconSrc, name}) => (
@@ -71,7 +72,7 @@ function TechnologyList({
           variant="ghost"
           type="button"
           key={name}
-          aria-label={`${name}: mostrar color original`}
+          aria-label={t("showOriginal", {name})}
         >
           <TechnologyIcon iconMode={iconMode} iconSrc={iconSrc}/>
           {name}
@@ -82,6 +83,7 @@ function TechnologyList({
 }
 
 export function TechStackSection() {
+  const t = useTranslations("TechStack");
   const allPanelRef = useRef<HTMLDivElement>(null);
   const [allPanelHeight, setAllPanelHeight] = useState(0);
 
@@ -114,16 +116,16 @@ export function TechStackSection() {
     <section id="tech-stack">
       <Tabs className="gap-0" defaultValue="all">
         <SectionHeader
-          title="Tech Stack"
+          title={t("title")}
           action={
-            <TabsList variant="line" aria-label="Filtrar tecnologías">
-              {technologyTabs.map(({label, value}) => (
+            <TabsList variant="line" aria-label={t("filterAriaLabel")}>
+              {technologyTabs.map(({value}) => (
                 <TabsTrigger
                   className="px-1 text-[0.65rem] sm:px-1.5 sm:text-sm"
                   value={value}
                   key={value}
                 >
-                  {label}
+                  {t(`tabs.${value}`)}
                 </TabsTrigger>
               ))}
             </TabsList>

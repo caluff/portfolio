@@ -1,0 +1,190 @@
+{
+  "Metadata": {
+    "title": "Daniel Caluff — Ingeniero Frontend Senior",
+    "description": "Portfolio de Daniel Caluff, Ingeniero Frontend Senior y graduado en Ciencias de la Computación radicado en Montevideo.",
+    "keywords": ["Daniel Caluff", "Ingeniero Frontend", "React", "Next.js", "TypeScript", "Montevideo"]
+  },
+  "Common": {
+    "close": "Cerrar",
+    "closeNotification": "Cerrar notificación",
+    "loading": "Cargando",
+    "backToTop": "Volver arriba",
+    "contactOptions": "Opciones de contacto",
+    "contactVia": "Contactar por {service}"
+  },
+  "Navigation": {
+    "primaryAriaLabel": "Navegación principal",
+    "mobileAriaLabel": "Navegación móvil",
+    "openMenu": "Abrir menú de navegación",
+    "menuDescription": "Navega por el portfolio.",
+    "more": "Más",
+    "theme": "Tema",
+    "changeTheme": "Cambiar tema",
+    "primary": {
+      "home": "Inicio",
+      "experience": "Experiencia",
+      "projects": "Proyectos",
+      "contact": "Contacto"
+    },
+    "moreItems": {
+      "techStack": {
+        "label": "Stack tecnológico",
+        "description": "Herramientas y tecnologías que utilizo."
+      },
+      "githubActivity": {
+        "label": "Actividad en GitHub",
+        "description": "Trabajo y contribuciones recientes."
+      }
+    }
+  },
+  "LocaleSwitcher": {
+    "label": "Idioma",
+    "switchTo": "Cambiar a {language}",
+    "languages": {
+      "es": "español",
+      "en": "inglés"
+    }
+  },
+  "Cover": {
+    "ariaLabel": "Portada animada del portfolio"
+  },
+  "Profile": {
+    "headlines": {
+      "primary": "Ingeniero Frontend Senior con más de 4 años de experiencia",
+      "secondary": "Licenciado en Ciencias de la Computación"
+    },
+    "location": "Montevideo, Uruguay",
+    "avatar": {
+      "pixelated": "Retrato pixelado de {name}",
+      "regular": "Retrato de {name}",
+      "showRegular": "Mostrar foto normal",
+      "showPixelated": "Mostrar foto pixelada"
+    },
+    "pageViews": {
+      "loading": "Cargando visitas de la página",
+      "count": "{count, plural, =1 {# visita a la página} other {# visitas a la página}}"
+    },
+    "cv": {
+      "label": "Ver CV",
+      "newTab": "{label} (se abre en una pestaña nueva)"
+    }
+  },
+  "About": {
+    "title": "Sobre mí",
+    "body": "Desarrollador Frontend con experiencia en <highlight>React, Next.js y TypeScript</highlight>, enfocado en construir aplicaciones web modernas y orientadas al producto. He contribuido al desarrollo de <underline>paneles de analítica</underline> y a la integración de APIs externas y servicios de terceros, incluidas pasarelas de pago como <highlight>Stripe y NMI</highlight>. Tengo experiencia tomando <underline>decisiones de arquitectura frontend</underline>, definiendo estrategias de renderizado con Next.js (CSR, SSR y SSG) y automatizando pipelines de compilación y despliegue en <highlight>Vercel</highlight> para mejorar la escalabilidad, el rendimiento y la mantenibilidad de aplicaciones en producción."
+  },
+  "Experience": {
+    "title": "Experiencia",
+    "years": "Más de 4 años",
+    "roles": "{count, plural, =1 {# puesto} other {# puestos}}",
+    "period": "{start} — {end}",
+    "present": "Actualidad",
+    "employmentTypes": {
+      "fullTime": "Tiempo completo",
+      "partTime": "Medio tiempo"
+    },
+    "items": {
+      "activeTech": {
+        "role": "Ingeniero Frontend",
+        "highlights": {
+          "1": "Desarrollo, mantengo y evoluciono aplicaciones web modernas con Next.js, React y TypeScript, garantizando escalabilidad, rendimiento y calidad técnica",
+          "2": "Integro pasarelas de pago como Stripe y NMI para procesar transacciones seguras, suscripciones y flujos de checkout personalizados",
+          "3": "Implemento y automatizo pipelines de compilación y despliegue en Vercel, mejorando la velocidad de entrega y reduciendo errores en producción",
+          "4": "Participo en decisiones de arquitectura frontend y defino buenas prácticas para mejorar la mantenibilidad y escalabilidad del código"
+        }
+      },
+      "desoft": {
+        "role": "Especialista en Ciencias de la Computación",
+        "highlights": {
+          "1": "Desarrollé y mantuve aplicaciones web con React.js y tecnologías frontend relacionadas",
+          "2": "Implementé diseños responsivos y aseguré la compatibilidad entre navegadores y dispositivos soportados",
+          "3": "Participé en revisiones de código para mejorar su calidad, legibilidad y consistencia"
+        }
+      }
+    }
+  },
+  "Projects": {
+    "title": "Proyectos",
+    "selectedWorks": "{count, plural, =1 {# trabajo seleccionado} other {# trabajos seleccionados}}",
+    "inDevelopment": "En desarrollo",
+    "live": "En línea",
+    "technologies": "Tecnologías utilizadas en {name}",
+    "visitTitle": "Visitar {name}",
+    "visitLabel": "Visitar el sitio de {name}",
+    "sourceTitle": "Ver el código fuente de {name}",
+    "sourceLabel": "Ver el código fuente de {name} en GitHub",
+    "carousel": {
+      "open": "Abrir el sitio de {name}",
+      "preview": "Vista previa {current} de {total} de {name}",
+      "previous": "Imagen anterior de {name}",
+      "next": "Imagen siguiente de {name}"
+    },
+    "items": {
+      "needThis": {
+        "description": "Plataforma de comercio electrónico full stack con tienda responsiva, checkout para invitados, pagos seguros, inventario en tiempo real, cuentas de clientes y panel privado de operaciones."
+      },
+      "galloExpress": {
+        "description": "Aplicación de comercio electrónico lista para producción con catálogos, inventario en múltiples ubicaciones, área administrativa, autenticación, carga de archivos y carrito persistente."
+      },
+      "travelAdvisor": {
+        "description": "Aplicación de descubrimiento turístico basada en la ubicación que integra mapas y APIs externas para mostrar restaurantes, hoteles y atracciones."
+      }
+    }
+  },
+  "TechStack": {
+    "title": "Stack tecnológico",
+    "filterAriaLabel": "Filtrar tecnologías",
+    "showOriginal": "{name}: mostrar color original",
+    "tabs": {
+      "all": "Todas",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "tools": "Herramientas",
+      "ai": "IA"
+    }
+  },
+  "GitHub": {
+    "title": "Actividad en GitHub",
+    "visitProfile": "Visitar perfil",
+    "unavailable": "La actividad de GitHub no está disponible temporalmente.",
+    "noContributions": "Sin contribuciones",
+    "contributionCount": "{count, plural, =1 {# contribución} other {# contribuciones}}",
+    "tooltip": "{countLabel} el {date}",
+    "cellLabel": "{date}: {value} contribuciones",
+    "heatmapLabel": "Contribuciones en GitHub de {year}",
+    "stat": "{value} contribuciones durante el último año",
+    "less": "Menos",
+    "more": "Más",
+    "legendLabel": "Leyenda de intensidad de actividad",
+    "legendLevelLabel": "{level} contribuciones"
+  },
+  "ContactLinks": {
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "telegram": "Telegram",
+    "twitter": "X / Twitter",
+    "email": "Correo electrónico"
+  },
+  "Contact": {
+    "title": "Contacto",
+    "sectionTitle": "¿Sigues aquí?",
+    "formEyebrow": "Hablemos",
+    "formTitle": "Conectemos",
+    "formDescription": "Cuéntame sobre el producto, el equipo o la idea que estás construyendo.",
+    "availability": "Disponible para proyectos freelance y remotos",
+    "fields": {
+      "name": {"label": "Nombre", "placeholder": "¿Cómo debería llamarte?"},
+      "email": {"label": "Correo electrónico", "placeholder": "¿Cómo puedo contactarte?"},
+      "message": {"label": "Mensaje", "placeholder": "Cuéntame sobre tu proyecto…"}
+    },
+    "submit": "Enviar mensaje",
+    "sending": "Enviando…",
+    "success": {"title": "Mensaje enviado", "description": "Gracias. Te responderé lo antes posible."},
+    "error": {"title": "Mensaje no enviado", "description": "Algo salió mal. Inténtalo de nuevo en un momento."},
+    "configurationError": "El envío de correos todavía no está configurado."
+  },
+  "Footer": {
+    "credit": "Diseñado y desarrollado por",
+    "contactAriaLabel": "Redes sociales y contacto"
+  }
+}

@@ -1,23 +1,15 @@
 export const siteName = "Daniel Caluff";
 
 export const primaryNavigationLinks = [
-  { label: "Home", href: "#inicio" },
-  { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
-  { label: "Contact", href: "#lets-talk" },
+  {key: "home", href: "#inicio"},
+  {key: "experience", href: "#experience"},
+  {key: "projects", href: "#projects"},
+  {key: "contact", href: "#lets-talk"},
 ] as const;
 
 export const moreNavigationLinks = [
-  {
-    label: "Tech Stack",
-    href: "#tech-stack",
-    description: "Tools and technologies I use.",
-  },
-  {
-    label: "GitHub Activity",
-    href: "#github-activity",
-    description: "Recent work and contributions.",
-  },
+  {key: "techStack", href: "#tech-stack"},
+  {key: "githubActivity", href: "#github-activity"},
 ] as const;
 
 export const sectionNavigationLinks = [

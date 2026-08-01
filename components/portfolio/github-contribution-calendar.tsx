@@ -1,6 +1,6 @@
 "use client";
 
-import { format, parseISO } from "date-fns";
+import {useFormatter, useTranslations} from "next-intl";
 import { useState } from "react";
 
 import {
@@ -36,15 +36,20 @@ type TooltipState = {
   placement: "above" | "below";
 };
 
-function ContributionTooltip({ state }: { state: TooltipState | null }) {
+function ContributionTooltip({state}: {state: TooltipState | null}) {
+  const format = useFormatter();
+  const t = useTranslations("GitHub");
+
   if (!state) return null;
 
   const contributionLabel =
     state.activity.value === 0
-      ? "No contributions"
-      : `${state.activity.value} ${
-          state.activity.value === 1 ? "contribution" : "contributions"
-        }`;
+      ? t("noContributions")
+      : t("contributionCount", {count: state.activity.value});
+  const date = format.dateTime(
+    new Date(`${state.activity.date}T00:00:00Z`),
+    {day: "numeric", month: "short", year: "numeric", timeZone: "UTC"},
+  );
 
   return (
     <div
@@ -56,8 +61,7 @@ function ContributionTooltip({ state }: { state: TooltipState | null }) {
       style={{ left: state.left, top: state.top }}
     >
       <p className="whitespace-nowrap font-medium">
-        {contributionLabel} on{" "}
-        {format(parseISO(state.activity.date), "MMM d, yyyy")}
+        {t("tooltip", {countLabel: contributionLabel, date})}
       </p>
       <span
         aria-hidden="true"
@@ -80,6 +84,7 @@ export function GitHubContributionCalendar({
   weeks: readonly ContributionWeek[];
 }) {
   const [tooltip, setTooltip] = useState<TooltipState | null>(null);
+  const t = useTranslations("GitHub");
 
   return (
     <>
@@ -92,8 +97,10 @@ export function GitHubContributionCalendar({
         data={toActivities(weeks)}
         fontSize={13}
         labels={{
-          cellLabel: "{{date}}: {{value}} contributions",
-          heatmapLabel: "GitHub contributions for {{year}}",
+          cellLabel: t("cellLabel", {date: "{{date}}", value: "{{value}}"}),
+          heatmapLabel: t("heatmapLabel", {year: "{{year}}"}),
+          legendLabel: t("legendLabel"),
+          legendLevelLabel: t("legendLevelLabel", {level: "{{level}}"}),
         }}
         totalCount={total}
       >
@@ -128,9 +135,9 @@ export function GitHubContributionCalendar({
         </CalendarHeatmapBody>
         <CalendarHeatmapFooter className="items-center pt-1 text-xs">
           <CalendarHeatmapStat
-            label="{{value}} contributions in the last year"
+            label={t("stat", {value: "{{value}}"})}
           />
-          <CalendarHeatmapLegend labels={{ less: "Less", more: "More" }} />
+          <CalendarHeatmapLegend labels={{less: t("less"), more: t("more")}} />
         </CalendarHeatmapFooter>
       </CalendarHeatmap>
       <ContributionTooltip state={tooltip} />

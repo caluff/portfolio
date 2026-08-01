@@ -1,0 +1,190 @@
+{
+  "Metadata": {
+    "title": "Daniel Caluff — Senior Frontend Engineer",
+    "description": "Portfolio of Daniel Caluff, a Senior Frontend Engineer and Computer Science graduate based in Montevideo.",
+    "keywords": ["Daniel Caluff", "Frontend Engineer", "React", "Next.js", "TypeScript", "Montevideo"]
+  },
+  "Common": {
+    "close": "Close",
+    "closeNotification": "Close notification",
+    "loading": "Loading",
+    "backToTop": "Back to top",
+    "contactOptions": "Contact options",
+    "contactVia": "Contact via {service}"
+  },
+  "Navigation": {
+    "primaryAriaLabel": "Main navigation",
+    "mobileAriaLabel": "Mobile navigation",
+    "openMenu": "Open navigation menu",
+    "menuDescription": "Navigate through the portfolio.",
+    "more": "More",
+    "theme": "Theme",
+    "changeTheme": "Change theme",
+    "primary": {
+      "home": "Home",
+      "experience": "Experience",
+      "projects": "Projects",
+      "contact": "Contact"
+    },
+    "moreItems": {
+      "techStack": {
+        "label": "Tech Stack",
+        "description": "Tools and technologies I use."
+      },
+      "githubActivity": {
+        "label": "GitHub Activity",
+        "description": "Recent work and contributions."
+      }
+    }
+  },
+  "LocaleSwitcher": {
+    "label": "Language",
+    "switchTo": "Switch to {language}",
+    "languages": {
+      "es": "Spanish",
+      "en": "English"
+    }
+  },
+  "Cover": {
+    "ariaLabel": "Animated portfolio cover"
+  },
+  "Profile": {
+    "headlines": {
+      "primary": "Senior Frontend Engineer with 4+ years of experience",
+      "secondary": "B.Sc. in Computer Science"
+    },
+    "location": "Montevideo, Uruguay",
+    "avatar": {
+      "pixelated": "Pixelated portrait of {name}",
+      "regular": "Portrait of {name}",
+      "showRegular": "Show regular photo",
+      "showPixelated": "Show pixelated photo"
+    },
+    "pageViews": {
+      "loading": "Loading page visits",
+      "count": "{count, plural, =1 {# page visit} other {# page visits}}"
+    },
+    "cv": {
+      "label": "View CV",
+      "newTab": "{label} (opens in a new tab)"
+    }
+  },
+  "About": {
+    "title": "About",
+    "body": "Frontend Developer with experience in <highlight>React, Next.js, and TypeScript</highlight>, focused on building modern, product-driven web applications. I have contributed to the development of <underline>analytics dashboards</underline> and the integration of external APIs and third-party services, including payment gateways such as <highlight>Stripe and NMI</highlight>. I have experience making <underline>frontend architecture decisions</underline>, defining rendering strategies with Next.js (CSR, SSR, and SSG), and automating build and deployment pipelines on <highlight>Vercel</highlight> to improve the scalability, performance, and maintainability of applications in production."
+  },
+  "Experience": {
+    "title": "Experience",
+    "years": "4+ years",
+    "roles": "{count, plural, =1 {# role} other {# roles}}",
+    "period": "{start} — {end}",
+    "present": "Present",
+    "employmentTypes": {
+      "fullTime": "Full time",
+      "partTime": "Part time"
+    },
+    "items": {
+      "activeTech": {
+        "role": "Frontend Engineer",
+        "highlights": {
+          "1": "Develop, maintain, and evolve modern web applications using Next.js, React, and TypeScript, ensuring scalability, performance, and technical quality",
+          "2": "Integrate payment gateways such as Stripe and NMI for secure transaction processing, subscriptions, and custom checkout flows",
+          "3": "Implement and automate build and deployment pipelines on Vercel, improving delivery speed and reducing production environment errors",
+          "4": "Participate in frontend architecture decisions and define best practices to improve maintainability and scalability across the codebase"
+        }
+      },
+      "desoft": {
+        "role": "Computer Science Specialist",
+        "highlights": {
+          "1": "Developed and maintained web applications using React.js and related frontend technologies",
+          "2": "Implemented responsive designs and ensured cross-browser compatibility across supported devices",
+          "3": "Participated in code reviews to improve quality, readability, and consistency across the codebase"
+        }
+      }
+    }
+  },
+  "Projects": {
+    "title": "Projects",
+    "selectedWorks": "{count, plural, =1 {# selected work} other {# selected works}}",
+    "inDevelopment": "In development",
+    "live": "Live",
+    "technologies": "Technologies used in {name}",
+    "visitTitle": "Visit {name}",
+    "visitLabel": "Visit the live {name} site",
+    "sourceTitle": "View {name} source code",
+    "sourceLabel": "View {name} source code on GitHub",
+    "carousel": {
+      "open": "Open the live {name} site",
+      "preview": "{name} preview {current} of {total}",
+      "previous": "Previous {name} image",
+      "next": "Next {name} image"
+    },
+    "items": {
+      "needThis": {
+        "description": "Full-stack ecommerce platform with a responsive storefront, guest checkout, secure payments, real-time inventory, customer accounts, and a private operations dashboard."
+      },
+      "galloExpress": {
+        "description": "Production-ready ecommerce app with catalogs, multi-location inventory, admin area, auth, file uploads, and persistent cart."
+      },
+      "travelAdvisor": {
+        "description": "Location-based travel discovery app that integrates maps and external APIs to surface restaurants, hotels, and attractions."
+      }
+    }
+  },
+  "TechStack": {
+    "title": "Tech Stack",
+    "filterAriaLabel": "Filter technologies",
+    "showOriginal": "{name}: show original color",
+    "tabs": {
+      "all": "All",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "tools": "Tools",
+      "ai": "AI"
+    }
+  },
+  "GitHub": {
+    "title": "GitHub Activity",
+    "visitProfile": "Visit profile",
+    "unavailable": "GitHub activity is temporarily unavailable.",
+    "noContributions": "No contributions",
+    "contributionCount": "{count, plural, =1 {# contribution} other {# contributions}}",
+    "tooltip": "{countLabel} on {date}",
+    "cellLabel": "{date}: {value} contributions",
+    "heatmapLabel": "GitHub contributions for {year}",
+    "stat": "{value} contributions in the last year",
+    "less": "Less",
+    "more": "More",
+    "legendLabel": "Activity intensity legend",
+    "legendLevelLabel": "{level} contributions"
+  },
+  "ContactLinks": {
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "telegram": "Telegram",
+    "twitter": "X / Twitter",
+    "email": "Email"
+  },
+  "Contact": {
+    "title": "Contact",
+    "sectionTitle": "Still here?",
+    "formEyebrow": "Get in touch",
+    "formTitle": "Let’s connect",
+    "formDescription": "Tell me about the product, team, or idea you’re building.",
+    "availability": "Available for freelance & remote",
+    "fields": {
+      "name": {"label": "Name", "placeholder": "What should I call you?"},
+      "email": {"label": "Email", "placeholder": "How can I contact you?"},
+      "message": {"label": "Message", "placeholder": "Tell me about your project…"}
+    },
+    "submit": "Send message",
+    "sending": "Sending…",
+    "success": {"title": "Message sent", "description": "Thank you. I’ll get back to you as soon as possible."},
+    "error": {"title": "Message not sent", "description": "Something went wrong. Please try again in a moment."},
+    "configurationError": "Email delivery is not configured yet."
+  },
+  "Footer": {
+    "credit": "Designed & developed by",
+    "contactAriaLabel": "Social media and contact"
+  }
+}

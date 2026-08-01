@@ -2,10 +2,10 @@
 
 import { ArrowRight } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import {useTranslations} from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
-import { contactCta } from "@/data/contact";
 
 type ContactSubmitButtonProps = {
   isConfigured: boolean;
@@ -17,6 +17,8 @@ export function ContactSubmitButton({
   isSending,
 }: ContactSubmitButtonProps) {
   const reduceMotion = useReducedMotion();
+  const t = useTranslations("Contact");
+  const commonT = useTranslations("Common");
 
   return (
     <Button
@@ -48,9 +50,9 @@ export function ContactSubmitButton({
               animate={reduceMotion ? undefined : { scale: [0.85, 1, 0.85] }}
               transition={{ duration: 0.9, repeat: Infinity }}
             >
-              <Spinner data-icon="inline-start" />
+              <Spinner aria-label={commonT("loading")} data-icon="inline-start" />
             </motion.span>
-            <span aria-live="polite">{contactCta.sendingLabel}</span>
+            <span aria-live="polite">{t("sending")}</span>
           </motion.span>
         ) : (
           <motion.span
@@ -60,7 +62,7 @@ export function ContactSubmitButton({
             initial={{ opacity: 0, x: -8 }}
             key="idle"
           >
-            {contactCta.submitLabel}
+            {t("submit")}
             <ArrowRight data-icon="inline-end" aria-hidden="true" />
           </motion.span>
         )}

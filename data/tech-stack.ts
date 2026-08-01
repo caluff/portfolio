@@ -8,11 +8,11 @@ export type Technology = {
 };
 
 export const technologyTabs = [
-  { label: "All", value: "all" },
-  { label: "Frontend", value: "frontend" },
-  { label: "Backend", value: "backend" },
-  { label: "Tools", value: "tools" },
-  { label: "AI", value: "ai" },
+  {value: "all"},
+  {value: "frontend"},
+  {value: "backend"},
+  {value: "tools"},
+  {value: "ai"},
 ] as const;
 
 export type TechnologyTab = (typeof technologyTabs)[number]["value"];

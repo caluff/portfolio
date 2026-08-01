@@ -1,9 +1,10 @@
 import {CodeXml, type LucideIcon, Workflow} from "lucide-react";
+import {getFormatter, getTranslations} from "next-intl/server";
 
 import {SectionHeader} from "@/components/portfolio/section-header";
 import {Badge} from "@/components/ui/badge";
 import {Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle,} from "@/components/ui/card";
-import {type Experience, type ExperienceIcon, experiences,} from "@/data/experience";
+import {type Experience, type ExperienceIcon, experiences} from "@/data/experience";
 import {cn} from "@/lib/utils";
 
 const experienceIcons: Record<ExperienceIcon, LucideIcon> = {
@@ -11,9 +12,22 @@ const experienceIcons: Record<ExperienceIcon, LucideIcon> = {
   systems: Workflow,
 };
 
-function ExperienceCard({experience}: { experience: Experience }) {
-  const {company, employmentType, highlights, period, role, startedAt} =
-    experience;
+type ExperienceCardProps = {
+  employmentTypeLabel: string;
+  experience: Experience;
+  highlights: readonly string[];
+  period: string;
+  role: string;
+};
+
+function ExperienceCard({
+  employmentTypeLabel,
+  experience,
+  highlights,
+  period,
+  role,
+}: ExperienceCardProps) {
+  const {company, employmentType, from} = experience;
 
   return (
     <Card className="[--card-spacing:--spacing(6)] transition-shadow duration-300 hover:shadow-lg">
@@ -21,8 +35,8 @@ function ExperienceCard({experience}: { experience: Experience }) {
         <CardTitle>{role}</CardTitle>
         <CardDescription>{company}</CardDescription>
         <CardAction>
-          <Badge variant={employmentType === "Full time" ? "secondary" : "outline"}>
-            {employmentType}
+          <Badge variant={employmentType === "fullTime" ? "secondary" : "outline"}>
+            {employmentTypeLabel}
           </Badge>
         </CardAction>
       </CardHeader>
@@ -37,7 +51,7 @@ function ExperienceCard({experience}: { experience: Experience }) {
       </CardContent>
 
       <CardFooter className="sm:hidden">
-        <time className="text-xs font-medium text-muted-foreground" dateTime={startedAt}>
+        <time className="text-xs font-medium text-muted-foreground" dateTime={from.slice(0, 7)}>
           {period}
         </time>
       </CardFooter>
@@ -45,16 +59,34 @@ function ExperienceCard({experience}: { experience: Experience }) {
   );
 }
 
-export function ExperienceSection() {
+export async function ExperienceSection() {
+  const t = await getTranslations("Experience");
+  const format = await getFormatter();
+  const formatPeriod = ({from, to}: Experience) =>
+    t("period", {
+      start: format.dateTime(new Date(`${from}T00:00:00Z`), {
+        month: "short",
+        year: "numeric",
+        timeZone: "UTC",
+      }),
+      end: to
+        ? format.dateTime(new Date(`${to}T00:00:00Z`), {
+            month: "short",
+            year: "numeric",
+            timeZone: "UTC",
+          })
+        : t("present"),
+    });
+
   return (
     <section id="experience">
       <SectionHeader
-        title="Experience"
+        title={t("title")}
         action={
           <span className="flex items-center gap-2 text-xs text-muted-foreground">
-            <span>4+ years</span>
+            <span>{t("years")}</span>
             <span aria-hidden="true">•</span>
-            <span>{experiences.length} roles</span>
+            <span>{t("roles", {count: experiences.length})}</span>
           </span>
         }
       />
@@ -70,11 +102,20 @@ export function ExperienceSection() {
             const Icon = experienceIcons[experience.icon];
             const markerOnLeft = index % 2 === 0;
             const isLast = index === experiences.length - 1;
+            const period = formatPeriod(experience);
+            const role = t(`items.${experience.id}.role`);
+            const highlights = experience.id === "activeTech"
+              ? experience.highlightKeys.map((key) =>
+                  t(`items.activeTech.highlights.${key}`),
+                )
+              : experience.highlightKeys.map((key) =>
+                  t(`items.desoft.highlights.${key}`),
+                );
 
             return (
               <li
                 className="relative pl-12 sm:pl-0 sm:pt-15"
-                key={`${experience.company}-${experience.role}`}
+                key={experience.id}
               >
                 <span
                   className="absolute top-4.5 right-0 left-0 hidden border-t border-dashed border-border sm:block"
@@ -99,14 +140,20 @@ export function ExperienceSection() {
                   </span>
                   <time
                     className="hidden text-xs font-medium text-muted-foreground sm:block"
-                    dateTime={experience.startedAt}
+                    dateTime={experience.from.slice(0, 7)}
                   >
-                    {experience.period}
+                    {period}
                   </time>
                 </div>
 
                 <div className="min-w-0 sm:mx-6">
-                  <ExperienceCard experience={experience}/>
+                  <ExperienceCard
+                    employmentTypeLabel={t(`employmentTypes.${experience.employmentType}`)}
+                    experience={experience}
+                    highlights={highlights}
+                    period={period}
+                    role={role}
+                  />
                 </div>
               </li>
             );

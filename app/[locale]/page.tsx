@@ -1,3 +1,5 @@
+import {setRequestLocale} from "next-intl/server";
+
 import {AboutSection} from "@/components/portfolio/about-section";
 import {ContactSection} from "@/components/portfolio/contact-section";
 import {ContactCtaSection} from "@/components/portfolio/contact-cta-section";
@@ -12,7 +14,14 @@ import {SiteFooter} from "@/components/portfolio/site-footer";
 import {SiteHeader} from "@/components/portfolio/site-header";
 import {TechStackSection} from "@/components/portfolio/tech-stack-section";
 
-export default function Home() {
+type HomeProps = {
+  params: Promise<{locale: "es" | "en"}>;
+};
+
+export default async function Home({params}: HomeProps) {
+  const {locale} = await params;
+  setRequestLocale(locale);
+
   return (
     <main className="min-h-svh overflow-x-clip bg-background text-foreground" id="inicio">
       <SiteHeader/>

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { ChevronUp } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
+import {useTranslations} from "next-intl";
 
 import { ContactIcon } from "@/components/portfolio/contact-icon";
 import { Button } from "@/components/ui/button";
@@ -12,6 +13,8 @@ const SCROLL_THRESHOLD = 320;
 
 export function FloatingContactDock() {
   const [isVisible, setIsVisible] = useState(false);
+  const commonT = useTranslations("Common");
+  const linksT = useTranslations("ContactLinks");
 
   useEffect(() => {
     const updateVisibility = () => {
@@ -37,9 +40,12 @@ export function FloatingContactDock() {
           animate={{ opacity: 1, x: 0, y: "-50%", scale: 1 }}
           exit={{ opacity: 0, x: 24, y: "-50%", scale: 0.94 }}
           transition={{ duration: 0.22, ease: "easeOut" }}
-          aria-label="Contact options"
+          aria-label={commonT("contactOptions")}
         >
-          {contactLinks.map(({ href, iconMode, iconSrc, label }) => (
+          {contactLinks.map(({href, iconMode, iconSrc, key}) => {
+            const label = linksT(key);
+
+            return (
             <Button
               variant="secondary"
               size="icon-lg"
@@ -47,15 +53,16 @@ export function FloatingContactDock() {
               render={
                 <a
                   href={href}
-                  aria-label={`Contact via ${label}`}
+                  aria-label={commonT("contactVia", {service: label})}
                   title={label}
                 />
               }
-              key={label}
+              key={key}
             >
               <ContactIcon iconMode={iconMode} iconSrc={iconSrc} />
             </Button>
-          ))}
+            );
+          })}
 
           <Button
             className="mt-1"
@@ -63,8 +70,8 @@ export function FloatingContactDock() {
             size="icon-lg"
             type="button"
             onClick={scrollToTop}
-            aria-label="Back to top"
-            title="Back to top"
+            aria-label={commonT("backToTop")}
+            title={commonT("backToTop")}
           >
             <ChevronUp aria-hidden="true" />
           </Button>

@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { Toast as ToastPrimitive } from "@base-ui/react/toast"
+import {useTranslations} from "next-intl"
 import {
   CircleCheckIcon,
   InfoIcon,
@@ -26,6 +27,7 @@ const toastIcons: Record<string, React.ReactNode> = {
 
 function ToastList() {
   const { toasts } = ToastPrimitive.useToastManager()
+  const t = useTranslations("Common")
 
   return toasts.map((item) => (
     <ToastPrimitive.Root
@@ -48,7 +50,7 @@ function ToastList() {
           <ToastPrimitive.Description className="text-sm text-muted-foreground" />
         </div>
         <ToastPrimitive.Close
-          aria-label="Close notification"
+          aria-label={t("closeNotification")}
           render={<Button size="icon-sm" variant="ghost" />}
         >
           <XIcon aria-hidden="true" />

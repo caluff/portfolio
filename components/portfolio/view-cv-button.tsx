@@ -1,13 +1,15 @@
 import {ArrowUpRight} from "lucide-react";
+import {getTranslations} from "next-intl/server";
 
 import {Button} from "@/components/ui/button";
-import {contactCta} from "@/data/contact";
 import {cn} from "@/lib/utils";
 
 const cvUrl = process.env.NEXT_PUBLIC_CV_URL;
 
-export function ViewCvButton({className}: { className?: string }) {
+export async function ViewCvButton({className}: { className?: string }) {
   if (!cvUrl) return null;
+  const t = await getTranslations("Profile.cv");
+  const label = t("label");
 
   return (
     <Button
@@ -15,17 +17,17 @@ export function ViewCvButton({className}: { className?: string }) {
       nativeButton={false}
       render={
         <a
-          aria-label={`${contactCta.cvLabel} (opens in a new tab)`}
+          aria-label={t("newTab", {label})}
           href={cvUrl}
           rel="noopener noreferrer"
           target="_blank"
         />
       }
       size="lg"
-      title={contactCta.cvLabel}
+      title={label}
     >
       <span className="flex items-center justify-center gap-1.5">
-        {contactCta.cvLabel}
+        {label}
         <ArrowUpRight data-icon="inline-end" aria-hidden="true"/>
       </span>
     </Button>

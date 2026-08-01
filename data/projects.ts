@@ -1,6 +1,6 @@
 export type Project = {
+  id: "needThis" | "galloExpress" | "travelAdvisor";
   name: string;
-  description: string;
   tags: readonly {
     name: string;
   }[];
@@ -12,9 +12,8 @@ export type Project = {
 
 export const projects = [
   {
+    id: "needThis",
     name: "NEED THIS",
-    description:
-      "Full-stack ecommerce platform with a responsive storefront, guest checkout, secure payments, real-time inventory, customer accounts, and a private operations dashboard.",
     tags: [
       {name: "nextjs16"},
       {name: "react19"},
@@ -34,9 +33,8 @@ export const projects = [
     developing: true,
   },
   {
+    id: "galloExpress",
     name: "Gallo Express",
-    description:
-      "Production-ready ecommerce app with catalogs, multi-location inventory, admin area, auth, file uploads, and persistent cart.",
     tags: [
       {name: "nextjs15"},
       {name: "react19"},
@@ -54,9 +52,8 @@ export const projects = [
     developing: false,
   },
   {
+    id: "travelAdvisor",
     name: "Travel Advisor",
-    description:
-      "Location-based travel discovery app that integrates maps and external APIs to surface restaurants, hotels, and attractions.",
     tags: [
       {name: "react"},
       {name: "vite"},

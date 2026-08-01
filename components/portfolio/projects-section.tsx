@@ -1,4 +1,5 @@
 import {Globe} from "lucide-react";
+import {getTranslations} from "next-intl/server";
 import type {CSSProperties} from "react";
 
 import {ProjectDevelopmentRibbon} from "@/components/portfolio/project-development-ribbon";
@@ -10,6 +11,16 @@ import {type Project, projects} from "@/data/projects";
 import {cn} from "@/lib/utils";
 
 type ProjectCardProps = {
+  copy: {
+    description: string;
+    inDevelopment: string;
+    live: string;
+    sourceLabel: string;
+    sourceTitle: string;
+    technologies: string;
+    visitLabel: string;
+    visitTitle: string;
+  };
   featured?: boolean;
   project: Project;
 };
@@ -29,9 +40,8 @@ function GitHubIcon() {
   );
 }
 
-function ProjectCard({featured = false, project}: ProjectCardProps) {
+function ProjectCard({copy, featured = false, project}: ProjectCardProps) {
   const {
-    description,
     developing,
     images,
     liveUrl,
@@ -48,7 +58,7 @@ function ProjectCard({featured = false, project}: ProjectCardProps) {
         "sm:grid sm:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] sm:gap-4",
       )}
     >
-      {developing && <ProjectDevelopmentRibbon/>}
+      {developing && <ProjectDevelopmentRibbon label={copy.inDevelopment}/>}
 
       <ProjectMediaCarousel
         featured={featured}
@@ -68,19 +78,19 @@ function ProjectCard({featured = false, project}: ProjectCardProps) {
                 className="size-2 rounded-full bg-project-status-live"
                 aria-hidden="true"
               />
-              Live
+              {copy.live}
             </span>
           )}
         </div>
 
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-          {description}
+          {copy.description}
         </p>
 
         <div className="mt-auto flex items-end justify-between gap-4 pt-5">
           <ul
             className="flex flex-wrap gap-2"
-            aria-label={`${name} technologies`}
+            aria-label={copy.technologies}
           >
             {tags.map((tag) => (
               <li key={tag.name}>
@@ -97,8 +107,8 @@ function ProjectCard({featured = false, project}: ProjectCardProps) {
               href={liveUrl}
               target="_blank"
               rel="noreferrer"
-              title={`Visit ${name}`}
-              aria-label={`Visit ${name} live site`}
+              title={copy.visitTitle}
+              aria-label={copy.visitLabel}
             >
               <Globe className="size-5" aria-hidden="true"/>
             </a>
@@ -107,8 +117,8 @@ function ProjectCard({featured = false, project}: ProjectCardProps) {
               href={sourceCodeLink}
               target="_blank"
               rel="noreferrer"
-              title={`View ${name} source code`}
-              aria-label={`View ${name} source code on GitHub`}
+              title={copy.sourceTitle}
+              aria-label={copy.sourceLabel}
             >
               <GitHubIcon/>
             </a>
@@ -119,20 +129,36 @@ function ProjectCard({featured = false, project}: ProjectCardProps) {
   );
 }
 
-export function ProjectsSection() {
+export async function ProjectsSection() {
+  const t = await getTranslations("Projects");
   const hoverItems = projects.map((project, index) => ({
     id: project.name,
     className: cn("project-reveal", index === 0 && "sm:col-span-2"),
-    content: <ProjectCard featured={index === 0} project={project}/>,
+    content: (
+      <ProjectCard
+        copy={{
+          description: t(`items.${project.id}.description`),
+          inDevelopment: t("inDevelopment"),
+          live: t("live"),
+          sourceLabel: t("sourceLabel", {name: project.name}),
+          sourceTitle: t("sourceTitle", {name: project.name}),
+          technologies: t("technologies", {name: project.name}),
+          visitLabel: t("visitLabel", {name: project.name}),
+          visitTitle: t("visitTitle", {name: project.name}),
+        }}
+        featured={index === 0}
+        project={project}
+      />
+    ),
   })) satisfies readonly HoverEffectItem[];
 
   return (
     <section id="projects">
       <SectionHeader
-        title="Projects"
+        title={t("title")}
         action={
           <span className="text-xs text-muted-foreground">
-            {projects.length} selected works
+            {t("selectedWorks", {count: projects.length})}
           </span>
         }
       />

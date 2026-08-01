@@ -1,9 +1,11 @@
 "use client";
 
 import { MenuIcon } from "lucide-react";
+import {useTranslations} from "next-intl";
 import { useState } from "react";
 
 import { ThemeTogglerButton } from "@/components/animate-ui/components/buttons/theme-toggler";
+import {LocaleSwitcher} from "@/components/portfolio/locale-switcher";
 import {
   Sheet,
   SheetContent,
@@ -27,15 +29,24 @@ const mobileNavigationLinks = [
 
 export function MobileNavigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const t = useTranslations("Navigation");
+  const labels = {
+    home: t("primary.home"),
+    experience: t("primary.experience"),
+    projects: t("primary.projects"),
+    contact: t("primary.contact"),
+    techStack: t("moreItems.techStack.label"),
+    githubActivity: t("moreItems.githubActivity.label"),
+  } as const;
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger
         render={
           <Button
-            aria-label="Abrir menú de navegación"
+            aria-label={t("openMenu")}
             size="icon-lg"
-            title="Abrir menú"
+            title={t("openMenu")}
             variant="ghost"
           />
         }
@@ -51,19 +62,19 @@ export function MobileNavigation() {
           <SheetTitle className="text-2xl tracking-tighter">
             {siteName}
           </SheetTitle>
-          <SheetDescription>Navigate through the portfolio.</SheetDescription>
+          <SheetDescription>{t("menuDescription")}</SheetDescription>
         </SheetHeader>
 
-        <nav aria-label="Navegación móvil">
+        <nav aria-label={t("mobileAriaLabel")}>
           <ul className="flex flex-col">
-            {mobileNavigationLinks.map(({ href, label }) => (
+            {mobileNavigationLinks.map(({href, key}) => (
               <li key={href}>
                 <a
                   className="flex h-12 items-center border-b border-dashed px-5 font-medium transition-colors hover:bg-muted focus-visible:bg-muted focus-visible:outline-none"
                   href={href}
                   onClick={() => setIsOpen(false)}
                 >
-                  {label}
+                  {labels[key]}
                 </a>
               </li>
             ))}
@@ -73,14 +84,17 @@ export function MobileNavigation() {
         <SheetFooter className="border-t border-dashed px-5 py-4">
           <div className="flex items-center justify-between gap-4">
             <span className="font-mono text-xs tracking-[0.14em] text-muted-foreground uppercase">
-              Theme
+              {t("theme")}
             </span>
-            <ThemeTogglerButton
-              aria-label="Cambiar tema"
-              size="icon-lg"
-              title="Cambiar tema"
-              variant="outline"
-            />
+            <div className="flex items-center gap-1">
+              <LocaleSwitcher/>
+              <ThemeTogglerButton
+                aria-label={t("changeTheme")}
+                size="icon-lg"
+                title={t("changeTheme")}
+                variant="outline"
+              />
+            </div>
           </div>
         </SheetFooter>
       </SheetContent>

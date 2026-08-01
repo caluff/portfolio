@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import {useTranslations} from "next-intl";
 import {type ReactNode, useState} from "react";
 
 import {Button} from "@/components/ui/button";
@@ -19,9 +20,10 @@ export function ProfilePhotoToggle({
                                      name,
                                    }: ProfilePhotoToggleProps) {
   const [isPixelated, setIsPixelated] = useState(true);
+  const t = useTranslations("Profile.avatar");
   const toggleLabel = isPixelated
-    ? "Mostrar foto normal"
-    : "Mostrar foto pixelada";
+    ? t("showRegular")
+    : t("showPixelated");
 
   return (
     <>
@@ -30,7 +32,7 @@ export function ProfilePhotoToggle({
           <div className="relative size-full overflow-hidden">
             {isPixelated ? (
               <PixelatedCanvas
-                ariaLabel={`Avatar pixelado de ${name}`}
+                ariaLabel={t("pixelated", {name})}
                 backgroundColor=""
                 cellSize={3}
                 className="absolute top-1/2 left-1/2 block origin-center -translate-x-1/2 -translate-y-1/2 scale-[0.733] sm:scale-100"
@@ -47,7 +49,7 @@ export function ProfilePhotoToggle({
               />
             ) : (
               <Image
-                alt={`Avatar de ${name}`}
+                alt={t("regular", {name})}
                 className="animate-in fade-in object-cover object-[center_35%] duration-200"
                 fill
                 sizes="(max-width: 640px) 6rem, 8rem"

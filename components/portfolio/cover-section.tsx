@@ -1,10 +1,13 @@
 import Image from "next/image";
+import {getTranslations} from "next-intl/server";
 
-export function CoverSection() {
+export async function CoverSection() {
+  const t = await getTranslations("Cover");
+
   return (
     <section
       className="relative mx-2 mt-1 h-52 overflow-hidden bg-muted sm:h-56"
-      aria-label="Portada animada"
+      aria-label={t("ariaLabel")}
     >
       <Image
         alt=""

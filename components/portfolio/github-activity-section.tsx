@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import {getTranslations} from "next-intl/server";
 
 import { GitHubContributionCalendar } from "@/components/portfolio/github-contribution-calendar";
 import { SectionHeader } from "@/components/portfolio/section-header";
@@ -7,11 +8,12 @@ import { getGitHubActivity } from "@/lib/github";
 
 export async function GitHubActivitySection() {
   const result = await getGitHubActivity();
+  const t = await getTranslations("GitHub");
 
   return (
     <section id="github-activity">
       <SectionHeader
-        title="GitHub Activity"
+        title={t("title")}
         action={
           <a
             className="flex items-center gap-1 text-xs text-muted-foreground transition-colors hover:text-foreground"
@@ -19,7 +21,7 @@ export async function GitHubActivitySection() {
             rel="noreferrer"
             target="_blank"
           >
-            Visit profile <ArrowUpRight className="size-3" aria-hidden="true" />
+            {t("visitProfile")} <ArrowUpRight className="size-3" aria-hidden="true" />
           </a>
         }
       />
@@ -31,7 +33,7 @@ export async function GitHubActivitySection() {
           />
         ) : (
           <p className="text-sm text-muted-foreground">
-            GitHub activity is temporarily unavailable.
+            {t("unavailable")}
           </p>
         )}
       </div>

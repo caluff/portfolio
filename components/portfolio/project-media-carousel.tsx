@@ -3,6 +3,7 @@
 import {ChevronLeft, ChevronRight} from "lucide-react";
 import {AnimatePresence, motion, useReducedMotion} from "motion/react";
 import Image from "next/image";
+import {useTranslations} from "next-intl";
 import {useEffect, useState, type FocusEvent} from "react";
 
 import {Button} from "@/components/ui/button";
@@ -24,6 +25,7 @@ export function ProjectMediaCarousel({
   projectName,
 }: ProjectMediaCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const t = useTranslations("Projects.carousel");
   const [paused, setPaused] = useState(false);
   const shouldReduceMotion = useReducedMotion();
   const hasMultipleImages = images.length > 1;
@@ -70,7 +72,7 @@ export function ProjectMediaCarousel({
         href={liveUrl}
         target="_blank"
         rel="noreferrer"
-        aria-label={`Open ${projectName} live site`}
+        aria-label={t("open", {name: projectName})}
       >
         <AnimatePresence initial={false} mode="popLayout">
           <motion.div
@@ -84,7 +86,11 @@ export function ProjectMediaCarousel({
             <Image
               className="object-cover"
               src={images[activeIndex]}
-              alt={`${projectName} preview ${activeIndex + 1} of ${images.length}`}
+              alt={t("preview", {
+                name: projectName,
+                current: activeIndex + 1,
+                total: images.length,
+              })}
               fill
               sizes={
                 featured
@@ -107,7 +113,7 @@ export function ProjectMediaCarousel({
             size="icon-sm"
             type="button"
             onClick={showPrevious}
-            aria-label={`Previous ${projectName} image`}
+            aria-label={t("previous", {name: projectName})}
           >
             <ChevronLeft aria-hidden="true"/>
           </Button>
@@ -117,7 +123,7 @@ export function ProjectMediaCarousel({
             size="icon-sm"
             type="button"
             onClick={showNext}
-            aria-label={`Next ${projectName} image`}
+            aria-label={t("next", {name: projectName})}
           >
             <ChevronRight aria-hidden="true"/>
           </Button>
