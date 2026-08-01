@@ -138,7 +138,7 @@ export function ProjectsSection() {
       />
 
       <div className="px-5 py-6 sm:px-6">
-        <HoverEffect className="gap-3" items={hoverItems}/>
+        <HoverEffect items={hoverItems}/>
       </div>
     </section>
   );

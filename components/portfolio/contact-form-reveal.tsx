@@ -67,19 +67,19 @@ export function ContactFormReveal() {
   };
 
   return (
-    <div className="px-5 py-8 sm:px-8 sm:py-10">
-      <div className="mb-10 flex flex-wrap items-center justify-between gap-4">
+    <div className="flex flex-col gap-10 px-5 py-8 sm:px-6 sm:py-10">
+      <div className="flex flex-wrap items-center justify-between gap-4">
         <p className="font-mono text-xs tracking-[0.18em] text-muted-foreground uppercase">
           {contactCta.formEyebrow}
         </p>
         <Badge variant="outline">{contactCta.availability}</Badge>
       </div>
 
-      <div className="mb-10 max-w-2xl">
+      <div className="flex max-w-2xl flex-col gap-4">
         <h3 className="font-heading text-5xl leading-none tracking-tighter sm:text-6xl">
           {contactCta.formTitle}
         </h3>
-        <p className="mt-4 text-muted-foreground">
+        <p className="text-muted-foreground">
           {contactCta.formDescription}
         </p>
       </div>
@@ -88,7 +88,6 @@ export function ContactFormReveal() {
         <FieldGroup className="gap-6">
           <div className="grid gap-6 sm:grid-cols-2">
             <ContactInput
-              autoFocus
               autoComplete="name"
               disabled={isSending}
               label={contactCta.fields.name.label}

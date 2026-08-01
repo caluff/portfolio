@@ -99,7 +99,7 @@ export function PrimaryNavigation() {
     <NavigationMenu
       align="end"
       aria-label="Navegación principal"
-      className="relative"
+      className="relative min-w-0"
       onPointerLeave={() => setPreviewTarget(null)}
       ref={menuRef}
     >
@@ -113,7 +113,10 @@ export function PrimaryNavigation() {
           >
             <NavigationMenuLink
               aria-current={activeHref === href ? "page" : undefined}
-              className={navigationMenuTriggerStyle()}
+              className={cn(
+                navigationMenuTriggerStyle(),
+                "px-0 text-xs sm:px-2.5 sm:text-sm",
+              )}
               href={href}
               onClick={() => setActiveHref(href)}
             >
@@ -127,7 +130,9 @@ export function PrimaryNavigation() {
           onPointerEnter={() => setPreviewTarget(moreTarget)}
           ref={registerItem(moreTarget)}
         >
-          <NavigationMenuTrigger>More</NavigationMenuTrigger>
+          <NavigationMenuTrigger className="px-0 text-xs sm:px-2.5 sm:text-sm">
+            More
+          </NavigationMenuTrigger>
           <NavigationMenuContent>
             <div className="flex w-64 flex-col gap-1">
               {moreNavigationLinks.map(({ description, href, label }) => (

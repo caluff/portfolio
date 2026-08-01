@@ -13,7 +13,7 @@ export function ContactSection() {
       <div className="grid grid-cols-1 border-0 bg-background sm:grid-cols-5 sm:divide-x sm:divide-dashed">
         {contactLinks.map(({href, iconMode, iconSrc, label}) => (
           <Button
-            className="h-auto min-h-12 w-full min-w-0 justify-start gap-1.5 border-0 px-4 py-2 transition-[transform,box-shadow] hover:underline hover:shadow-md focus-visible:-translate-y-0.5 sm:px-1.5"
+            className="h-auto min-h-12 w-full min-w-0 justify-start gap-1.5 border-0 px-5 py-2 transition-[transform,box-shadow] hover:underline hover:shadow-md focus-visible:-translate-y-0.5 sm:px-1.5"
             variant="outline"
             nativeButton={false}
             render={<a href={href}/>}

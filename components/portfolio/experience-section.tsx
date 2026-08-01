@@ -27,9 +27,9 @@ function ExperienceCard({experience}: { experience: Experience }) {
         </CardAction>
       </CardHeader>
 
-      <CardContent>
+      <CardContent className="sm:pb-6">
         <ul
-          className="flex list-disc flex-col gap-2.5 pl-4 mb-4 text-sm leading-relaxed text-muted-foreground marker:text-foreground/50">
+          className="flex list-disc flex-col gap-2.5 pl-4 text-sm leading-relaxed text-muted-foreground marker:text-foreground/50">
           {highlights.map((highlight) => (
             <li key={highlight}>{highlight}</li>
           ))}

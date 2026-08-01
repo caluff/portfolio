@@ -9,11 +9,13 @@ import {cn} from "@/lib/utils";
 
 type ProfilePhotoToggleProps = {
   children: ReactNode;
+  mobileAction?: ReactNode;
   name: string;
 };
 
 export function ProfilePhotoToggle({
                                      children,
+                                     mobileAction,
                                      name,
                                    }: ProfilePhotoToggleProps) {
   const [isPixelated, setIsPixelated] = useState(true);
@@ -23,35 +25,38 @@ export function ProfilePhotoToggle({
 
   return (
     <>
-      <div className="size-24 border border-dashed bg-subtle-band p-1 sm:size-32">
-        <div className="relative size-full overflow-hidden">
-          {isPixelated ? (
-            <PixelatedCanvas
-              ariaLabel={`Avatar pixelado de ${name}`}
-              backgroundColor=""
-              cellSize={3}
-              className="absolute top-1/2 left-1/2 block origin-center -translate-x-1/2 -translate-y-1/2 scale-[0.733] sm:scale-100"
-              distortionMode="repel"
-              distortionRadius={52}
-              distortionStrength={5}
-              dropoutStrength={0.08}
-              height={120}
-              jitterStrength={2}
-              objectPosition={{x: 0.5, y: 0.35}}
-              src="/profile/profile.jpg"
-              tintStrength={0}
-              width={120}
-            />
-          ) : (
-            <Image
-              alt={`Avatar de ${name}`}
-              className="animate-in fade-in object-cover object-[center_35%] duration-200"
-              fill
-              sizes="(max-width: 640px) 6rem, 8rem"
-              src="/profile/profile.jpg"
-            />
-          )}
+      <div className="flex flex-col gap-3">
+        <div className="size-24 border border-dashed bg-subtle-band p-1 sm:size-32">
+          <div className="relative size-full overflow-hidden">
+            {isPixelated ? (
+              <PixelatedCanvas
+                ariaLabel={`Avatar pixelado de ${name}`}
+                backgroundColor=""
+                cellSize={3}
+                className="absolute top-1/2 left-1/2 block origin-center -translate-x-1/2 -translate-y-1/2 scale-[0.733] sm:scale-100"
+                distortionMode="repel"
+                distortionRadius={52}
+                distortionStrength={5}
+                dropoutStrength={0.08}
+                height={120}
+                jitterStrength={2}
+                objectPosition={{x: 0.5, y: 0.35}}
+                src="/profile/profile.jpg"
+                tintStrength={0}
+                width={120}
+              />
+            ) : (
+              <Image
+                alt={`Avatar de ${name}`}
+                className="animate-in fade-in object-cover object-[center_35%] duration-200"
+                fill
+                sizes="(max-width: 640px) 6rem, 8rem"
+                src="/profile/profile.jpg"
+              />
+            )}
+          </div>
         </div>
+        {mobileAction && <div className="sm:hidden">{mobileAction}</div>}
       </div>
 
       <div className="flex flex-col">

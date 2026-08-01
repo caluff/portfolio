@@ -17,9 +17,6 @@ export function CoverSection() {
       />
       <div
         className="pointer-events-none absolute inset-0 bg-linear-to-t from-background/30 via-transparent to-transparent"/>
-      <span className="absolute bottom-3 left-3 font-mono text-[0.55rem] tracking-[0.18em] text-cover-label">
-        CALUFF / DIGITAL GARDEN
-      </span>
     </section>
   );
 }

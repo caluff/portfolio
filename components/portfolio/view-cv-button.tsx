@@ -2,15 +2,16 @@ import {ArrowUpRight} from "lucide-react";
 
 import {Button} from "@/components/ui/button";
 import {contactCta} from "@/data/contact";
+import {cn} from "@/lib/utils";
 
 const cvUrl = process.env.NEXT_PUBLIC_CV_URL;
 
-export function ViewCvButton() {
+export function ViewCvButton({className}: { className?: string }) {
   if (!cvUrl) return null;
 
   return (
     <Button
-      className="h-8 rounded-none px-4"
+      className={cn("h-8 rounded-none px-4", className)}
       nativeButton={false}
       render={
         <a

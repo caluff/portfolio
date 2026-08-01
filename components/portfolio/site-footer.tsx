@@ -7,7 +7,7 @@ import {footerCredit} from "@/data/profile";
 
 export function SiteFooter() {
   return (
-    <footer className="px-4 py-10 sm:px-6 sm:py-14">
+    <footer className="px-5 py-10 sm:px-6 sm:py-14">
       <div className="grid items-center gap-8 sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] sm:gap-6">
         <div className="flex flex-col items-center gap-2 text-center sm:items-start sm:text-left">
           <p className="font-mono text-xs tracking-[0.18em] text-muted-foreground uppercase">
