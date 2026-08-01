@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 import {Button} from "@/components/ui/button";
-import {coverGifs, defaultCoverGifId} from "@/data/cover";
+import {coverGifs, defaultCoverGifId, type CoverAccent} from "@/data/cover";
 import {cn} from "@/lib/utils";
 
 type CoverGifId = (typeof coverGifs)[number]["id"];
@@ -14,12 +14,28 @@ type CoverGifSelectorProps = {
   gifLabels: readonly string[];
 };
 
+const accentClasses: Record<CoverAccent, string> = {
+  cyan: "border-cover-accent-cyan after:bg-cover-accent-cyan",
+  orange: "border-cover-accent-orange after:bg-cover-accent-orange",
+  purple: "border-cover-accent-purple after:bg-cover-accent-purple",
+};
+
 export function CoverGifSelector({
                                    ariaLabel,
                                    gifLabels,
-                                 }: CoverGifSelectorProps) {
+}: CoverGifSelectorProps) {
   const [selectedGifId, setSelectedGifId] = useState<CoverGifId>(defaultCoverGifId);
   const selectedGif = coverGifs.find(({id}) => id === selectedGifId) ?? coverGifs[0];
+
+  useEffect(() => {
+    document.documentElement.dataset.coverAccent = selectedGif.accent;
+
+    return () => {
+      if (document.documentElement.dataset.coverAccent === selectedGif.accent) {
+        delete document.documentElement.dataset.coverAccent;
+      }
+    };
+  }, [selectedGif.accent]);
 
   return (
     <>
@@ -57,7 +73,7 @@ export function CoverGifSelector({
               <span
                 className={cn(
                   "size-3 rounded-full border border-border p-0.5 after:block after:size-full after:rounded-full after:transition-colors",
-                  isSelected && "after:bg-foreground",
+                  isSelected && accentClasses[gif.accent],
                 )}
                 aria-hidden="true"
               />

@@ -8,6 +8,10 @@
     color-scheme: light;
     --noise-opacity: 0;
     --brand-accent: #7c3aed;
+    --cover-accent-purple: oklch(0.55 0.26 292);
+    --cover-accent-cyan: oklch(0.68 0.18 195);
+    --cover-accent-orange: oklch(0.67 0.2 48);
+    --neon-accent: var(--cover-accent-purple);
     --background: oklch(1 0 0);
     --foreground: oklch(0.145 0 0);
     --card: oklch(1 0 0);
@@ -75,6 +79,10 @@
     color-scheme: dark;
     --noise-opacity: 0.045;
     --brand-accent: #7c3aed;
+    --cover-accent-purple: oklch(0.68 0.22 292);
+    --cover-accent-cyan: oklch(0.8 0.18 195);
+    --cover-accent-orange: oklch(0.78 0.19 55);
+    --neon-accent: var(--cover-accent-purple);
     --background: oklch(0.145 0 0);
     --foreground: oklch(0.985 0 0);
     --card: oklch(0.205 0 0);
@@ -102,6 +110,18 @@
     --project-status-live: oklch(0.76 0.2 145);
     --github-heatmap-empty: oklch(0.200 0 0);
     --github-heatmap-active: oklch(0.985 0 0);
+}
+
+:root[data-cover-accent="cyan"] {
+    --neon-accent: var(--cover-accent-cyan);
+}
+
+:root[data-cover-accent="orange"] {
+    --neon-accent: var(--cover-accent-orange);
+}
+
+:root[data-cover-accent="purple"] {
+    --neon-accent: var(--cover-accent-purple);
 }
 
 @theme inline {
@@ -139,6 +159,9 @@
     --color-cover-foliage: var(--cover-foliage);
     --color-cover-foliage-deep: var(--cover-foliage-deep);
     --color-cover-label: var(--cover-label);
+    --color-cover-accent-purple: var(--cover-accent-purple);
+    --color-cover-accent-cyan: var(--cover-accent-cyan);
+    --color-cover-accent-orange: var(--cover-accent-orange);
     --color-project-lime-soft: var(--project-lime-soft);
     --color-project-lime: var(--project-lime);
     --color-project-lime-deep: var(--project-lime-deep);
@@ -225,14 +248,14 @@
     }
 
     .neon-action {
-        box-shadow: 0 0 0.45rem color-mix(in srgb, var(--brand-accent) 38%, transparent),
-        0 0 1rem color-mix(in srgb, var(--brand-accent) 18%, transparent);
+        box-shadow: 0 0 0.45rem color-mix(in srgb, var(--neon-accent) 38%, transparent),
+        0 0 1rem color-mix(in srgb, var(--neon-accent) 18%, transparent);
     }
 
     .neon-action:hover,
     .neon-action:focus-visible {
-        box-shadow: 0 0 0.65rem color-mix(in srgb, var(--brand-accent) 58%, transparent),
-        0 0 1.5rem color-mix(in srgb, var(--brand-accent) 32%, transparent);
+        box-shadow: 0 0 0.65rem color-mix(in srgb, var(--neon-accent) 58%, transparent),
+        0 0 1.5rem color-mix(in srgb, var(--neon-accent) 32%, transparent);
     }
 
     .neon-action:disabled {
