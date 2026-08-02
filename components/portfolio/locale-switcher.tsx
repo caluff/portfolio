@@ -26,10 +26,10 @@ function LocaleOption({locale}: {locale: AppLocale}) {
     <>
       <Image
         alt=""
-        height={12}
+        height={18}
         src={flag}
         style={{height: "auto", width: "18px"}}
-        width={18}
+        width={24}
       />
       <span>{code}</span>
     </>

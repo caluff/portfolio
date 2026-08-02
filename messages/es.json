@@ -2,7 +2,14 @@
   "Metadata": {
     "title": "Daniel Caluff — Ingeniero Frontend Senior",
     "description": "Portfolio de Daniel Caluff, Ingeniero Frontend Senior y graduado en Ciencias de la Computación radicado en Montevideo.",
-    "keywords": ["Daniel Caluff", "Ingeniero Frontend", "React", "Next.js", "TypeScript", "Montevideo"]
+    "keywords": [
+      "Daniel Caluff",
+      "Ingeniero Frontend",
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Montevideo"
+    ]
   },
   "Common": {
     "close": "Cerrar",
@@ -56,7 +63,7 @@
   },
   "Profile": {
     "headlines": {
-      "primary": "Ingeniero Frontend Senior con más de 4 años de experiencia",
+      "primary": "Ingeniero Frontend Senior",
       "secondary": "Licenciado en Ciencias de la Computación"
     },
     "location": "Montevideo, Uruguay",
@@ -179,14 +186,29 @@
     "formDescription": "Cuéntame sobre el producto, el equipo o la idea que estás construyendo.",
     "availability": "Disponible para proyectos freelance y remotos",
     "fields": {
-      "name": {"label": "Nombre", "placeholder": "¿Cómo debería llamarte?"},
-      "email": {"label": "Correo electrónico", "placeholder": "¿Cómo puedo contactarte?"},
-      "message": {"label": "Mensaje", "placeholder": "Cuéntame sobre tu proyecto…"}
+      "name": {
+        "label": "Nombre",
+        "placeholder": "¿Cómo debería llamarte?"
+      },
+      "email": {
+        "label": "Correo electrónico",
+        "placeholder": "¿Cómo puedo contactarte?"
+      },
+      "message": {
+        "label": "Mensaje",
+        "placeholder": "Cuéntame sobre tu proyecto…"
+      }
     },
     "submit": "Enviar mensaje",
     "sending": "Enviando…",
-    "success": {"title": "Mensaje enviado", "description": "Gracias. Te responderé lo antes posible."},
-    "error": {"title": "Mensaje no enviado", "description": "Algo salió mal. Inténtalo de nuevo en un momento."},
+    "success": {
+      "title": "Mensaje enviado",
+      "description": "Gracias. Te responderé lo antes posible."
+    },
+    "error": {
+      "title": "Mensaje no enviado",
+      "description": "Algo salió mal. Inténtalo de nuevo en un momento."
+    },
     "configurationError": "El envío de correos todavía no está configurado."
   },
   "Footer": {
