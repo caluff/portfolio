@@ -92,6 +92,7 @@
     "roles": "{count, plural, =1 {# puesto} other {# puestos}}",
     "period": "{start} — {end}",
     "present": "Actualidad",
+    "productionApps": "Aplicaciones en producción",
     "employmentTypes": {
       "fullTime": "Tiempo completo",
       "partTime": "Medio tiempo"

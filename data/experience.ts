@@ -1,5 +1,9 @@
 export type ExperienceIcon = "frontend" | "systems";
 export type EmploymentType = "fullTime" | "partTime";
+export type ProductionApp = {
+  readonly name: string;
+  readonly url: `https://${string}`;
+};
 
 export type Experience = {
   readonly id: "activeTech" | "desoft";
@@ -9,6 +13,7 @@ export type Experience = {
   readonly to?: string;
   readonly icon: ExperienceIcon;
   readonly highlightKeys: readonly ("1" | "2" | "3" | "4")[];
+  readonly productionApps?: readonly ProductionApp[];
 };
 
 export const experiences = [
@@ -19,6 +24,11 @@ export const experiences = [
     from: "2023-08-01",
     icon: "frontend",
     highlightKeys: ["1", "2", "3", "4"],
+    productionApps: [
+      {name: "Agenciapp", url: "https://agenciapp.com/landing"},
+      {name: "Touradvisor", url: "https://puncana.touradvisor.net/"},
+      {name: "Recogida en casa", url: "https://www.recogidaencasa.com/"},
+    ],
   },
   {
     id: "desoft",

@@ -1,6 +1,7 @@
 import {CodeXml, type LucideIcon, Workflow} from "lucide-react";
 import {getFormatter, getTranslations} from "next-intl/server";
 
+import {ExperienceProductionLinks} from "@/components/portfolio/experience-production-links";
 import {SectionHeader} from "@/components/portfolio/section-header";
 import {Badge} from "@/components/ui/badge";
 import {Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle,} from "@/components/ui/card";
@@ -17,6 +18,8 @@ type ExperienceCardProps = {
   experience: Experience;
   highlights: readonly string[];
   period: string;
+  productionLabel: string;
+  productionApps?: Experience["productionApps"];
   role: string;
 };
 
@@ -25,6 +28,8 @@ function ExperienceCard({
   experience,
   highlights,
   period,
+  productionLabel,
+  productionApps,
   role,
 }: ExperienceCardProps) {
   const {company, employmentType, from} = experience;
@@ -48,6 +53,10 @@ function ExperienceCard({
             <li key={highlight}>{highlight}</li>
           ))}
         </ul>
+
+        {productionApps && productionApps.length > 0 && (
+          <ExperienceProductionLinks label={productionLabel} apps={productionApps}/>
+        )}
       </CardContent>
 
       <CardFooter className="sm:hidden">
@@ -152,6 +161,12 @@ export async function ExperienceSection() {
                     experience={experience}
                     highlights={highlights}
                     period={period}
+                    productionLabel={t("productionApps")}
+                    productionApps={
+                      "productionApps" in experience
+                        ? experience.productionApps
+                        : undefined
+                    }
                     role={role}
                   />
                 </div>
