@@ -6,7 +6,12 @@
 
 :root {
     color-scheme: light;
-    --noise-opacity: 0;
+    --noise-opacity: 0.025;
+    --grid-intersection-core: color-mix(
+            in oklch,
+            var(--foreground) 32%,
+            transparent
+    );
     --brand-accent: #7c3aed;
     --cover-accent-purple: oklch(0.55 0.26 292);
     --cover-accent-cyan: oklch(0.68 0.18 195);
@@ -77,7 +82,7 @@
 
 .dark {
     color-scheme: dark;
-    --noise-opacity: 0.045;
+    --noise-opacity: 0.065;
     --brand-accent: #7c3aed;
     --cover-accent-purple: oklch(0.68 0.22 292);
     --cover-accent-cyan: oklch(0.8 0.18 195);
@@ -219,6 +224,33 @@
         background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
         background-size: 180px 180px;
         mix-blend-mode: soft-light;
+    }
+
+    .grid-intersection-node {
+        position: absolute;
+        top: 0;
+        width: 0.5rem;
+        height: 0.5rem;
+        pointer-events: none;
+        background: linear-gradient(
+                to right,
+                transparent calc(50% - 0.5px),
+                var(--grid-intersection-core) calc(50% - 0.5px),
+                var(--grid-intersection-core) calc(50% + 0.5px),
+                transparent calc(50% + 0.5px)
+        ),
+        linear-gradient(
+                to bottom,
+                transparent calc(50% - 0.5px),
+                var(--grid-intersection-core) calc(50% - 0.5px),
+                var(--grid-intersection-core) calc(50% + 0.5px),
+                transparent calc(50% + 0.5px)
+        );
+        transform: translate(-50%, -50%);
+    }
+
+    .grid-intersection-node:last-child {
+        transform: translate(50%, -50%);
     }
 
     a {
