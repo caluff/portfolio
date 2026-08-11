@@ -349,7 +349,10 @@ export function usePixelatedCanvas({
         const parent = canvasEl.parentElement;
         if (parent) {
           resizeObserver = new ResizeObserver(() => {
-            if (img.complete && img.naturalWidth) compute();
+            if (img.complete && img.naturalWidth) {
+              compute();
+              startAnimation();
+            }
           });
           resizeObserver.observe(parent);
         }
@@ -400,10 +403,12 @@ export function usePixelatedCanvas({
         targetMouseRef.current.y = e.clientY - rect.top;
         pointerInsideRef.current = true;
         activityTargetRef.current = 1;
+        startAnimation();
       };
       const onPointerEnter = () => {
         pointerInsideRef.current = true;
         activityTargetRef.current = 1;
+        startAnimation();
       };
       const onPointerLeave = () => {
         pointerInsideRef.current = false;
@@ -413,24 +418,31 @@ export function usePixelatedCanvas({
           targetMouseRef.current.x = -9999;
           targetMouseRef.current.y = -9999;
         }
+        startAnimation();
       };
       canvasEl.addEventListener("pointermove", onPointerMove);
       canvasEl.addEventListener("pointerenter", onPointerEnter);
       canvasEl.addEventListener("pointerleave", onPointerLeave);
 
-      const animate = () => {
+      function startAnimation() {
+        if (rafRef.current === null) {
+          rafRef.current = requestAnimationFrame(animate);
+        }
+      }
+
+      function animate() {
+        rafRef.current = null;
         const now = performance.now();
         const minDelta = 1000 / Math.max(1, maxFps);
         if (now - lastFrameRef.current < minDelta) {
-          rafRef.current = requestAnimationFrame(animate);
+          startAnimation();
           return;
         }
         lastFrameRef.current = now;
-        const ctx = canvasEl.getContext("2d");
+        const ctx = canvasRef.current?.getContext("2d");
         const dims = dimsRef.current;
         const samples = samplesRef.current;
         if (!ctx || !dims || !samples) {
-          rafRef.current = requestAnimationFrame(animate);
           return;
         }
 
@@ -517,17 +529,27 @@ export function usePixelatedCanvas({
         }
         ctx.globalAlpha = 1;
 
-        rafRef.current = requestAnimationFrame(animate);
-      };
+        const isFading =
+          fadeOnLeave &&
+          Math.abs(activityRef.current - activityTargetRef.current) > 0.01;
+
+        if (pointerInsideRef.current || isFading) {
+          startAnimation();
+        } else {
+          activityRef.current = activityTargetRef.current;
+        }
+      }
 
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      rafRef.current = requestAnimationFrame(animate);
+      rafRef.current = null;
+      startAnimation();
 
       cleanupInteraction = () => {
         canvasEl.removeEventListener("pointermove", onPointerMove);
         canvasEl.removeEventListener("pointerenter", onPointerEnter);
         canvasEl.removeEventListener("pointerleave", onPointerLeave);
-        if (rafRef.current) cancelAnimationFrame(rafRef.current);
+        if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
       };
     };
 

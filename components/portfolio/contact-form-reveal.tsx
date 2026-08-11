@@ -1,6 +1,5 @@
 "use client";
 
-import emailjs from "@emailjs/browser";
 import {useTranslations} from "next-intl";
 import { type ChangeEvent, type FormEvent, useState } from "react";
 
@@ -38,6 +37,8 @@ export function ContactFormReveal() {
     setIsSending(true);
 
     try {
+      const {default: emailjs} = await import("@emailjs/browser");
+
       await emailjs.send(
         serviceId,
         templateId,

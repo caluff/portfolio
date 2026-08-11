@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import {useEffect, useState} from "react";
 
 import {Button} from "@/components/ui/button";
@@ -39,15 +38,17 @@ export function CoverGifSelector({
 
   return (
     <>
-      <Image
+      <video
         key={selectedGif.id}
-        alt=""
-        className="animate-in fade-in object-cover duration-300"
-        fill
-        preload
-        sizes="(max-width: 768px) 100vw, 768px"
+        aria-hidden="true"
+        autoPlay
+        className="absolute inset-0 size-full animate-in object-cover fade-in duration-300"
+        loop
+        muted
+        playsInline
+        poster={selectedGif.poster}
+        preload="auto"
         src={selectedGif.src}
-        unoptimized
       />
       <div
         aria-label={ariaLabel}

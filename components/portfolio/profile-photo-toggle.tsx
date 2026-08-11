@@ -44,7 +44,7 @@ export function ProfilePhotoToggle({
                 height={120}
                 jitterStrength={2}
                 objectPosition={{x: 0.5, y: 0.25}}
-                src="/profile/profile.jpg"
+                src="/profile/profile-canvas.webp"
                 tintStrength={0}
                 width={120}
               />

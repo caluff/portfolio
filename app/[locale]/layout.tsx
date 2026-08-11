@@ -61,6 +61,14 @@ export async function generateMetadata({
       siteName: "Daniel Caluff",
       title: t("title"),
       description: t("description"),
+      images: [
+        {
+          url: "/cff-branding/opengraph-image.jpg",
+          width: 1200,
+          height: 630,
+          alt: t("title"),
+        },
+      ],
       locale: locale === "es" ? "es_UY" : "en_US",
       alternateLocale: locale === "es" ? ["en_US"] : ["es_UY"],
     },
@@ -68,6 +76,12 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: t("title"),
       description: t("description"),
+      images: [
+        {
+          url: "/cff-branding/opengraph-image.jpg",
+          alt: t("title"),
+        },
+      ],
     },
   };
 }
