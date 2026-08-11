@@ -27,7 +27,7 @@ function recordVisitInSession() {
 export function PageViewCounter() {
   const format = useFormatter();
   const t = useTranslations("Profile.pageViews");
-  const [count, setCount] = useState<number>();
+  const [count, setCount] = useState<number | null>(null);
   const requestedRef = useRef(false);
 
   useEffect(() => {
@@ -51,6 +51,11 @@ export function PageViewCounter() {
         }
 
         const data = (await response.json()) as PageViewResponse;
+
+        if (!Number.isFinite(data.count)) {
+          throw new Error("Page view response contains an invalid count");
+        }
+
         setCount(data.count);
       } catch {
         if (!visitWasRecorded) {
@@ -66,16 +71,20 @@ export function PageViewCounter() {
     void loadCount();
   }, []);
 
-  const formattedCount = format.number(count ?? 0, {
+  if (count === null) {
+    return null;
+  }
+
+  const formattedCount = format.number(count, {
     minimumIntegerDigits: 4,
     useGrouping: false,
   });
 
   return (
     <p
-      aria-label={count === undefined ? t("loading") : t("count", {count})}
+      aria-label={t("count", {count})}
       aria-live="polite"
-      className="hidden self-start gap-1 pt-2 font-mono text-xs tabular-nums text-muted-foreground sm:flex text-center justify-center items-center"
+      className="absolute right-5 bottom-5 flex items-center gap-1 font-mono text-xs tabular-nums text-muted-foreground sm:static sm:self-start sm:pt-2"
     >
       <Eye className="size-3" aria-hidden="true"/>
       <span aria-hidden="true">{formattedCount}</span>
