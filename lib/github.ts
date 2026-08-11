@@ -1,6 +1,8 @@
 import "server-only";
 
-import { githubProfile } from "@/data/github";
+import {cacheLife, cacheTag} from "next/cache";
+
+import {githubProfile} from "@/data/github";
 
 export type ContributionDay = {
   readonly contributionCount: number;
@@ -71,6 +73,11 @@ function getContributionRange() {
 }
 
 export async function getGitHubActivity(): Promise<GitHubActivityResult> {
+  "use cache";
+
+  cacheLife("hours");
+  cacheTag("github-activity");
+
   const token = process.env.GITHUB_TOKEN;
   const username = process.env.GITHUB_USERNAME ?? githubProfile.username;
 
@@ -91,7 +98,6 @@ export async function getGitHubActivity(): Promise<GitHubActivityResult> {
         query: GITHUB_ACTIVITY_QUERY,
         variables: { from, login: username, to },
       }),
-      next: { revalidate: 3600, tags: ["github-activity"] },
     });
 
     if (!response.ok) return { ok: false, reason: "request-failed", username };

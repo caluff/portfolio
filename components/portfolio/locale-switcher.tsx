@@ -55,6 +55,9 @@ export function LocaleSwitcher() {
       href: pathname,
       forcePrefix: true,
     });
+
+    // The localized root layout must rerun its html/lang and theme bootstrap.
+    // eslint-disable-next-line @next/next/no-location-assign-relative-destination
     window.location.assign(
       `${localizedPathname}${window.location.search}${window.location.hash}`,
     );

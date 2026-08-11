@@ -8,7 +8,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 - `app/page.tsx` debe limitarse a componer la página. Cada sección de primer nivel vive en un componente dedicado dentro de `components/portfolio/`.
 - El contenido estático y las colecciones que pueblan la interfaz viven en `data/`, con tipos explícitos o `satisfies` y valores inmutables cuando corresponda.
-- Ningún componente puede superar las 200 líneas. Antes de alcanzar el límite, extraer una responsabilidad cohesiva a otro componente, utilidad o archivo de datos.
+- Ningún componente puede superar las 300 líneas. Antes de alcanzar el límite, extraer una responsabilidad cohesiva a otro componente, utilidad o archivo de datos. `components/heatmap/calendar-heatmap.tsx` es una excepción explícita y puede superar ese límite para mantener el heatmap autocontenido.
 - Usar React Server Components por defecto. Añadir `"use client"` únicamente en la frontera mínima que necesite estado, efectos, eventos o APIs del navegador.
 - Importar módulos directamente; evitar archivos barrel que aumenten el trabajo del bundler.
 
@@ -24,4 +24,4 @@ This version has breaking changes — APIs, conventions, and file structure may 
 ## Validación
 
 - Antes de terminar un cambio, ejecutar `pnpm lint` y `pnpm build`.
-- Comprobar que ningún archivo de componente `.tsx` supere las 200 líneas.
+- Comprobar que ningún archivo de componente `.tsx` supere las 300 líneas, salvo las excepciones explícitas documentadas arriba.

@@ -509,7 +509,7 @@ export const CalendarHeatmap = ({
   const year =
     data.length > 0
       ? getYear(parseISO(data[0].date))
-      : new Date().getFullYear();
+      : 0;
 
   const totalCount =
     typeof totalCountProp === "number"

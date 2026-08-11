@@ -8,6 +8,8 @@ const nextConfig: NextConfig = {
   experimental: {
     useTypeScriptCli: true,
   },
+  cacheComponents: true,
+  partialPrefetching: true,
 };
 
 export default withNextIntl(nextConfig);

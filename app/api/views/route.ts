@@ -2,9 +2,6 @@ import {Redis} from "@upstash/redis";
 
 const PAGE_VIEWS_KEY = "portfolio:page-views";
 
-export const dynamic = "force-dynamic";
-export const runtime = "nodejs";
-
 function getRedis() {
   const url =
     process.env.KV_REST_API_URL ?? process.env.UPSTASH_REDIS_REST_URL;
