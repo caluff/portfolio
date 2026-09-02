@@ -1,7 +1,7 @@
 {
   "Metadata": {
-    "title": "Daniel Caluff — Ingeniero Frontend Senior",
-    "description": "Portfolio de Daniel Caluff, Ingeniero Frontend Senior y graduado en Ciencias de la Computación radicado en Montevideo.",
+    "title": "Daniel Caluff — Ingeniero de software",
+    "description": "Portfolio de Daniel Caluff, Ingeniero de software y Licenciado en Ciencias de la Computación radicado en Montevideo.",
     "keywords": [
       "Daniel Caluff",
       "Ingeniero Frontend",
@@ -63,7 +63,7 @@
   },
   "Profile": {
     "headlines": {
-      "primary": "Ingeniero Frontend Senior",
+      "primary": "Ingeniero de software",
       "secondary": "Licenciado en Ciencias de la Computación"
     },
     "location": "Montevideo, Uruguay",
@@ -79,12 +79,17 @@
     },
     "cv": {
       "label": "Ver CV",
-      "newTab": "{label} (se abre en una pestaña nueva)"
+      "menuLabel": "Elegir idioma",
+      "newTab": "CV en {language} (se abre en una pestaña nueva)",
+      "options": {
+        "spanish": "Español",
+        "english": "Inglés"
+      }
     }
   },
   "About": {
     "title": "Sobre mí",
-    "body": "Desarrollador Frontend con experiencia en <highlight>React, Next.js y TypeScript</highlight>, enfocado en construir aplicaciones web modernas y orientadas al producto. He contribuido al desarrollo de <underline>paneles de analítica</underline> y a la integración de APIs externas y servicios de terceros, incluidas pasarelas de pago como <highlight>Stripe y NMI</highlight>. Tengo experiencia tomando <underline>decisiones de arquitectura frontend</underline>, definiendo estrategias de renderizado con Next.js (CSR, SSR y SSG) y automatizando pipelines de compilación y despliegue en <highlight>Vercel</highlight> para mejorar la escalabilidad, el rendimiento y la mantenibilidad de aplicaciones en producción."
+    "body": "Ingeniero de software orientado a producto, con experiencia llevando aplicaciones web end-to-end desde requerimientos y diseño técnico hasta integración y producción. Construyo soluciones mantenibles con <highlight>TypeScript, React, Next.js y APIs</highlight>, con foco en arquitectura, pagos, rendimiento y entrega confiable."
   },
   "Experience": {
     "title": "Experiencia",
@@ -101,18 +106,18 @@
       "activeTech": {
         "role": "Ingeniero Frontend",
         "highlights": {
-          "1": "Desarrollo, mantengo y evoluciono aplicaciones web modernas con Next.js, React y TypeScript, garantizando escalabilidad, rendimiento y calidad técnica",
-          "2": "Integro pasarelas de pago como Stripe y NMI para procesar transacciones seguras, suscripciones y flujos de checkout personalizados",
-          "3": "Implemento y automatizo pipelines de compilación y despliegue en Vercel, mejorando la velocidad de entrega y reduciendo errores en producción",
-          "4": "Participo en decisiones de arquitectura frontend y defino buenas prácticas para mejorar la mantenibilidad y escalabilidad del código"
+          "1": "Diseño y desarrollo end-to-end de aplicaciones y módulos web con Next.js, React y TypeScript, desde requerimientos y solución técnica hasta integración y puesta en producción.",
+          "2": "Diseño e implementación de flujos de pagos y suscripciones con Stripe y NMI, conectando checkout, backend y estados de transacción en producción.",
+          "3": "Diseño y evolución de la arquitectura frontend: estructura de aplicaciones, componentes reutilizables, manejo de estado, acceso a datos y patrones de integración con APIs.",
+          "4": "Optimización de carga, renderizado y SEO técnico para mejorar rendimiento y experiencia de usuario; automatización de CI/CD y despliegues en Vercel."
         }
       },
       "desoft": {
         "role": "Especialista en Ciencias de la Computación",
         "highlights": {
-          "1": "Desarrollé y mantuve aplicaciones web con React.js y tecnologías frontend relacionadas",
-          "2": "Implementé diseños responsivos y aseguré la compatibilidad entre navegadores y dispositivos soportados",
-          "3": "Participé en revisiones de código para mejorar su calidad, legibilidad y consistencia"
+          "1": "Desarrollo de aplicaciones y módulos de negocio con React, Vite y TypeScript, transformando requerimientos funcionales en flujos e interfaces mantenibles.",
+          "2": "Integración con APIs REST y servicios backend, implementando manejo de datos, validaciones, estados de carga, errores y operaciones de negocio.",
+          "3": "Refactorización de componentes y lógica reutilizable para reducir duplicación y facilitar la incorporación de nuevas funcionalidades."
         }
       }
     }
@@ -148,7 +153,7 @@
   "TechStack": {
     "title": "Stack tecnológico",
     "filterAriaLabel": "Filtrar tecnologías",
-    "showOriginal": "{name}: mostrar color original",
+    "visitWebsite": "Visitar el sitio oficial de {name} (se abre en una pestaña nueva)",
     "tabs": {
       "all": "Todas",
       "frontend": "Frontend",

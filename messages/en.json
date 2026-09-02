@@ -1,7 +1,7 @@
 {
   "Metadata": {
-    "title": "Daniel Caluff — Senior Frontend Engineer",
-    "description": "Portfolio of Daniel Caluff, a Senior Frontend Engineer and Computer Science graduate based in Montevideo.",
+    "title": "Daniel Caluff — Software Engineer",
+    "description": "Portfolio of Daniel Caluff, a Software Engineer and Computer Science graduate based in Montevideo.",
     "keywords": [
       "Daniel Caluff",
       "Frontend Engineer",
@@ -63,7 +63,7 @@
   },
   "Profile": {
     "headlines": {
-      "primary": "Senior Frontend Engineer",
+      "primary": "Software Engineer",
       "secondary": "B.Sc. in Computer Science"
     },
     "location": "Montevideo, Uruguay",
@@ -79,12 +79,17 @@
     },
     "cv": {
       "label": "View CV",
-      "newTab": "{label} (opens in a new tab)"
+      "menuLabel": "Choose language",
+      "newTab": "CV in {language} (opens in a new tab)",
+      "options": {
+        "spanish": "Spanish",
+        "english": "English"
+      }
     }
   },
   "About": {
     "title": "About",
-    "body": "Frontend Developer with experience in <highlight>React, Next.js, and TypeScript</highlight>, focused on building modern, product-driven web applications. I have contributed to the development of <underline>analytics dashboards</underline> and the integration of external APIs and third-party services, including payment gateways such as <highlight>Stripe and NMI</highlight>. I have experience making <underline>frontend architecture decisions</underline>, defining rendering strategies with Next.js (CSR, SSR, and SSG), and automating build and deployment pipelines on <highlight>Vercel</highlight> to improve the scalability, performance, and maintainability of applications in production."
+    "body": "Product-oriented software engineer with experience taking end-to-end web applications from requirements and technical design through integration and production. I build maintainable solutions with <highlight>TypeScript, React, Next.js, and APIs</highlight>, focusing on architecture, payments, performance, and reliable delivery."
   },
   "Experience": {
     "title": "Experience",
@@ -101,18 +106,18 @@
       "activeTech": {
         "role": "Frontend Engineer",
         "highlights": {
-          "1": "Develop, maintain, and evolve modern web applications using Next.js, React, and TypeScript, ensuring scalability, performance, and technical quality",
-          "2": "Integrate payment gateways such as Stripe and NMI for secure transaction processing, subscriptions, and custom checkout flows",
-          "3": "Implement and automate build and deployment pipelines on Vercel, improving delivery speed and reducing production environment errors",
-          "4": "Participate in frontend architecture decisions and define best practices to improve maintainability and scalability across the codebase"
+          "1": "End-to-end design and development of web applications and modules with Next.js, React, and TypeScript, from requirements and technical solution through integration and production release.",
+          "2": "Designed and implemented payment and subscription flows with Stripe and NMI, connecting checkout, backend, and transaction states in production.",
+          "3": "Designed and evolved frontend architecture: application structure, reusable components, state management, data access, and API integration patterns.",
+          "4": "Optimized loading, rendering, and technical SEO to improve performance and user experience; automated CI/CD pipelines and deployments on Vercel."
         }
       },
       "desoft": {
         "role": "Computer Science Specialist",
         "highlights": {
-          "1": "Developed and maintained web applications using React.js and related frontend technologies",
-          "2": "Implemented responsive designs and ensured cross-browser compatibility across supported devices",
-          "3": "Participated in code reviews to improve quality, readability, and consistency across the codebase"
+          "1": "Developed business applications and modules with React, Vite, and TypeScript, turning functional requirements into maintainable flows and interfaces.",
+          "2": "Integrated REST APIs and backend services, implementing data handling, validations, loading and error states, and business operations.",
+          "3": "Refactored components and reusable logic to reduce duplication and make it easier to add new features."
         }
       }
     }
@@ -148,7 +153,7 @@
   "TechStack": {
     "title": "Tech Stack",
     "filterAriaLabel": "Filter technologies",
-    "showOriginal": "{name}: show original color",
+    "visitWebsite": "Visit the official {name} website (opens in a new tab)",
     "tabs": {
       "all": "All",
       "frontend": "Frontend",

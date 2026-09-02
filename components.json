@@ -26,6 +26,7 @@
     "@animate-ui": "https://animate-ui.com/r/{name}.json",
     "@magicui": "https://magicui.design/r/{name}",
     "@heatmap": "https://shadcn-heatmap.pages.dev/r/{name}.json",
-    "@aceternity": "https://ui.aceternity.com/registry/{name}.json"
+    "@aceternity": "https://ui.aceternity.com/registry/{name}.json",
+    "@soundcn": "https://soundcn.xyz/r/{name}.json"
   }
 }

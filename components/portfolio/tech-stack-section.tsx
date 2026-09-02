@@ -14,6 +14,7 @@ import {
   type TechnologyTab,
   technologyTabs,
 } from "@/data/tech-stack";
+import {playGlassSound} from "@/lib/play-glass-sound";
 
 type TechnologyIconProps = {
   iconSrc: string;
@@ -66,13 +67,25 @@ function TechnologyList({items}: {
 
   return (
     <div className="flex flex-wrap gap-2 px-5 py-6 sm:px-6">
-      {items.map(({iconMode, iconSrc, name}) => (
+      {items.map(({href, iconMode, iconSrc, name}) => (
         <Button
           className="group h-8 gap-2 border-0 px-3"
           variant="ghost"
-          type="button"
+          nativeButton={false}
+          render={
+            <a
+              href={href}
+              rel="noreferrer"
+              target="_blank"
+            />
+          }
           key={name}
-          aria-label={t("showOriginal", {name})}
+          aria-label={
+            t.has("visitWebsite")
+              ? t("visitWebsite", {name})
+              : name
+          }
+          onMouseEnter={playGlassSound}
         >
           <TechnologyIcon iconMode={iconMode} iconSrc={iconSrc}/>
           {name}

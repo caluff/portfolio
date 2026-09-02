@@ -11,6 +11,9 @@ import {
   type ThemeTogglerProps as ThemeTogglerPrimitiveProps,
 } from '@/components/animate-ui/primitives/effects/theme-toggler';
 import {Button} from '@/components/ui/button';
+import {playSound} from '@/lib/sound-engine';
+import {switchOffSound} from '@/lib/switch-off';
+import {switchOnSound} from '@/lib/switch-on';
 
 const subscribeToHydration = () => () => {
 };
@@ -39,6 +42,23 @@ const getNextTheme = (
   const i = modes.indexOf(effective);
   if (i === -1) return modes[0];
   return modes[(i + 1) % modes.length];
+};
+
+const getResolvedTheme = (theme: ThemeSelection): Resolved => {
+  if (theme !== 'system') return theme;
+
+  return window.matchMedia('(prefers-color-scheme: dark)').matches
+    ? 'dark'
+    : 'light';
+};
+
+const playThemeSound = (theme: ThemeSelection) => {
+  const sound =
+    getResolvedTheme(theme) === 'dark' ? switchOnSound : switchOffSound;
+
+  void playSound(sound.dataUri).catch(() => {
+    // Audio can be unavailable or disabled without blocking the theme change.
+  });
 };
 
 type ThemeTogglerButtonProps = Omit<
@@ -84,7 +104,10 @@ function ThemeTogglerButton({
           className={className}
           onClick={(e) => {
             onClick?.(e);
-            toggleTheme(getNextTheme(effective, modes));
+            const nextTheme = getNextTheme(effective, modes);
+
+            playThemeSound(nextTheme);
+            toggleTheme(nextTheme);
           }}
         >
           {isHydrated ? getIcon(effective, resolved, modes) : <Sun/>}

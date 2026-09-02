@@ -10,11 +10,32 @@ import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/toast";
 import {contactRecipient} from "@/data/contact";
+import {confirmation001Sound} from "@/lib/confirmation-001";
+import {error008Sound} from "@/lib/error-008";
+import {getAudioContext, playSound} from "@/lib/sound-engine";
 
 const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
 const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
 const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 const initialForm = { name: "", email: "", message: "" };
+
+const prepareSubmissionSounds = () => {
+  try {
+    const context = getAudioContext();
+
+    if (context.state === "suspended") {
+      void context.resume().catch(() => {});
+    }
+  } catch {
+    // Sending the message must still work when audio is unavailable.
+  }
+};
+
+const playSubmissionSound = (dataUri: string) => {
+  void playSound(dataUri).catch(() => {
+    // Sound playback should never interrupt the form feedback.
+  });
+};
 
 export function ContactFormReveal() {
   const t = useTranslations("Contact");
@@ -34,6 +55,7 @@ export function ContactFormReveal() {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!serviceId || !templateId || !publicKey) return;
+    prepareSubmissionSounds();
     setIsSending(true);
 
     try {
@@ -52,6 +74,7 @@ export function ContactFormReveal() {
         },
         { publicKey },
       );
+      playSubmissionSound(confirmation001Sound.dataUri);
       toast.add({
         title: t("success.title"),
         description: t("success.description"),
@@ -59,6 +82,7 @@ export function ContactFormReveal() {
       });
       setForm(initialForm);
     } catch {
+      playSubmissionSound(error008Sound.dataUri);
       toast.add({
         title: t("error.title"),
         description: t("error.description"),
