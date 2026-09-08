@@ -28,42 +28,22 @@ export function FloatingAudioPlayer({locale}: FloatingAudioPlayerProps) {
     }
 
     audio.volume = START_VOLUME;
+    audio.defaultMuted = true;
     audio.muted = true;
 
-    const startPlayback = async () => {
-      try {
-        await audio.play();
-      } catch {
-        return false;
-      }
-
-      return true;
-    };
-
-    const unlockPlayback = async (event: KeyboardEvent | PointerEvent) => {
-      if (
-        event.target instanceof HTMLElement &&
-        event.target.closest("[data-audio-player]")
-      ) {
+    const startPlayback = () => {
+      if (!audio.paused) {
         return;
       }
 
-      if (await startPlayback()) {
-        window.removeEventListener("pointerdown", unlockPlayback);
-        window.removeEventListener("keydown", unlockPlayback);
-      }
+      void audio.play().catch(() => undefined);
     };
 
-    void startPlayback().then((started) => {
-      if (!started) {
-        window.addEventListener("pointerdown", unlockPlayback);
-        window.addEventListener("keydown", unlockPlayback);
-      }
-    });
+    audio.addEventListener("canplay", startPlayback);
+    startPlayback();
 
     return () => {
-      window.removeEventListener("pointerdown", unlockPlayback);
-      window.removeEventListener("keydown", unlockPlayback);
+      audio.removeEventListener("canplay", startPlayback);
     };
   }, []);
 
@@ -172,7 +152,7 @@ export function FloatingAudioPlayer({locale}: FloatingAudioPlayerProps) {
         onPause={() => setIsPlaying(false)}
         onPlay={() => setIsPlaying(true)}
         onTimeUpdate={updateProgress}
-        preload="metadata"
+        preload="auto"
         ref={audioRef}
         src={backgroundTrack.src}
       />
