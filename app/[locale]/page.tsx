@@ -1,6 +1,7 @@
 import {setRequestLocale} from "next-intl/server";
 
 import {AboutSection} from "@/components/portfolio/about-section";
+import {AudioPlayerProvider} from "@/components/portfolio/audio-player-provider";
 import {ContactSection} from "@/components/portfolio/contact-section";
 import {ContactCtaSection} from "@/components/portfolio/contact-cta-section";
 import {CoverSection} from "@/components/portfolio/cover-section";
@@ -24,24 +25,26 @@ export default async function Home({params}: HomeProps) {
   setRequestLocale(locale);
 
   return (
-    <main className="min-h-svh overflow-x-clip bg-background text-foreground" id="inicio">
-      <SiteHeader/>
-      <FloatingContactDock/>
-      <FloatingAudioPlayer locale={locale}/>
-      <div className="relative isolate mx-auto min-h-svh max-w-3xl bg-background before:pointer-events-none before:absolute before:inset-y-0 before:left-0 before:z-50 before:border-l before:border-dashed before:border-border before:content-[''] after:pointer-events-none after:absolute after:inset-y-0 after:right-0 after:z-50 after:border-r after:border-dashed after:border-border after:content-['']">
-        <CoverSection/>
-        <SectionSeparator/>
-        <ProfileSection/>
-        <ContactSection/>
-        <AboutSection/>
-        <ExperienceSection/>
-        <ProjectsSection/>
-        <TechStackSection/>
-        <GitHubActivitySection/>
-        <ContactCtaSection/>
-        <SectionSeparator/>
-        <SiteFooter/>
-      </div>
-    </main>
+    <AudioPlayerProvider locale={locale}>
+      <main className="min-h-svh overflow-x-clip bg-background text-foreground" id="inicio">
+        <SiteHeader/>
+        <FloatingContactDock/>
+        <FloatingAudioPlayer/>
+        <div className="relative isolate mx-auto min-h-svh max-w-3xl bg-background before:pointer-events-none before:absolute before:inset-y-0 before:left-0 before:z-50 before:border-l before:border-dashed before:border-border before:content-[''] after:pointer-events-none after:absolute after:inset-y-0 after:right-0 after:z-50 after:border-r after:border-dashed after:border-border after:content-['']">
+          <CoverSection/>
+          <SectionSeparator/>
+          <ProfileSection/>
+          <ContactSection/>
+          <AboutSection/>
+          <ExperienceSection/>
+          <ProjectsSection/>
+          <TechStackSection/>
+          <GitHubActivitySection/>
+          <ContactCtaSection/>
+          <SectionSeparator/>
+          <SiteFooter/>
+        </div>
+      </main>
+    </AudioPlayerProvider>
   );
 }

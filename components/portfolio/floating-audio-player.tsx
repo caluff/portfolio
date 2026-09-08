@@ -1,24 +1,16 @@
 "use client";
 
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useRef} from "react";
 import Image from "next/image";
-import {Pause, Play, Volume2, VolumeX} from "lucide-react";
+import {Volume2, VolumeX} from "lucide-react";
 
+import {useAudioPlayer} from "@/components/portfolio/audio-player-provider";
 import {Button} from "@/components/ui/button";
-import {audioPlayerCopy, backgroundTrack} from "@/data/audio";
+import {backgroundTrack} from "@/data/audio";
 
-type FloatingAudioPlayerProps = {
-  locale: keyof typeof audioPlayerCopy;
-};
-
-const START_VOLUME = 0.28;
-
-export function FloatingAudioPlayer({locale}: FloatingAudioPlayerProps) {
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const [isMuted, setIsMuted] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const copy = audioPlayerCopy[locale];
+export function FloatingAudioPlayer() {
+  const progressRef = useRef<HTMLDivElement>(null);
+  const {audioRef, copy, isMuted, toggleMuted} = useAudioPlayer();
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -27,75 +19,31 @@ export function FloatingAudioPlayer({locale}: FloatingAudioPlayerProps) {
       return;
     }
 
-    audio.volume = START_VOLUME;
-    audio.defaultMuted = true;
-    audio.muted = true;
-
-    const startPlayback = () => {
-      if (!audio.paused) {
+    const updateProgress = () => {
+      if (!audio.duration) {
         return;
       }
 
-      void audio.play().catch(() => undefined);
+      if (progressRef.current) {
+        progressRef.current.style.transform = `scaleX(${audio.currentTime / audio.duration})`;
+      }
     };
 
-    audio.addEventListener("canplay", startPlayback);
-    startPlayback();
+    audio.addEventListener("timeupdate", updateProgress);
 
     return () => {
-      audio.removeEventListener("canplay", startPlayback);
+      audio.removeEventListener("timeupdate", updateProgress);
     };
-  }, []);
-
-  const togglePlayback = async () => {
-    const audio = audioRef.current;
-
-    if (!audio) {
-      return;
-    }
-
-    if (audio.paused) {
-      try {
-        await audio.play();
-      } catch {
-        return;
-      }
-
-      return;
-    }
-
-    audio.pause();
-  };
-
-  const toggleMuted = () => {
-    const audio = audioRef.current;
-
-    if (!audio) {
-      return;
-    }
-
-    audio.muted = !audio.muted;
-    setIsMuted(audio.muted);
-  };
-
-  const updateProgress = () => {
-    const audio = audioRef.current;
-
-    if (!audio?.duration) {
-      return;
-    }
-
-    setProgress(audio.currentTime / audio.duration);
-  };
+  }, [audioRef]);
 
   return (
     <aside
       aria-label={copy.label}
-      className="fixed right-3 bottom-3 z-40 w-[calc(100%-1.5rem)] max-w-sm overflow-hidden border bg-background/95 shadow-xl backdrop-blur-md sm:right-5 sm:bottom-5 sm:w-92"
+      className="fixed right-5 bottom-5 z-40 hidden w-80 max-w-sm overflow-hidden border bg-background/95 shadow-xl backdrop-blur-md sm:block"
       data-audio-player
     >
-      <div className="flex items-center gap-3 p-2.5 pr-2">
-        <div className="relative size-14 shrink-0 overflow-hidden border bg-muted">
+      <div className="flex items-stretch">
+        <div className="relative size-14 shrink-0 overflow-hidden border-r bg-muted">
           <Image
             alt=""
             className="object-cover"
@@ -105,19 +53,19 @@ export function FloatingAudioPlayer({locale}: FloatingAudioPlayerProps) {
           />
         </div>
 
-        <div className="min-w-0 flex-1">
-          <p className="truncate text-sm font-semibold text-foreground">
-            {backgroundTrack.title}
-          </p>
-          <p className="truncate font-mono text-xs text-muted-foreground">
-            {backgroundTrack.artist}
-          </p>
-        </div>
+        <div className="flex min-w-0 flex-1 items-center gap-3 px-3 py-2">
+          <div className="min-w-0 flex-1">
+            <p className="truncate text-sm font-semibold text-foreground">
+              {backgroundTrack.title}
+            </p>
+            <p className="truncate font-mono text-xs text-muted-foreground">
+              {backgroundTrack.artist}
+            </p>
+          </div>
 
-        <div className="flex shrink-0 items-center gap-1">
           <Button
             aria-label={isMuted ? copy.unmute : copy.mute}
-            onClick={toggleMuted}
+            onClick={() => void toggleMuted()}
             size="icon"
             title={isMuted ? copy.unmute : copy.mute}
             type="button"
@@ -125,37 +73,16 @@ export function FloatingAudioPlayer({locale}: FloatingAudioPlayerProps) {
           >
             {isMuted ? <VolumeX aria-hidden="true" /> : <Volume2 aria-hidden="true" />}
           </Button>
-          <Button
-            aria-label={isPlaying ? copy.pause : copy.play}
-            onClick={() => void togglePlayback()}
-            size="icon"
-            title={isPlaying ? copy.pause : copy.play}
-            type="button"
-            variant="secondary"
-          >
-            {isPlaying ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}
-          </Button>
         </div>
       </div>
 
       <div aria-hidden="true" className="h-0.5 bg-muted">
         <div
           className="h-full origin-left bg-foreground transition-transform duration-200"
-          style={{transform: `scaleX(${progress})`}}
+          ref={progressRef}
+          style={{transform: "scaleX(0)"}}
         />
       </div>
-
-      <audio
-        autoPlay
-        loop
-        muted={isMuted}
-        onPause={() => setIsPlaying(false)}
-        onPlay={() => setIsPlaying(true)}
-        onTimeUpdate={updateProgress}
-        preload="auto"
-        ref={audioRef}
-        src={backgroundTrack.src}
-      />
     </aside>
   );
 }

@@ -9,15 +9,15 @@ export const audioPlayerCopy = {
   en: {
     label: "Background music player",
     mute: "Mute background music",
-    pause: "Pause background music",
-    play: "Play background music",
+    soundOff: "Sound off",
+    soundOn: "Sound on",
     unmute: "Unmute background music",
   },
   es: {
     label: "Reproductor de música de fondo",
     mute: "Silenciar música de fondo",
-    pause: "Pausar música de fondo",
-    play: "Reproducir música de fondo",
+    soundOff: "Sonido apagado",
+    soundOn: "Sonido activado",
     unmute: "Activar sonido de la música de fondo",
   },
 } as const;

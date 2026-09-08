@@ -4,10 +4,12 @@ import { MenuIcon } from "lucide-react";
 import {useTranslations} from "next-intl";
 import { useState } from "react";
 
+import {MobileAudioControl} from "@/components/portfolio/mobile-audio-control";
 import {
   Sheet,
   SheetContent,
   SheetDescription,
+  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -78,6 +80,9 @@ export function MobileNavigation() {
           </ul>
         </nav>
 
+        <SheetFooter className="border-t border-dashed p-0">
+          <MobileAudioControl/>
+        </SheetFooter>
       </SheetContent>
     </Sheet>
   );
