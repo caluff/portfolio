@@ -295,11 +295,81 @@
     }
 }
 
+.ascii-character-highlight {
+    position: relative;
+    pointer-events: auto;
+}
+
+.ascii-character-highlight::after {
+    position: absolute;
+    inset: 0;
+    color: color-mix(in oklab, var(--border) 60%, var(--foreground));
+    text-shadow: 0 0 0.55em color-mix(in oklab, var(--foreground) 25%, transparent);
+    content: attr(data-character);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 900ms ease-out;
+}
+
+.ascii-character-highlight[data-pointer-lit="true"]::after {
+    opacity: var(--ascii-pointer-light, 0);
+    transition-duration: 0ms;
+}
+
+.ascii-character-highlight:hover::after {
+    opacity: 1;
+    transition-duration: 0ms;
+}
+
 @media (prefers-reduced-motion: no-preference) {
+    .ascii-character-pulse-dim {
+        animation: ascii-character-pulse-dim 4.4s ease-in-out infinite;
+        will-change: opacity;
+    }
+
+    .ascii-character-pulse-contrast {
+        animation: ascii-character-pulse-contrast 4.4s ease-in-out infinite;
+        will-change: color;
+    }
+
+    .ascii-character-pulse-delay-1 {
+        animation-delay: -1.1s;
+    }
+
+    .ascii-character-pulse-delay-2 {
+        animation-delay: -2.2s;
+    }
+
+    .ascii-character-pulse-delay-3 {
+        animation-delay: -3.3s;
+    }
+
     .project-reveal {
         animation: project-reveal 700ms ease-out both;
         animation-timeline: view();
         animation-range: entry 8% cover 30%;
+    }
+
+    @keyframes ascii-character-pulse-dim {
+        0%,
+        100% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0.2;
+        }
+    }
+
+    @keyframes ascii-character-pulse-contrast {
+        0%,
+        100% {
+            color: var(--border);
+        }
+
+        50% {
+            color: color-mix(in oklab, var(--border) 80%, var(--foreground));
+        }
     }
 
     @keyframes project-reveal {

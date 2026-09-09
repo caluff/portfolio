@@ -3,6 +3,7 @@ import {getTranslations} from "next-intl/server";
 import type {CSSProperties} from "react";
 
 import {ProjectDevelopmentRibbon} from "@/components/portfolio/project-development-ribbon";
+import {ProjectsAsciiArt} from "@/components/portfolio/projects-ascii-art";
 import {ProjectMediaCarousel} from "@/components/portfolio/project-media-carousel";
 import {SectionHeader} from "@/components/portfolio/section-header";
 import {Badge} from "@/components/ui/badge";
@@ -153,17 +154,20 @@ export async function ProjectsSection() {
   })) satisfies readonly HoverEffectItem[];
 
   return (
-    <section id="projects">
-      <SectionHeader
-        title={t("title")}
-        action={
-          <span className="text-xs text-muted-foreground">
-            {t("selectedWorks", {count: projects.length})}
-          </span>
-        }
-      />
+    <section className="relative isolate" id="projects">
+      <ProjectsAsciiArt/>
+      <div className="relative z-10">
+        <SectionHeader
+          title={t("title")}
+          action={
+            <span className="text-xs text-muted-foreground">
+              {t("selectedWorks", {count: projects.length})}
+            </span>
+          }
+        />
+      </div>
 
-      <div className="px-5 py-6 sm:px-6">
+      <div className="relative z-10 px-5 py-6 sm:px-6">
         <HoverEffect items={hoverItems}/>
       </div>
     </section>
