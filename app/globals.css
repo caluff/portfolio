@@ -295,41 +295,65 @@
     }
 }
 
-.ascii-character-highlight {
-    position: relative;
-    pointer-events: auto;
-}
-
-.ascii-character-highlight::after {
+.ascii-pointer-glow {
     position: absolute;
     inset: 0;
-    color: color-mix(in oklab, var(--border) 60%, var(--foreground));
+    margin: 0;
     text-shadow: 0 0 0.55em color-mix(in oklab, var(--foreground) 25%, transparent);
-    content: attr(data-character);
+    mask-image:
+            radial-gradient(
+                    ellipse var(--ascii-glow-radius-x) var(--ascii-glow-radius-y)
+                    at var(--ascii-pointer-x) var(--ascii-pointer-y),
+                    var(--foreground),
+                    transparent
+            ),
+            radial-gradient(
+                    ellipse var(--ascii-glow-left-x) var(--ascii-glow-left-y)
+                    at var(--ascii-pointer-x-left) var(--ascii-pointer-y-left),
+                    var(--foreground),
+                    transparent
+            ),
+            radial-gradient(
+                    ellipse var(--ascii-glow-right-x) var(--ascii-glow-right-y)
+                    at var(--ascii-pointer-x-right) var(--ascii-pointer-y-right),
+                    var(--foreground),
+                    transparent
+            ),
+            radial-gradient(
+                    ellipse var(--ascii-glow-bottom-x) var(--ascii-glow-bottom-y)
+                    at var(--ascii-pointer-x-bottom) var(--ascii-pointer-y-bottom),
+                    var(--foreground),
+                    transparent
+            );
     opacity: 0;
     pointer-events: none;
-    transition: opacity 900ms ease-out;
+    white-space: pre;
 }
 
-.ascii-character-highlight[data-pointer-lit="true"]::after {
-    opacity: var(--ascii-pointer-light, 0);
-    transition-duration: 0ms;
+.ascii-pointer-glow-variant-0 {
+    color: color-mix(in oklab, var(--border) 56%, var(--foreground));
 }
 
-.ascii-character-highlight:hover::after {
-    opacity: 1;
-    transition-duration: 0ms;
+.ascii-pointer-glow-variant-1 {
+    color: color-mix(in oklab, var(--border) 64%, var(--foreground));
+}
+
+.ascii-pointer-glow-variant-2 {
+    color: color-mix(in oklab, var(--border) 72%, var(--foreground));
 }
 
 @media (prefers-reduced-motion: no-preference) {
     .ascii-character-pulse-dim {
         animation: ascii-character-pulse-dim 4.4s ease-in-out infinite;
-        will-change: opacity;
     }
 
     .ascii-character-pulse-contrast {
         animation: ascii-character-pulse-contrast 4.4s ease-in-out infinite;
-        will-change: color;
+    }
+
+    .animated-ascii-art[data-ascii-visible="false"] .ascii-character-pulse-dim,
+    .animated-ascii-art[data-ascii-visible="false"] .ascii-character-pulse-contrast {
+        animation-play-state: paused;
     }
 
     .ascii-character-pulse-delay-1 {

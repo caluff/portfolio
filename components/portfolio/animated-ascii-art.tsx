@@ -5,7 +5,6 @@ import {
   type ReactNode,
   useCallback,
   useEffect,
-  useMemo,
   useRef,
 } from "react";
 
@@ -18,7 +17,12 @@ type AnimatedAsciiArtProps = {
 
 type PulseDirection = "dim" | "contrast";
 
-const asciiGlowRadius = 30;
+const asciiSparkleLayerCount = 6;
+const asciiSparkleInterval = 150;
+const asciiSparkleDuration = 900;
+const asciiSparkleDensity = 4;
+const asciiGlowVariantCount = 3;
+const asciiGlowStrengths = [0.82, 0.64, 0.48] as const;
 
 const pulsePhaseClasses = [
   "",
@@ -57,26 +61,16 @@ function getPulseDirections(characters: string[]) {
   return directions;
 }
 
-function renderAnimatedCharacters(art: string, columnCount: number) {
+function renderPulsingCharacters(art: string) {
   const characters = Array.from(art);
   const pulseDirections = getPulseDirections(characters);
   const content: ReactNode[] = [];
   let textRun = "";
-  let row = 0;
-  let column = 0;
 
   characters.forEach((character, index) => {
-    const characterRow = row;
-    const characterColumn = column;
+    const pulseDirection = pulseDirections.get(index);
 
-    if (character === "\n") {
-      row += 1;
-      column = 0;
-    } else {
-      column += 1;
-    }
-
-    if (character === " " || character === "\n") {
+    if (!pulseDirection) {
       textRun += character;
       return;
     }
@@ -86,19 +80,13 @@ function renderAnimatedCharacters(art: string, columnCount: number) {
       textRun = "";
     }
 
-    const pulseDirection = pulseDirections.get(index);
-
     content.push(
       <span
         className={cn(
-          "ascii-character-highlight",
-          pulseDirection && pulseClassNames[pulseDirection],
-          pulseDirection &&
-            pulsePhaseClasses[(index + character.charCodeAt(0)) % 4],
+          pulseClassNames[pulseDirection],
+          pulsePhaseClasses[(index + character.charCodeAt(0)) % 4],
         )}
-        data-grid-index={characterRow * columnCount + characterColumn}
-        data-character={character}
-        key={`character-${index}`}
+        key={`${pulseDirection}-${index}`}
       >
         {character}
       </span>,
@@ -110,154 +98,184 @@ function renderAnimatedCharacters(art: string, columnCount: number) {
   return content;
 }
 
+function createRandomGlowFrame(art: string, seed: number) {
+  return Array.from(art)
+    .map((character, index) => {
+      if (character === " " || character === "\n") return character;
+
+      let hash =
+        Math.imul(index + 1, 1_103_515_245) ^
+        Math.imul(seed + 1, 12_345) ^
+        character.charCodeAt(0) * 97;
+      hash ^= hash >>> 16;
+
+      return (hash >>> 0) % asciiSparkleDensity === 0 ? character : " ";
+    })
+    .join("");
+}
+
+type GlowPosition = {
+  scaleX: number;
+  scaleY: number;
+  x: number;
+  y: number;
+};
+
+function positionGlow(glow: HTMLPreElement, position: GlowPosition) {
+  const {scaleX, scaleY, x, y} = position;
+
+  glow.style.setProperty("--ascii-pointer-x", `${x}px`);
+  glow.style.setProperty("--ascii-pointer-y", `${y}px`);
+  glow.style.setProperty("--ascii-pointer-x-left", `${x - 9 * scaleX}px`);
+  glow.style.setProperty("--ascii-pointer-y-left", `${y + 6 * scaleY}px`);
+  glow.style.setProperty("--ascii-pointer-x-right", `${x + 8 * scaleX}px`);
+  glow.style.setProperty("--ascii-pointer-y-right", `${y - 7 * scaleY}px`);
+  glow.style.setProperty("--ascii-pointer-x-bottom", `${x + 2 * scaleX}px`);
+  glow.style.setProperty("--ascii-pointer-y-bottom", `${y + 10 * scaleY}px`);
+  glow.style.setProperty("--ascii-glow-radius-x", `${24 * scaleX}px`);
+  glow.style.setProperty("--ascii-glow-radius-y", `${21 * scaleY}px`);
+  glow.style.setProperty("--ascii-glow-left-x", `${17 * scaleX}px`);
+  glow.style.setProperty("--ascii-glow-left-y", `${13 * scaleY}px`);
+  glow.style.setProperty("--ascii-glow-right-x", `${15 * scaleX}px`);
+  glow.style.setProperty("--ascii-glow-right-y", `${17 * scaleY}px`);
+  glow.style.setProperty("--ascii-glow-bottom-x", `${12 * scaleX}px`);
+  glow.style.setProperty("--ascii-glow-bottom-y", `${14 * scaleY}px`);
+}
+
+function createSparkleLayer(variantIndex: number) {
+  const sparkle = document.createElement("pre");
+
+  sparkle.className = cn(
+    "ascii-pointer-glow",
+    `ascii-pointer-glow-variant-${variantIndex}`,
+  );
+  sparkle.ariaHidden = "true";
+
+  return sparkle;
+}
+
 export function AnimatedAsciiArt({art, className}: AnimatedAsciiArtProps) {
-  const asciiElement = useRef<HTMLPreElement>(null);
-  const characterElements = useRef(new Map<number, HTMLSpanElement>());
-  const litCharacters = useRef(new Set<HTMLSpanElement>());
-  const animationFrame = useRef<number | null>(null);
-  const lines = useMemo(() => art.split("\n"), [art]);
-  const rowCount = lines.length;
-  const columnCount = useMemo(
-    () => Math.max(...lines.map((line) => Array.from(line).length)),
-    [lines],
-  );
+  const asciiElement = useRef<HTMLDivElement>(null);
+  const sparkleLayers = useRef<HTMLPreElement[]>([]);
+  const nextSparkleLayer = useRef(0);
+  const sparkleSeed = useRef(0);
+  const sparkleTimer = useRef<ReturnType<typeof setInterval> | null>(null);
+  const pointerPosition = useRef<GlowPosition | null>(null);
 
-  const clearLitCharacters = useCallback(() => {
-    litCharacters.current.forEach((element) =>
-      element.removeAttribute("data-pointer-lit"),
+  const showRandomSparkles = useCallback(() => {
+    const layerIndex = nextSparkleLayer.current;
+    const sparkle = sparkleLayers.current[layerIndex];
+    const position = pointerPosition.current;
+
+    if (!sparkle || !position) return;
+
+    const variantIndex = layerIndex % asciiGlowVariantCount;
+    const strength = asciiGlowStrengths[variantIndex];
+    sparkle.textContent = createRandomGlowFrame(art, sparkleSeed.current);
+    positionGlow(sparkle, position);
+    sparkle.getAnimations().forEach((animation) => animation.cancel());
+    sparkle.animate(
+      [
+        {opacity: 0},
+        {opacity: strength, offset: 0.14},
+        {opacity: 0},
+      ],
+      {
+        duration: asciiSparkleDuration,
+        easing: "ease-in-out",
+        fill: "forwards",
+      },
     );
-    litCharacters.current.clear();
-  }, []);
-
-  const updateLitCharacters = useCallback(
-    (element: HTMLPreElement, clientX: number, clientY: number) => {
-      const bounds = element.getBoundingClientRect();
-      const cellWidth = bounds.width / columnCount;
-      const cellHeight = bounds.height / rowCount;
-
-      if (cellWidth <= 0 || cellHeight <= 0) return;
-
-      const pointerX = clientX - bounds.left;
-      const pointerY = clientY - bounds.top;
-      const centerColumn = Math.floor(pointerX / cellWidth);
-      const centerRow = Math.floor(pointerY / cellHeight);
-      const columnRadius = Math.ceil(asciiGlowRadius / cellWidth);
-      const rowRadius = Math.ceil(asciiGlowRadius / cellHeight);
-      const nextLitCharacters = new Set<HTMLSpanElement>();
-
-      for (
-        let candidateRow = Math.max(0, centerRow - rowRadius);
-        candidateRow <= Math.min(rowCount - 1, centerRow + rowRadius);
-        candidateRow += 1
-      ) {
-        for (
-          let candidateColumn = Math.max(0, centerColumn - columnRadius);
-          candidateColumn <=
-          Math.min(columnCount - 1, centerColumn + columnRadius);
-          candidateColumn += 1
-        ) {
-          const horizontalDistance =
-            (candidateColumn + 0.5) * cellWidth - pointerX;
-          const verticalDistance = (candidateRow + 0.5) * cellHeight - pointerY;
-          const angle = Math.atan2(verticalDistance, horizontalDistance);
-          const irregularEdge =
-            0.86 +
-            Math.sin(angle * 3 + centerRow * 0.31) * 0.08 +
-            Math.sin(angle * 7 + centerColumn * 0.17) * 0.06;
-          const localGlowRadius = asciiGlowRadius * irregularEdge;
-          const distance = Math.hypot(horizontalDistance, verticalDistance);
-
-          if (distance > localGlowRadius) {
-            continue;
-          }
-
-          const character = characterElements.current.get(
-            candidateRow * columnCount + candidateColumn,
-          );
-
-          if (character) {
-            const normalizedDistance = distance / localGlowRadius;
-            const edgeBlend =
-              1 -
-              normalizedDistance ** 2 * (3 - 2 * normalizedDistance);
-
-            character.style.setProperty(
-              "--ascii-pointer-light",
-              edgeBlend.toFixed(3),
-            );
-            nextLitCharacters.add(character);
-          }
-        }
-      }
-
-      litCharacters.current.forEach((character) => {
-        if (!nextLitCharacters.has(character)) {
-          character.removeAttribute("data-pointer-lit");
-        }
-      });
-      nextLitCharacters.forEach((character) => {
-        character.setAttribute("data-pointer-lit", "true");
-      });
-      litCharacters.current = nextLitCharacters;
-    },
-    [columnCount, rowCount],
-  );
+    sparkleSeed.current += 1;
+    nextSparkleLayer.current =
+      (nextSparkleLayer.current + 1) % sparkleLayers.current.length;
+  }, [art]);
 
   const handlePointerMove = useCallback(
-    (event: ReactPointerEvent<HTMLPreElement>) => {
+    (event: ReactPointerEvent<HTMLDivElement>) => {
       const element = event.currentTarget;
-      const {clientX, clientY} = event;
+      const bounds = element.getBoundingClientRect();
 
-      if (animationFrame.current !== null) {
-        cancelAnimationFrame(animationFrame.current);
-      }
+      if (bounds.width <= 0 || bounds.height <= 0) return;
 
-      animationFrame.current = requestAnimationFrame(() => {
-        updateLitCharacters(element, clientX, clientY);
-        animationFrame.current = null;
-      });
+      const scaleX = element.offsetWidth / bounds.width;
+      const scaleY = element.offsetHeight / bounds.height;
+      pointerPosition.current = {
+        scaleX,
+        scaleY,
+        x: (event.clientX - bounds.left) * scaleX,
+        y: (event.clientY - bounds.top) * scaleY,
+      };
+
+      if (sparkleTimer.current !== null) return;
+
+      showRandomSparkles();
+      sparkleTimer.current = setInterval(
+        showRandomSparkles,
+        asciiSparkleInterval,
+      );
     },
-    [updateLitCharacters],
+    [showRandomSparkles],
   );
 
   const handlePointerLeave = useCallback(() => {
-    if (animationFrame.current !== null) {
-      cancelAnimationFrame(animationFrame.current);
-      animationFrame.current = null;
-    }
+    pointerPosition.current = null;
 
-    clearLitCharacters();
-  }, [clearLitCharacters]);
+    if (sparkleTimer.current !== null) {
+      clearInterval(sparkleTimer.current);
+      sparkleTimer.current = null;
+    }
+  }, []);
 
   useEffect(() => {
     const element = asciiElement.current;
-    const mountedCharacterElements = characterElements.current;
 
-    mountedCharacterElements.clear();
-    element
-      ?.querySelectorAll<HTMLSpanElement>("[data-grid-index]")
-      .forEach((character) => {
-        const gridIndex = Number(character.dataset.gridIndex);
+    if (!element) return;
 
-        mountedCharacterElements.set(gridIndex, character);
-      });
+    const mountedSparkleLayers = Array.from(
+      {length: asciiSparkleLayerCount},
+      (_, index) => createSparkleLayer(index % asciiGlowVariantCount),
+    );
+    element.append(...mountedSparkleLayers);
+    sparkleLayers.current = mountedSparkleLayers;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        element.setAttribute(
+          "data-ascii-visible",
+          entry.isIntersecting ? "true" : "false",
+        );
+      },
+      {rootMargin: "100px"},
+    );
+    observer.observe(element);
 
     return () => {
-      if (animationFrame.current !== null) {
-        cancelAnimationFrame(animationFrame.current);
+      observer.disconnect();
+      if (sparkleTimer.current !== null) {
+        clearInterval(sparkleTimer.current);
+        sparkleTimer.current = null;
       }
-      mountedCharacterElements.clear();
+      pointerPosition.current = null;
+      mountedSparkleLayers.forEach((sparkle) => {
+        sparkle.getAnimations().forEach((animation) => animation.cancel());
+        sparkle.remove();
+      });
+      sparkleLayers.current = [];
     };
-  }, [art, columnCount]);
+  }, []);
 
   return (
-    <pre
-      className={cn("pointer-events-auto", className)}
+    <div
+      className={cn("animated-ascii-art pointer-events-auto", className)}
+      data-ascii-visible="false"
       onPointerLeave={handlePointerLeave}
       onPointerMove={handlePointerMove}
       ref={asciiElement}
     >
-      {renderAnimatedCharacters(art, columnCount)}
-    </pre>
+      <pre className="pointer-events-none m-0">
+        {renderPulsingCharacters(art)}
+      </pre>
+    </div>
   );
 }
