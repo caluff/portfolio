@@ -1,13 +1,15 @@
 {
   "Metadata": {
     "title": "Daniel Caluff — Ingeniero de software",
-    "description": "Portfolio de Daniel Caluff, Ingeniero de software y Licenciado en Ciencias de la Computación radicado en Montevideo.",
+    "description": "Daniel Caluff, ingeniero de software en Montevideo. Desarrollo de aplicaciones web con TypeScript, React, Node.js y APIs.",
     "keywords": [
       "Daniel Caluff",
-      "Ingeniero Frontend",
-      "React",
-      "Next.js",
+      "Ingeniero de software",
       "TypeScript",
+      "React",
+      "Node.js",
+      "APIs",
+      "Next.js",
       "Montevideo"
     ]
   },
@@ -106,16 +108,16 @@
       "activeTech": {
         "role": "Ingeniero Frontend",
         "highlights": {
-          "1": "Diseño y desarrollo end-to-end de aplicaciones y módulos web con Next.js, React y TypeScript, desde requerimientos y solución técnica hasta integración y puesta en producción.",
+          "1": "Diseño y desarrollo de aplicaciones y módulos web con TypeScript, React y Next.js, desde los requerimientos y el diseño técnico hasta la integración y la puesta en producción.",
           "2": "Diseño e implementación de flujos de pagos y suscripciones con Stripe y NMI, conectando checkout, backend y estados de transacción en producción.",
-          "3": "Diseño y evolución de la arquitectura frontend: estructura de aplicaciones, componentes reutilizables, manejo de estado, acceso a datos y patrones de integración con APIs.",
+          "3": "Diseño y evolución de la arquitectura frontend y los patrones de integración con APIs: estructura de aplicaciones, componentes reutilizables, manejo de estado y acceso a datos.",
           "4": "Optimización de carga, renderizado y SEO técnico para mejorar rendimiento y experiencia de usuario; automatización de CI/CD y despliegues en Vercel."
         }
       },
       "desoft": {
         "role": "Especialista en Ciencias de la Computación",
         "highlights": {
-          "1": "Desarrollo de aplicaciones y módulos de negocio con React, Vite y TypeScript, transformando requerimientos funcionales en flujos e interfaces mantenibles.",
+          "1": "Desarrollo de aplicaciones y módulos de negocio con TypeScript, React y Vite, transformando requerimientos funcionales en flujos e interfaces mantenibles.",
           "2": "Integración con APIs REST y servicios backend, implementando manejo de datos, validaciones, estados de carga, errores y operaciones de negocio.",
           "3": "Refactorización de componentes y lógica reutilizable para reducir duplicación y facilitar la incorporación de nuevas funcionalidades."
         }
@@ -140,13 +142,13 @@
     },
     "items": {
       "needThis": {
-        "description": "Plataforma de comercio electrónico full stack con tienda responsiva, checkout para invitados, pagos seguros, inventario en tiempo real, cuentas de clientes y panel privado de operaciones."
+        "description": "Desarrollo de una plataforma de comercio electrónico con TypeScript y React, checkout para invitados y panel de operaciones. Incluye una API de webhooks en Node.js para integrar los pagos de Stripe con Convex."
       },
       "galloExpress": {
-        "description": "Aplicación de comercio electrónico lista para producción con catálogos, inventario en múltiples ubicaciones, área administrativa, autenticación, carga de archivos y carrito persistente."
+        "description": "Desarrollo de una aplicación de comercio electrónico con TypeScript, React y Next.js: catálogo, inventario en múltiples ubicaciones y panel administrativo, con autenticación, carga de archivos y carrito persistente."
       },
       "travelAdvisor": {
-        "description": "Aplicación de descubrimiento turístico basada en la ubicación que integra mapas y APIs externas para mostrar restaurantes, hoteles y atracciones."
+        "description": "Integración de mapas y APIs externas en una aplicación React para descubrir restaurantes, hoteles y atracciones según la ubicación."
       }
     }
   },

@@ -20,13 +20,6 @@ export type TechnologyTab = (typeof technologyTabs)[number]["value"];
 
 export const technologies = [
   {
-    name: "JavaScript",
-    href: "https://developer.mozilla.org/docs/Web/JavaScript",
-    iconSrc: "/tech/javascript.svg",
-    iconMode: "color",
-    categories: ["frontend", "backend"],
-  },
-  {
     name: "TypeScript",
     href: "https://www.typescriptlang.org/",
     iconSrc: "/tech/typescript.svg",
@@ -41,10 +34,24 @@ export const technologies = [
     categories: ["frontend"],
   },
   {
+    name: "Node.js",
+    href: "https://nodejs.org/",
+    iconSrc: "/tech/node.svg",
+    iconMode: "color",
+    categories: ["backend"],
+  },
+  {
     name: "Next.js",
     href: "https://nextjs.org/",
     iconSrc: "/tech/nextjs.svg",
     iconMode: "monochrome",
+    categories: ["frontend", "backend"],
+  },
+  {
+    name: "JavaScript",
+    href: "https://developer.mozilla.org/docs/Web/JavaScript",
+    iconSrc: "/tech/javascript.svg",
+    iconMode: "color",
     categories: ["frontend", "backend"],
   },
   {
@@ -60,13 +67,6 @@ export const technologies = [
     iconSrc: "/tech/vitejs.svg",
     iconMode: "color",
     categories: ["frontend", "tools"],
-  },
-  {
-    name: "Node.js",
-    href: "https://nodejs.org/",
-    iconSrc: "/tech/node.svg",
-    iconMode: "color",
-    categories: ["backend"],
   },
   {
     name: "pnpm",
