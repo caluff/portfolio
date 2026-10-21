@@ -89,7 +89,7 @@
   },
   "About": {
     "title": "Sobre mí",
-    "body": "Ingeniero de software orientado a producto, con experiencia llevando aplicaciones web end-to-end desde requerimientos y diseño técnico hasta integración y producción. Construyo soluciones mantenibles con <highlight>TypeScript, React, Next.js y APIs</highlight>, con foco en arquitectura, pagos, rendimiento y entrega confiable."
+    "body": "Ingeniero de software orientado a producto, con experiencia llevando aplicaciones web end-to-end desde requerimientos y diseño técnico hasta integración y producción. Construyo soluciones mantenibles con <highlight>TypeScript, React, Node.js y APIs</highlight>, con foco en arquitectura, pagos, rendimiento y entrega confiable."
   },
   "Experience": {
     "title": "Experiencia",

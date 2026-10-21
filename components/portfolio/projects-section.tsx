@@ -3,7 +3,6 @@ import {getTranslations} from "next-intl/server";
 import type {CSSProperties} from "react";
 
 import {ProjectDevelopmentRibbon} from "@/components/portfolio/project-development-ribbon";
-import {ProjectsAsciiArt} from "@/components/portfolio/projects-ascii-art";
 import {ProjectMediaCarousel} from "@/components/portfolio/project-media-carousel";
 import {SectionHeader} from "@/components/portfolio/section-header";
 import {Badge} from "@/components/ui/badge";
@@ -155,7 +154,6 @@ export async function ProjectsSection() {
 
   return (
     <section className="relative isolate" id="projects">
-      <ProjectsAsciiArt/>
       <div className="relative z-10">
         <SectionHeader
           title={t("title")}
