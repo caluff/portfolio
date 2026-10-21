@@ -16,8 +16,9 @@
     --cover-accent-purple: oklch(0.55 0.26 292);
     --cover-accent-cyan: oklch(0.68 0.18 195);
     --cover-accent-orange: oklch(0.67 0.2 48);
-    --cover-accent-foreground: oklch(0.145 0 0);
-    --cover-accent-purple-foreground: oklch(0.985 0 0);
+    --cover-action-purple: oklch(0.55 0.26 292);
+    --cover-action-cyan: oklch(0.48 0.1 195);
+    --cover-action-orange: oklch(0.55 0.16 48);
     --cover-surface: #000000;
     --neon-accent: var(--cover-accent-purple);
     --background: oklch(1 0 0);
@@ -26,8 +27,9 @@
     --card-foreground: oklch(0.145 0 0);
     --popover: oklch(1 0 0);
     --popover-foreground: oklch(0.145 0 0);
-    --primary: var(--neon-accent);
-    --primary-foreground: var(--cover-accent-purple-foreground);
+    --primary: var(--cover-action-purple);
+    --primary-foreground: oklch(0.985 0 0);
+    --primary-hover: color-mix(in oklch, var(--primary) 88%, var(--cover-surface));
     --secondary: oklch(0.97 0 0);
     --secondary-foreground: oklch(0.205 0 0);
     --muted: oklch(0.97 0 0);
@@ -102,8 +104,9 @@
     --cover-accent-purple: oklch(0.68 0.22 292);
     --cover-accent-cyan: oklch(0.8 0.18 195);
     --cover-accent-orange: oklch(0.78 0.19 55);
-    --cover-accent-foreground: oklch(0.145 0 0);
-    --cover-accent-purple-foreground: oklch(0.145 0 0);
+    --cover-action-purple: oklch(0.55 0.26 292);
+    --cover-action-cyan: oklch(0.48 0.1 195);
+    --cover-action-orange: oklch(0.55 0.16 48);
     --cover-surface: #000000;
     --neon-accent: var(--cover-accent-purple);
     --background: oklch(0.145 0 0);
@@ -112,8 +115,9 @@
     --card-foreground: oklch(0.985 0 0);
     --popover: oklch(0.205 0 0);
     --popover-foreground: oklch(0.985 0 0);
-    --primary: var(--neon-accent);
-    --primary-foreground: var(--cover-accent-purple-foreground);
+    --primary: var(--cover-action-purple);
+    --primary-foreground: oklch(0.985 0 0);
+    --primary-hover: color-mix(in oklch, var(--primary) 88%, var(--cover-surface));
     --secondary: oklch(0.269 0 0);
     --secondary-foreground: oklch(0.985 0 0);
     --muted: oklch(0.269 0 0);
@@ -149,17 +153,17 @@
 
 :root[data-cover-accent="cyan"] {
     --neon-accent: var(--cover-accent-cyan);
-    --primary-foreground: var(--cover-accent-foreground);
+    --primary: var(--cover-action-cyan);
 }
 
 :root[data-cover-accent="orange"] {
     --neon-accent: var(--cover-accent-orange);
-    --primary-foreground: var(--cover-accent-foreground);
+    --primary: var(--cover-action-orange);
 }
 
 :root[data-cover-accent="purple"] {
     --neon-accent: var(--cover-accent-purple);
-    --primary-foreground: var(--cover-accent-purple-foreground);
+    --primary: var(--cover-action-purple);
 }
 
 @theme inline {
@@ -174,6 +178,7 @@
     --color-popover-foreground: var(--popover-foreground);
     --color-primary: var(--primary);
     --color-primary-foreground: var(--primary-foreground);
+    --color-primary-hover: var(--primary-hover);
     --color-secondary: var(--secondary);
     --color-secondary-foreground: var(--secondary-foreground);
     --color-muted: var(--muted);
