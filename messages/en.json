@@ -55,12 +55,12 @@
     }
   },
   "Cover": {
-    "ariaLabel": "Animated portfolio cover",
-    "selectorLabel": "Change animated cover",
-    "gifOptions": {
-      "1": "Show animated cover 1",
-      "2": "Show animated cover 2",
-      "3": "Show animated cover 3"
+    "ariaLabel": "Portfolio cover",
+    "selectorLabel": "Change cover image",
+    "imageOptions": {
+      "1": "Show pixelated cover",
+      "2": "Show cyan cover",
+      "3": "Show warm dotted cover"
     }
   },
   "Profile": {
@@ -183,7 +183,7 @@
     "github": "GitHub",
     "linkedin": "LinkedIn",
     "telegram": "Telegram",
-    "twitter": "X / Twitter",
+    "whatsapp": "WhatsApp",
     "email": "Email"
   },
   "Contact": {

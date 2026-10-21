@@ -12,7 +12,7 @@ export async function ContactSection() {
     <section id="contact">
       <SectionHeader title={contactT("title")}/>
 
-      <div className="grid grid-cols-1 border-0 bg-background sm:grid-cols-5 sm:divide-x sm:divide-dashed">
+      <div className="grid grid-cols-1 border-0 bg-background sm:auto-cols-fr sm:grid-flow-col sm:grid-cols-none sm:divide-x sm:divide-dashed">
         {contactLinks.map(({href, iconMode, iconSrc, key}) => (
           <ContactLinkButton
             href={href}

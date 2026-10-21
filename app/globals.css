@@ -12,10 +12,13 @@
             var(--foreground) 32%,
             transparent
     );
-    --brand-accent: #7c3aed;
+    --brand-accent: var(--neon-accent);
     --cover-accent-purple: oklch(0.55 0.26 292);
     --cover-accent-cyan: oklch(0.68 0.18 195);
     --cover-accent-orange: oklch(0.67 0.2 48);
+    --cover-accent-foreground: oklch(0.145 0 0);
+    --cover-accent-purple-foreground: oklch(0.985 0 0);
+    --cover-surface: #000000;
     --neon-accent: var(--cover-accent-purple);
     --background: oklch(1 0 0);
     --foreground: oklch(0.145 0 0);
@@ -23,8 +26,8 @@
     --card-foreground: oklch(0.145 0 0);
     --popover: oklch(1 0 0);
     --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
+    --primary: var(--neon-accent);
+    --primary-foreground: var(--cover-accent-purple-foreground);
     --secondary: oklch(0.97 0 0);
     --secondary-foreground: oklch(0.205 0 0);
     --muted: oklch(0.97 0 0);
@@ -43,7 +46,7 @@
     --destructive-foreground: oklch(0.985 0 0);
     --border: oklch(0.89 0 0);
     --input: oklch(0.89 0 0);
-    --ring: oklch(0.62 0 0);
+    --ring: var(--neon-accent);
     --radius: 0rem;
     --cover-deep: oklch(0.28 0.045 166);
     --cover-mid: oklch(0.48 0.055 174);
@@ -95,10 +98,13 @@
 .dark {
     color-scheme: dark;
     --noise-opacity: 0.065;
-    --brand-accent: #7c3aed;
+    --brand-accent: var(--neon-accent);
     --cover-accent-purple: oklch(0.68 0.22 292);
     --cover-accent-cyan: oklch(0.8 0.18 195);
     --cover-accent-orange: oklch(0.78 0.19 55);
+    --cover-accent-foreground: oklch(0.145 0 0);
+    --cover-accent-purple-foreground: oklch(0.145 0 0);
+    --cover-surface: #000000;
     --neon-accent: var(--cover-accent-purple);
     --background: oklch(0.145 0 0);
     --foreground: oklch(0.985 0 0);
@@ -106,8 +112,8 @@
     --card-foreground: oklch(0.985 0 0);
     --popover: oklch(0.205 0 0);
     --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.922 0 0);
-    --primary-foreground: oklch(0.205 0 0);
+    --primary: var(--neon-accent);
+    --primary-foreground: var(--cover-accent-purple-foreground);
     --secondary: oklch(0.269 0 0);
     --secondary-foreground: oklch(0.985 0 0);
     --muted: oklch(0.269 0 0);
@@ -120,7 +126,7 @@
     --destructive-foreground: oklch(0.985 0 0);
     --border: oklch(1 0 0 / 14%);
     --input: oklch(1 0 0 / 18%);
-    --ring: oklch(0.556 0 0);
+    --ring: var(--neon-accent);
     --project-hover: oklch(0.68 0 0 / 24%);
     --project-status-building: oklch(0.86 0.17 92);
     --project-status-building-foreground: oklch(0.2 0.035 78);
@@ -143,14 +149,17 @@
 
 :root[data-cover-accent="cyan"] {
     --neon-accent: var(--cover-accent-cyan);
+    --primary-foreground: var(--cover-accent-foreground);
 }
 
 :root[data-cover-accent="orange"] {
     --neon-accent: var(--cover-accent-orange);
+    --primary-foreground: var(--cover-accent-foreground);
 }
 
 :root[data-cover-accent="purple"] {
     --neon-accent: var(--cover-accent-purple);
+    --primary-foreground: var(--cover-accent-purple-foreground);
 }
 
 @theme inline {
@@ -191,6 +200,7 @@
     --color-cover-accent-purple: var(--cover-accent-purple);
     --color-cover-accent-cyan: var(--cover-accent-cyan);
     --color-cover-accent-orange: var(--cover-accent-orange);
+    --color-cover-surface: var(--cover-surface);
     --color-project-lime-soft: var(--project-lime-soft);
     --color-project-lime: var(--project-lime);
     --color-project-lime-deep: var(--project-lime-deep);

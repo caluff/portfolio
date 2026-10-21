@@ -18,6 +18,12 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
+## WhatsApp contact
+
+Set `NEXT_PUBLIC_WHATSAPP_NUMBER` in `.env.local` to the international phone number, including the country code. The number is used to build the public WhatsApp link in the contact section, floating dock, and footer. If it is empty, the WhatsApp link is hidden.
+
+Set the same variable in the deployment environment before building. `NEXT_PUBLIC_` values are included in the browser bundle at build time; rebuild after changing the number. Keep `.env.local` out of Git.
+
 ## Page visit counter
 
 The profile visit counter uses Upstash Redis so its value persists across deployments.

@@ -1,11 +1,13 @@
 import {githubProfile} from "@/data/github";
 
 type ContactLink = {
-  key: "github" | "linkedin" | "telegram" | "twitter" | "email";
+  key: "github" | "linkedin" | "telegram" | "whatsapp" | "email";
   href: string;
   iconSrc: string;
   iconMode: "color" | "monochrome";
 };
+
+const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replace(/\D/g, "");
 
 export const contactLinks = [
   {
@@ -26,12 +28,14 @@ export const contactLinks = [
     iconSrc: "/contact/telegram.svg",
     iconMode: "monochrome",
   },
-  {
-    key: "twitter",
-    href: "https://x.com/danielcaluff",
-    iconSrc: "/contact/X.svg",
-    iconMode: "monochrome",
-  },
+  ...(whatsappNumber
+    ? [{
+        key: "whatsapp",
+        href: `https://wa.me/${whatsappNumber}`,
+        iconSrc: "/contact/whatsapp.svg",
+        iconMode: "monochrome",
+      }] as const
+    : []),
   {
     key: "email",
     href: "mailto:dcaluff@gmail.com",

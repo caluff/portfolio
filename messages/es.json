@@ -55,12 +55,12 @@
     }
   },
   "Cover": {
-    "ariaLabel": "Portada animada del portfolio",
-    "selectorLabel": "Cambiar portada animada",
-    "gifOptions": {
-      "1": "Mostrar portada animada 1",
-      "2": "Mostrar portada animada 2",
-      "3": "Mostrar portada animada 3"
+    "ariaLabel": "Portada del portfolio",
+    "selectorLabel": "Cambiar imagen de portada",
+    "imageOptions": {
+      "1": "Mostrar portada pixelada",
+      "2": "Mostrar portada en cian",
+      "3": "Mostrar portada de puntos cálidos"
     }
   },
   "Profile": {
@@ -183,7 +183,7 @@
     "github": "GitHub",
     "linkedin": "LinkedIn",
     "telegram": "Telegram",
-    "twitter": "X / Twitter",
+    "whatsapp": "WhatsApp",
     "email": "Correo electrónico"
   },
   "Contact": {
