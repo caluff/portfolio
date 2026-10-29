@@ -43,18 +43,25 @@ export function FloatingAudioPlayer() {
       data-audio-player
     >
       <div className="flex items-stretch">
-        <div className="relative size-14 shrink-0 overflow-hidden border-r bg-muted">
-          <Image
-            alt=""
-            className="object-cover"
-            fill
-            sizes="56px"
-            src={backgroundTrack.coverSrc}
-          />
-        </div>
+        <a
+          aria-label={`${backgroundTrack.title} — ${backgroundTrack.artist}. ${copy.openInSpotify}`}
+          className="flex min-w-0 flex-1 items-center transition-colors hover:bg-muted focus-visible:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset"
+          href={backgroundTrack.spotifyUrl}
+          rel="noopener noreferrer"
+          target="_blank"
+          title={copy.openInSpotify}
+        >
+          <div className="relative size-14 shrink-0 overflow-hidden border-r bg-muted">
+            <Image
+              alt=""
+              className="object-cover"
+              fill
+              sizes="56px"
+              src={backgroundTrack.coverSrc}
+            />
+          </div>
 
-        <div className="flex min-w-0 flex-1 items-center gap-3 px-3 py-2">
-          <div className="min-w-0 flex-1">
+          <div className="min-w-0 flex-1 px-3 py-2">
             <p className="truncate text-sm font-semibold text-foreground">
               {backgroundTrack.title}
             </p>
@@ -62,7 +69,9 @@ export function FloatingAudioPlayer() {
               {backgroundTrack.artist}
             </p>
           </div>
+        </a>
 
+        <div className="flex shrink-0 items-center pr-3">
           <Button
             aria-label={isMuted ? copy.unmute : copy.mute}
             onClick={() => void toggleMuted()}

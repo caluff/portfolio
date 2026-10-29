@@ -36,7 +36,10 @@ export function MobileAudioControl() {
       <Button
         aria-label={isSoundOn ? copy.mute : copy.unmute}
         aria-pressed={isSoundOn}
-        className="h-auto w-full items-start justify-start gap-3 rounded-none px-5 py-4 text-left"
+        className={cn(
+          "h-auto w-full items-center justify-start gap-3 rounded-none px-5 py-4 text-left",
+          isSoundOn && "pb-2",
+        )}
         onClick={() => void toggleMuted()}
         type="button"
         variant="ghost"
@@ -47,29 +50,36 @@ export function MobileAudioControl() {
           <VolumeX aria-hidden="true" data-icon="inline-start" />
         )}
 
-        <span className="flex min-w-0 flex-1 flex-col items-start gap-2">
-          <span className="font-mono">{isSoundOn ? copy.soundOn : copy.soundOff}</span>
-
-          {isSoundOn ? (
-            <span className="flex min-w-0 max-w-full items-center gap-2 text-xs font-normal text-muted-foreground">
-              <span className="relative size-5 shrink-0 overflow-hidden border bg-muted">
-                <Image
-                  alt=""
-                  className="object-cover"
-                  fill
-                  sizes="20px"
-                  src={backgroundTrack.coverSrc}
-                />
-              </span>
-              <span className="truncate">
-                {backgroundTrack.artist} — {backgroundTrack.title}
-              </span>
-            </span>
-          ) : null}
+        <span className="min-w-0 flex-1 font-mono">
+          {isSoundOn ? copy.soundOn : copy.soundOff}
         </span>
 
         {isSoundOn ? <AudioLevelIndicator /> : null}
       </Button>
+
+      {isSoundOn ? (
+        <a
+          aria-label={`${backgroundTrack.title} — ${backgroundTrack.artist}. ${copy.openInSpotify}`}
+          className="mr-5 mb-4 ml-12 flex min-h-6 min-w-0 items-center gap-2 text-xs text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          href={backgroundTrack.spotifyUrl}
+          rel="noopener noreferrer"
+          target="_blank"
+          title={copy.openInSpotify}
+        >
+          <span className="relative size-5 shrink-0 overflow-hidden border bg-muted">
+            <Image
+              alt=""
+              className="object-cover"
+              fill
+              sizes="20px"
+              src={backgroundTrack.coverSrc}
+            />
+          </span>
+          <span className="truncate">
+            {backgroundTrack.artist} — {backgroundTrack.title}
+          </span>
+        </a>
+      ) : null}
     </div>
   );
 }
