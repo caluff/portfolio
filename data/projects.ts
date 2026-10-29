@@ -67,9 +67,9 @@ export const projects = [
       {name: "Vercel"},
     ],
     images: [
-      "/projects/slotly/agenda.jpg",
-      "/projects/slotly/clientes.jpg",
-      "/projects/slotly/servicios.jpg",
+      "/projects/slotly/portada.png",
+      "/projects/slotly/agenda.png",
+      "/projects/slotly/reservas.png",
     ],
     sourceCodeLink: "https://github.com/caluff/slotly",
     liveUrl: "https://slotly-gold.vercel.app/",
