@@ -147,8 +147,8 @@
       "galloExpress": {
         "description": "Desarrollo de una aplicación de comercio electrónico con TypeScript, React y Next.js: catálogo, inventario en múltiples ubicaciones y panel administrativo, con autenticación, carga de archivos y carrito persistente."
       },
-      "travelAdvisor": {
-        "description": "Integración de mapas y APIs externas en una aplicación React para descubrir restaurantes, hoteles y atracciones según la ubicación."
+      "slotly": {
+        "description": "Desarrollo de una aplicación de gestión de citas con TypeScript, React y Next.js. Incluye agenda interactiva, reservas públicas personalizables, clientes con historial y autogestión de cancelaciones y cambios de horario. Clerk protege el acceso y Convex gestiona disponibilidad transaccional, datos reactivos y recuperación de operaciones sin duplicados. Ofrece una demo sin cuenta."
       }
     }
   },

@@ -1,5 +1,5 @@
 export type Project = {
-  id: "needThis" | "galloExpress" | "travelAdvisor";
+  id: "needThis" | "galloExpress" | "slotly";
   name: string;
   tags: readonly {
     name: string;
@@ -53,18 +53,26 @@ export const projects = [
     developing: false,
   },
   {
-    id: "travelAdvisor",
-    name: "Travel Advisor",
+    id: "slotly",
+    name: "Slotly",
     tags: [
-      {name: "React"},
-      {name: "Vite"},
-      {name: "RapidAPI"},
-      {name: "Material UI"},
+      {name: "TypeScript"},
+      {name: "React 19"},
+      {name: "Next.js 16"},
+      {name: "Convex"},
+      {name: "Clerk"},
       {name: "Google Cloud"},
+      {name: "Tailwind CSS 4"},
+      {name: "shadcn/ui"},
+      {name: "Vercel"},
     ],
-    images: ["/projects/travel-advisor.webp"],
-    sourceCodeLink: "https://github.com/caluff/travel_advisor",
-    liveUrl: "https://traveladvisor-caluff.vercel.app",
+    images: [
+      "/projects/slotly/agenda.jpg",
+      "/projects/slotly/clientes.jpg",
+      "/projects/slotly/servicios.jpg",
+    ],
+    sourceCodeLink: "https://github.com/caluff/slotly",
+    liveUrl: "https://slotly-gold.vercel.app/",
     developing: false,
   },
 ] as const satisfies readonly Project[];

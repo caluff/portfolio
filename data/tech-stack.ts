@@ -90,6 +90,20 @@ export const technologies = [
     categories: ["backend"],
   },
   {
+    name: "Medusa",
+    href: "https://medusajs.com/",
+    iconSrc: "/tech/medusa.svg",
+    iconMode: "monochrome",
+    categories: ["backend"],
+  },
+  {
+    name: "Google Cloud",
+    href: "https://cloud.google.com/",
+    iconSrc: "/tech/google-cloud.svg",
+    iconMode: "color",
+    categories: ["backend", "tools"],
+  },
+  {
     name: "GitHub",
     href: "https://github.com/",
     iconSrc: "/tech/github.svg",
@@ -109,6 +123,13 @@ export const technologies = [
     iconSrc: "/tech/vercel.svg",
     iconMode: "monochrome",
     categories: ["tools"],
+  },
+  {
+    name: "Railway",
+    href: "https://railway.com/",
+    iconSrc: "/tech/railway.svg",
+    iconMode: "monochrome",
+    categories: ["backend", "tools"],
   },
   {
     name: "Postman",
